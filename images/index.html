@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>법령 이미지 뷰어 — Legalize</title>
+<meta name="description" content="대한민국 법령에 포함된 이미지 원본과 OCR 텍스트 변환 결과를 검색하고 검증할 수 있습니다.">
+<meta name="theme-color" content="#0F172A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+<link rel="stylesheet" href="/pagefind/pagefind-ui.css">
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-logo">⚖ legalize.kr</a>
+  <a href="/" class="nav-link">홈</a>
+  <a href="/images/" class="nav-link active">이미지 뷰어</a>
+  <span class="nav-spacer"></span>
+  <a href="https://github.com/legalize-kr" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+</nav>
+
+<div id="app"></div>
+
+<footer class="footer">
+  <p>
+    <a href="https://github.com/legalize-kr/legalize-kr">legalize-kr</a> ·
+    데이터 출처: <a href="https://open.law.go.kr" target="_blank" rel="noopener">국가법령정보센터 OpenAPI</a>
+  </p>
+</footer>
+
+<noscript>
+  <div class="container" style="padding:48px 0">
+    <p>이 페이지는 JavaScript가 필요합니다.</p>
+  </div>
+</noscript>
+
+<script>
+(function () {
+  "use strict";
+
+  var CDN_BASE = "https://img.legalize.kr/laws/";
+  var DATA_BASE = "/data/images/";
+  var GITHUB_REPO = "https://github.com/legalize-kr/legalize-kr";
+  var RENDER_BATCH = 50;
+  var VISUAL_PAGE_SIZE = 50;
+  var LIST_PAGE_SIZE = 1000;
+
+  var app = document.getElementById("app");
+  var cache = {};       // shard fetch cache
+  var manifest = null;
+  var listData = [];    // loaded list entries for current data page
+  var filterLaw = "";
+  var filterStatus = "";
+  var currentListHash = "";  // last list hash, used for back-link
+
+  // --- Routing ---
+  function parseHash() {
+    var h = location.hash.slice(1);
+    if (/^\d+$/.test(h)) return { imageId: h };
+    var params = new URLSearchParams(h);
+    return {
+      page: parseInt(params.get("page") || "1", 10),
+      law: params.get("law") || "",
+      status: params.get("status") || ""
+    };
+  }
+
+  function route() {
+    var parsed = parseHash();
+    if (parsed.imageId) {
+      showDetail(parsed.imageId);
+    } else {
+      filterLaw = parsed.law;
+      filterStatus = parsed.status;
+      showList(parsed.page);
+    }
+  }
+
+  window.addEventListener("hashchange", route);
+
+  // --- Fetch helpers ---
+  function fetchJSON(url) {
+    if (cache[url]) return Promise.resolve(cache[url]);
+    return fetch(url).then(function (r) {
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    }).then(function (data) {
+      cache[url] = data;
+      return data;
+    });
+  }
+
+  function loadManifest() {
+    if (manifest) return Promise.resolve(manifest);
+    return fetchJSON(DATA_BASE + "manifest.json").then(function (m) {
+      manifest = m;
+      return m;
+    });
+  }
+
+  // --- Badge helper ---
+  function badgeClass(status) {
+    var known = ["downloaded", "approved", "replaced", "extracted"];
+    return "badge badge-" + (known.indexOf(status) >= 0 ? status : "other");
+  }
+
+  // --- Detail View ---
+  function showDetail(imageId) {
+    document.title = "이미지 #" + imageId + " — Legalize";
+    app.innerHTML = '<div class="detail-container"><div class="loading">불러오는 중…</div></div>';
+
+    loadManifest().then(function (m) {
+      var shardNum = parseInt(imageId, 10) % m.shard_count;
+      var pad = String(shardNum).padStart(4, "0");
+      return fetchJSON(DATA_BASE + "shard-" + pad + ".json");
+    }).then(function (entries) {
+      var image = null;
+      for (var i = 0; i < entries.length; i++) {
+        if (entries[i].image_id === imageId) { image = entries[i]; break; }
+      }
+      if (!image) throw new Error("not_found");
+      renderDetail(image);
+    }).catch(function () {
+      app.innerHTML =
+        '<div class="detail-container">' +
+        '<a href="/images/' + (currentListHash ? '#' + currentListHash : '') + '" class="back-link">← 목록으로</a>' +
+        '<div class="loading">이미지를 찾을 수 없습니다: #' + escHtml(imageId) + '</div>' +
+        '</div>';
+    });
+  }
+
+  function renderDetail(image) {
+    var refsHtml = "";
+    for (var i = 0; i < image.refs.length; i++) {
+      var r = image.refs[i];
+      var lawUrl = r.law_url || ("https://www.law.go.kr/법령/" + encodeURIComponent(r.law_name));
+      refsHtml +=
+        "<tr>" +
+        '<td class="law-name">' + escHtml(r.law_name) + "</td>" +
+        "<td>" + escHtml(r.file_name) + "</td>" +
+        '<td class="line-num">' + r.line_number + "행</td>" +
+        '<td><a href="' + escAttr(lawUrl) + '" target="_blank" rel="noopener">법령정보 →</a></td>' +
+        '<td><a href="' + escAttr(r.github_url) + '" target="_blank" rel="noopener">GitHub →</a></td>' +
+        "</tr>";
+    }
+
+    var ocrContent = image.converted_text
+      ? '<pre class="ocr-text">' + escHtml(image.converted_text) + "</pre>"
+      : '<pre class="ocr-text ocr-empty">변환 대기 중</pre>';
+
+    var issueTitle = encodeURIComponent("[이미지 #" + image.image_id + "] 검증 필요");
+    var issueBody = encodeURIComponent(
+      "## 이미지 정보\n\n" +
+      "- 이미지 ID: " + image.image_id + "\n" +
+      "- 상태: " + image.status + "\n" +
+      "- 법령: " + image.refs.map(function(r) { return r.law_name; }).join(", ") + "\n" +
+      "- 뷰어: https://legalize.kr/images/#" + image.image_id + "\n" +
+      "- CDN: " + CDN_BASE + image.image_id + "." + image.ext + "\n\n" +
+      "## 문제 설명\n\n(여기에 문제를 설명해 주세요)\n"
+    );
+    var issueUrl = "https://github.com/legalize-kr/legalize-kr/issues/new?title=" + issueTitle + "&body=" + issueBody;
+
+    app.innerHTML =
+      '<div class="detail-container">' +
+      '<a href="/images/' + (currentListHash ? '#' + currentListHash : '') + '" class="back-link">← 목록으로</a>' +
+      '<div class="detail-header">' +
+      "<h1>이미지 #" + escHtml(image.image_id) + "</h1>" +
+      '<div class="detail-meta">' +
+      '<span class="' + badgeClass(image.status) + '">' + escHtml(image.status) + "</span>" +
+      "<span>" + image.refs.length + "개 법령에서 참조</span>" +
+      '<a href="https://www.law.go.kr/LSW/flDownload.do?flSeq=' + escAttr(image.image_id) + '" target="_blank" rel="noopener">원본 다운로드 (law.go.kr)</a>' +
+      '<a href="' + issueUrl + '" class="btn-report" target="_blank" rel="noopener">문제 신고</a>' +
+      "</div></div>" +
+      '<div class="viewer">' +
+      '<div class="panel"><div class="panel-header">원본 이미지</div><div class="panel-body">' +
+      '<div class="img-wrapper"><img src="' + CDN_BASE + escAttr(image.image_id) + "." + escAttr(image.ext) + '" alt="법령 이미지 ' + escAttr(image.image_id) + '" onerror="this.parentElement.innerHTML=\'<div class=img-fallback>이미지 준비 중</div>\'"></div>' +
+      "</div></div>" +
+      '<div class="panel"><div class="panel-header">OCR 텍스트 변환</div><div class="panel-body">' +
+      ocrContent +
+      "</div></div></div>" +
+      '<div class="integrity">' +
+      '<div class="panel-header" style="margin-bottom:12px;padding:0;border:none;color:var(--steel)">이미지 정보</div>' +
+      '<div class="integrity-grid">' +
+      '<span class="integrity-key">SHA-256</span><span class="integrity-val">' + escHtml(image.sha256 || "—") + "</span>" +
+      '<span class="integrity-key">이미지 ID</span><span class="integrity-val">' + escHtml(image.image_id) + "</span>" +
+      '<span class="integrity-key">형식</span><span class="integrity-val">.' + escHtml(image.ext) + "</span>" +
+      '<span class="integrity-key">상태</span><span class="integrity-val">' + escHtml(image.status) + "</span>" +
+      "</div></div>" +
+      "<div>" +
+      '<div class="panel-header" style="margin-bottom:12px;padding:0;border:none;color:var(--steel)">관련 법령 (' + image.refs.length + "건)</div>" +
+      '<div class="panel"><table class="laws-table"><thead><tr><th>법령명</th><th>파일</th><th>위치</th><th>법령정보</th><th>GitHub</th></tr></thead><tbody>' +
+      refsHtml +
+      "</tbody></table></div></div></div>";
+  }
+
+  // --- List View ---
+  function buildListHash(page) {
+    var params = new URLSearchParams();
+    params.set("page", String(page));
+    if (filterLaw) params.set("law", filterLaw);
+    if (filterStatus) params.set("status", filterStatus);
+    return params.toString();
+  }
+
+  function showList(page) {
+    if (!page || page < 1) page = 1;
+    document.title = "법령 이미지 뷰어 — Legalize";
+
+    app.innerHTML =
+      '<div class="container">' +
+      '<div class="images-header">' +
+      "<h1>법령 이미지 뷰어</h1>" +
+      '<p id="list-summary">불러오는 중…</p>' +
+      "</div>" +
+      '<div id="search-container" style="margin-bottom:16px"></div>' +
+      '<div class="filter-bar">' +
+      '<span class="filter-bar-label">법령명 색인</span>' +
+      '<div id="law-accordion" class="law-accordion"></div>' +
+      (filterLaw ? '<button id="filter-clear" class="filter-clear">✕ ' + escHtml(filterLaw) + '</button>' : '') +
+      '<span class="filter-bar-spacer"></span>' +
+      '<select id="filter-status"><option value="">전체 상태</option></select>' +
+      '</div>' +
+      '<div class="grid" id="grid"></div>' +
+      '<div class="pagination">' +
+      '<button id="page-prev">← 이전</button>' +
+      '<span class="page-info">' +
+      '<input type="number" id="page-input" min="1"> / <span id="page-total">—</span> 페이지' +
+      '</span>' +
+      '<button id="page-next">다음 →</button>' +
+      '</div>' +
+      "</div>";
+
+    initSearch();
+
+    loadManifest().then(function (m) {
+      document.getElementById("list-summary").textContent =
+        "총 " + m.total.toLocaleString() + "개 이미지 · 원본 이미지와 OCR 텍스트 변환 결과를 검증하세요";
+
+      var totalVisualPages = Math.ceil(m.total / VISUAL_PAGE_SIZE);
+      var pageInput = document.getElementById("page-input");
+      var pageTotal = document.getElementById("page-total");
+      if (pageInput) pageInput.max = String(totalVisualPages);
+      if (pageTotal) pageTotal.textContent = String(totalVisualPages);
+
+      loadLawNames();
+      return loadDataPage(page);
+    }).then(function () {
+      setupFilters();
+      setupPagination(page);
+      renderPage(page);
+    });
+  }
+
+  function loadDataPage(visualPage) {
+    if (!manifest) return Promise.resolve();
+    var dataPageNum = Math.floor((visualPage - 1) * VISUAL_PAGE_SIZE / LIST_PAGE_SIZE) + 1;
+    if (dataPageNum > manifest.pages) return Promise.resolve();
+    var pad = String(dataPageNum).padStart(4, "0");
+    return fetchJSON(DATA_BASE + "list-" + pad + ".json").then(function (entries) {
+      listData = entries;
+    });
+  }
+
+  function getFiltered() {
+    var result = [];
+    for (var i = 0; i < listData.length; i++) {
+      var e = listData[i];
+      if (filterStatus && e.status !== filterStatus) continue;
+      if (filterLaw && e.law.indexOf(filterLaw) === -1) continue;
+      result.push(e);
+    }
+    return result;
+  }
+
+  function renderPage(visualPage) {
+    var grid = document.getElementById("grid");
+    if (!grid || !manifest) return;
+
+    var dataPageNum = Math.floor((visualPage - 1) * VISUAL_PAGE_SIZE / LIST_PAGE_SIZE) + 1;
+    var subOffset = ((visualPage - 1) * VISUAL_PAGE_SIZE) % LIST_PAGE_SIZE;
+
+    var filtered = getFiltered();
+    // subOffset applies within the filtered view of current data page
+    // but since filtering may reduce count, we use raw slice then filter
+    var pageItems = [];
+    var rawSlice = listData.slice(subOffset, subOffset + VISUAL_PAGE_SIZE);
+    for (var i = 0; i < rawSlice.length; i++) {
+      var e = rawSlice[i];
+      if (filterStatus && e.status !== filterStatus) continue;
+      if (filterLaw && e.law.indexOf(filterLaw) === -1) continue;
+      pageItems.push(e);
+    }
+
+    grid.innerHTML = "";
+    for (var j = 0; j < pageItems.length; j++) {
+      var item = pageItems[j];
+      var card = document.createElement("a");
+      card.href = "/images/#" + item.id;
+      card.className = "card";
+      card.innerHTML =
+        '<div class="card-img">' +
+        '<img src="' + CDN_BASE + escAttr(item.id) + "." + escAttr(item.ext) + '" alt="' + escAttr(item.id) + '" loading="lazy" onerror="this.style.display=\'none\';this.nextElementSibling.style.display=\'block\'">' +
+        '<span class="no-img" style="display:none">이미지 준비 중</span>' +
+        "</div>" +
+        '<div class="card-body">' +
+        '<div class="card-id">#' + escHtml(item.id) + "</div>" +
+        '<div class="card-laws">' + escHtml(item.law) + "</div>" +
+        '<div class="card-footer">' +
+        '<span class="' + badgeClass(item.status) + '">' + escHtml(item.status) + "</span>" +
+        "</div></div>";
+      grid.appendChild(card);
+    }
+
+    // Update hash and back-link reference
+    currentListHash = buildListHash(visualPage);
+    location.replace("#" + currentListHash);
+
+    // Update pagination controls state
+    var totalVisualPages = Math.ceil(manifest.total / VISUAL_PAGE_SIZE);
+    var prevBtn = document.getElementById("page-prev");
+    var nextBtn = document.getElementById("page-next");
+    var pageInput = document.getElementById("page-input");
+    if (prevBtn) prevBtn.disabled = visualPage <= 1;
+    if (nextBtn) nextBtn.disabled = visualPage >= totalVisualPages;
+    if (pageInput) pageInput.value = String(visualPage);
+  }
+
+  function setupPagination(initialPage) {
+    var prevBtn = document.getElementById("page-prev");
+    var nextBtn = document.getElementById("page-next");
+    var pageInput = document.getElementById("page-input");
+    if (!prevBtn || !nextBtn || !pageInput) return;
+
+    var totalVisualPages = Math.ceil(manifest.total / VISUAL_PAGE_SIZE);
+    prevBtn.disabled = initialPage <= 1;
+    nextBtn.disabled = initialPage >= totalVisualPages;
+    pageInput.value = String(initialPage);
+
+    var currentPage = initialPage;
+
+    function goToPage(page) {
+      if (!manifest) return;
+      var total = Math.ceil(manifest.total / VISUAL_PAGE_SIZE);
+      if (page < 1) page = 1;
+      if (page > total) page = total;
+      if (page === currentPage) return;
+
+      var prevDataPage = Math.floor((currentPage - 1) * VISUAL_PAGE_SIZE / LIST_PAGE_SIZE) + 1;
+      var nextDataPage = Math.floor((page - 1) * VISUAL_PAGE_SIZE / LIST_PAGE_SIZE) + 1;
+
+      currentPage = page;
+
+      if (nextDataPage !== prevDataPage) {
+        loadDataPage(page).then(function () {
+          populateStatusOptions();
+          renderPage(page);
+        });
+      } else {
+        renderPage(page);
+      }
+    }
+
+    prevBtn.addEventListener("click", function () {
+      goToPage(currentPage - 1);
+    });
+
+    nextBtn.addEventListener("click", function () {
+      goToPage(currentPage + 1);
+    });
+
+    pageInput.addEventListener("change", function () {
+      var val = parseInt(pageInput.value, 10);
+      if (!isNaN(val)) goToPage(val);
+    });
+  }
+
+  function populateStatusOptions() {
+    var statusSelect = document.getElementById("filter-status");
+    if (!statusSelect) return;
+    var currentStatus = statusSelect.value || filterStatus;
+    while (statusSelect.options.length > 1) statusSelect.remove(1);
+    var statuses = {};
+    for (var i = 0; i < listData.length; i++) statuses[listData[i].status] = true;
+    var keys = Object.keys(statuses).sort();
+    for (var j = 0; j < keys.length; j++) {
+      var opt = document.createElement("option");
+      opt.value = keys[j];
+      opt.textContent = keys[j];
+      statusSelect.appendChild(opt);
+    }
+    if (currentStatus) statusSelect.value = currentStatus;
+  }
+
+  function setupFilters() {
+    var statusSelect = document.getElementById("filter-status");
+    if (!statusSelect) return;
+
+    populateStatusOptions();
+
+    statusSelect.addEventListener("change", function () {
+      filterStatus = statusSelect.value;
+      var pageInput = document.getElementById("page-input");
+      var page = pageInput ? parseInt(pageInput.value, 10) || 1 : 1;
+      renderPage(page);
+    });
+  }
+
+  // --- Korean initial consonant (초성) extraction ---
+  var CHOSUNG = ["ㄱ","ㄲ","ㄴ","ㄷ","ㄸ","ㄹ","ㅁ","ㅂ","ㅃ","ㅅ","ㅆ","ㅇ","ㅈ","ㅉ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+  var CHOSUNG_LABELS = ["ㄱ","ㄴ","ㄷ","ㄹ","ㅁ","ㅂ","ㅅ","ㅇ","ㅈ","ㅊ","ㅋ","ㅌ","ㅍ","ㅎ"];
+  var CHOSUNG_MERGE = {"ㄲ":"ㄱ","ㄸ":"ㄷ","ㅃ":"ㅂ","ㅆ":"ㅅ","ㅉ":"ㅈ"};
+
+  function getInitial(name) {
+    if (!name) return "#";
+    var code = name.charCodeAt(0);
+    if (code >= 0x30 && code <= 0x39) return "0-9";
+    if (code >= 0xAC00 && code <= 0xD7A3) {
+      var idx = Math.floor((code - 0xAC00) / 588);
+      var ch = CHOSUNG[idx];
+      return CHOSUNG_MERGE[ch] || ch;
+    }
+    return "#";
+  }
+
+  function loadLawNames() {
+    fetchJSON(DATA_BASE + "law_names.json").then(function(names) {
+      var container = document.getElementById("law-accordion");
+      if (!container) return;
+
+      // Group by initial
+      var groups = {};
+      for (var i = 0; i < names.length; i++) {
+        var key = getInitial(names[i]);
+        if (!groups[key]) groups[key] = [];
+        groups[key].push(names[i]);
+      }
+
+      // Ordered keys
+      var orderedKeys = ["0-9"];
+      for (var k = 0; k < CHOSUNG_LABELS.length; k++) orderedKeys.push(CHOSUNG_LABELS[k]);
+      orderedKeys.push("#");
+
+      var html = "";
+      for (var g = 0; g < orderedKeys.length; g++) {
+        var gk = orderedKeys[g];
+        var items = groups[gk];
+        if (!items || items.length === 0) continue;
+        var displayLabel = gk === "0-9" ? "0-9" : gk;
+        html += '<div class="law-group">' +
+          '<button class="law-group-header" data-group="' + escAttr(gk) + '">' +
+          '<span>' + escHtml(displayLabel) + '</span>' +
+          '</button>' +
+          '<div class="law-group-items" id="law-group-' + escAttr(gk) + '">';
+        for (var n = 0; n < items.length; n++) {
+          var isActive = filterLaw === items[n] ? " active" : "";
+          html += '<button class="law-tag' + isActive + '" data-law="' + escAttr(items[n]) + '">' + escHtml(items[n]) + '</button>';
+        }
+        html += '</div></div>';
+      }
+      container.innerHTML = html;
+
+      // Accordion toggle
+      container.addEventListener("click", function(e) {
+        var header = e.target.closest(".law-group-header");
+        if (header) {
+          var gk = header.getAttribute("data-group");
+          var panel = document.getElementById("law-group-" + gk);
+          if (panel) {
+            var isOpen = panel.classList.contains("open");
+            // Close all
+            var allPanels = container.querySelectorAll(".law-group-items");
+            for (var p = 0; p < allPanels.length; p++) allPanels[p].classList.remove("open");
+            var allHeaders = container.querySelectorAll(".law-group-header");
+            for (var h = 0; h < allHeaders.length; h++) allHeaders[h].classList.remove("open");
+            if (!isOpen) {
+              panel.classList.add("open");
+              header.classList.add("open");
+            }
+          }
+          return;
+        }
+        var tag = e.target.closest(".law-tag");
+        if (tag) {
+          var law = tag.getAttribute("data-law");
+          if (filterLaw === law) {
+            filterLaw = "";
+          } else {
+            filterLaw = law;
+          }
+          // Update active states
+          var allTags = container.querySelectorAll(".law-tag");
+          for (var t = 0; t < allTags.length; t++) {
+            allTags[t].classList.toggle("active", allTags[t].getAttribute("data-law") === filterLaw);
+          }
+          // Update clear button
+          updateClearButton();
+          var pageInput = document.getElementById("page-input");
+          var page = pageInput ? parseInt(pageInput.value, 10) || 1 : 1;
+          renderPage(page);
+        }
+      });
+
+      // If a filter is active, auto-open the matching group
+      if (filterLaw) {
+        var activeKey = getInitial(filterLaw);
+        var activePanel = document.getElementById("law-group-" + activeKey);
+        var activeHeader = container.querySelector('[data-group="' + activeKey + '"]');
+        if (activePanel) activePanel.classList.add("open");
+        if (activeHeader) activeHeader.classList.add("open");
+      }
+    }).catch(function() {});
+  }
+
+  function updateClearButton() {
+    var existing = document.getElementById("filter-clear");
+    if (existing) existing.remove();
+    if (filterLaw) {
+      var spacer = document.querySelector(".filter-bar-spacer");
+      if (spacer) {
+        var btn = document.createElement("button");
+        btn.id = "filter-clear";
+        btn.className = "filter-clear";
+        btn.textContent = "✕ " + filterLaw;
+        btn.addEventListener("click", function() {
+          filterLaw = "";
+          var acc = document.getElementById("law-accordion");
+          if (acc) {
+            var allTags = acc.querySelectorAll(".law-tag");
+            for (var t = 0; t < allTags.length; t++) allTags[t].classList.remove("active");
+          }
+          updateClearButton();
+          var pageInput = document.getElementById("page-input");
+          var page = pageInput ? parseInt(pageInput.value, 10) || 1 : 1;
+          renderPage(page);
+        });
+        spacer.parentNode.insertBefore(btn, spacer);
+      }
+    }
+  }
+
+  // --- Escaping ---
+  function escHtml(s) {
+    if (!s) return "";
+    return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+  }
+  function escAttr(s) {
+    return escHtml(s);
+  }
+
+  // --- Pagefind Search ---
+  function initSearch() {
+    var container = document.getElementById("search-container");
+    if (!container) return;
+    var script = document.createElement("script");
+    script.src = "/pagefind/pagefind-ui.js";
+    script.onload = function () {
+      new PagefindUI({
+        element: "#search-container",
+        showSubResults: false,
+        showImages: false,
+        translations: {
+          placeholder: "이미지 ID, 법령명, OCR 텍스트 검색…",
+          zero_results: "검색 결과가 없습니다: [SEARCH_TERM]",
+        },
+      });
+    };
+    document.head.appendChild(script);
+  }
+
+  // --- Init ---
+  route();
+})();
+</script>
+</body>
+</html>

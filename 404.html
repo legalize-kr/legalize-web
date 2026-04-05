@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>페이지를 찾을 수 없습니다 — Legalize</title>
+<script>
+  var m = location.pathname.match(/^\/images\/(\d+)\/?$/);
+  if (m) { location.replace('/images/#' + m[1]); }
+</script>
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-logo">⚖ legalize.kr</a>
+  <a href="/" class="nav-link">홈</a>
+  <a href="/images/" class="nav-link">이미지 뷰어</a>
+  <span class="nav-spacer"></span>
+  <a href="https://github.com/legalize-kr" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+</nav>
+<div class="container" style="padding:48px 0;text-align:center">
+  <h1 style="font-size:1.5rem;margin-bottom:16px">페이지를 찾을 수 없습니다</h1>
+  <p style="color:var(--steel)"><a href="/">홈으로 돌아가기</a> · <a href="/images/">이미지 뷰어</a></p>
+</div>
+<noscript><p style="padding:24px;text-align:center;color:#94A3B8">페이지를 찾을 수 없습니다. <a href="/">홈으로 돌아가기</a></p></noscript>
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ title or site.siteTitle }}</title>
+<meta name="description" content="{{ description or '대한민국 법령 이미지 원본과 텍스트 변환 뷰어' }}">
+<link rel="canonical" href="https://legalize.kr{{ page.url }}">
+<meta name="theme-color" content="#0F172A">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+<nav class="nav">
+  <a href="/" class="nav-logo">⚖ legalize.kr</a>
+  <a href="/" class="nav-link">홈</a>
+  <a href="/images/" class="nav-link{% if '/images/' in page.url %} active{% endif %}">이미지 뷰어</a>
+  <span class="nav-spacer"></span>
+  <a href="https://github.com/legalize-kr" class="nav-link" target="_blank" rel="noopener">GitHub</a>
+</nav>
+
+{{ content | safe }}
+
+<footer class="footer">
+  <p>
+    <a href="https://github.com/legalize-kr/legalize-kr">legalize-kr</a> ·
+    데이터 출처: <a href="https://open.law.go.kr" target="_blank" rel="noopener">국가법령정보센터 OpenAPI</a>
+  </p>
+</footer>
+</body>
+</html>
