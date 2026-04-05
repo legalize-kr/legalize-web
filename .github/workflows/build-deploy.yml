@@ -32,9 +32,9 @@ jobs:
           repository: legalize-kr/legalize-pipeline
           path: pipeline
 
-      # Optional: upload new images to R2
+      # Optional: upload new images to R2 (workflow_dispatch only)
       - name: Upload images to R2
-        if: ${{ !inputs.skip_upload }}
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.skip_upload }}
         working-directory: pipeline
         env:
           R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
@@ -46,14 +46,18 @@ jobs:
           pip install boto3
           python -m images upload
 
-      # Generate sharded image data from manifest
+      # Re-export sharded image data if manifest exists in workspace
       - name: Export image data (sharded)
         working-directory: pipeline
         env:
           WORKSPACE_ROOT: ${{ github.workspace }}
         run: |
           pip install requests pyyaml python-dotenv
-          python -m images export --output ${{ github.workspace }}/public/data/images/ --sharded
+          if [ -f "$WORKSPACE_ROOT/.cache/images/manifest.json" ]; then
+            python -m images export --output ${{ github.workspace }}/public/data/images/ --sharded
+          else
+            echo "No image manifest found, using committed data"
+          fi
 
       - name: Setup Node.js
         uses: actions/setup-node@v4

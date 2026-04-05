@@ -2,4 +2,3 @@ _site/
 node_modules/
 local-images/
 _data/images.json
-public/data/images/
