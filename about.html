@@ -1,102 +1,152 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>소개 — Legalize KR</title>
-    <meta name="description" content="Legalize KR 프로젝트 소개. 대한민국 법령을 Git으로 버전 관리하는 오픈소스 프로젝트입니다.">
-    <link rel="canonical" href="https://legalize.kr/about.html">
-    <meta name="theme-color" content="#0F172A">
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://legalize.kr/about.html">
-    <meta property="og:title" content="소개 — Legalize KR">
-    <meta property="og:description" content="대한민국 법령을 Git으로 버전 관리하는 오픈소스 프로젝트입니다.">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --midnight: #0F172A; --midnight-up: #131c33; --slate: #334155;
-            --steel: #94A3B8; --snow: #F8FAFC; --white: #FFFFFF;
-            --accent: #2563EB; --accent-light: #3B82F6; --accent-ghost: rgba(37,99,235,0.08);
-            --border: #1E293B;
-            --font-ui: 'Noto Sans KR', -apple-system, sans-serif;
-            --font-code: 'JetBrains Mono', 'Fira Code', monospace;
-        }
-        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
-        body { font-family: var(--font-ui); background: var(--midnight); color: var(--snow); line-height: 1.8; }
-        .container { max-width: 720px; margin: 0 auto; padding: 0 24px; }
-
-        /* Nav */
-        nav { padding: 20px 0; border-bottom: 1px solid var(--border); }
-        nav .container { display: flex; align-items: center; justify-content: space-between; }
-        nav a { color: var(--steel); text-decoration: none; font-size: 14px; transition: color 0.2s; }
-        nav a:hover { color: var(--snow); }
-        .nav-brand { font-weight: 700; color: var(--snow); font-size: 16px; display: flex; align-items: center; gap: 8px; }
-
-        /* Content */
-        .content { padding: 80px 0; }
-        .content h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 16px; }
-        .content h1 .accent { color: var(--accent-light); }
-        .content .lead { font-size: 18px; color: var(--steel); margin-bottom: 48px; line-height: 1.7; }
-        .content h2 { font-size: 24px; font-weight: 700; margin-top: 48px; margin-bottom: 16px; padding-top: 32px; border-top: 1px solid var(--border); }
-        .content h2:first-of-type { border-top: none; padding-top: 0; margin-top: 0; }
-        .content p { font-size: 15px; color: var(--steel); margin-bottom: 16px; line-height: 1.8; }
-        .content ul { padding-left: 20px; margin-bottom: 16px; }
-        .content li { font-size: 15px; color: var(--steel); margin-bottom: 8px; line-height: 1.7; }
-        .content strong { color: var(--snow); }
-        .content code { font-family: var(--font-code); font-size: 13px; background: var(--midnight-up); padding: 2px 6px; border-radius: 4px; color: var(--accent-light); }
-        .content a { color: var(--accent-light); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
-        .content a:hover { border-bottom-color: var(--accent-light); }
-
-        .meta-block { background: var(--midnight-up); border: 1px solid var(--border); border-radius: 12px; padding: 24px; margin: 24px 0; }
-        .meta-block h3 { font-size: 15px; font-weight: 600; margin-bottom: 12px; }
-        .meta-block pre { font-family: var(--font-code); font-size: 13px; line-height: 1.7; color: var(--steel); overflow-x: auto; }
-
-        footer { border-top: 1px solid var(--border); padding: 32px 0; }
-        .footer-inner { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .footer-inner a { color: var(--steel); text-decoration: none; font-size: 13px; }
-        .footer-inner span { font-size: 13px; color: var(--slate); }
-    </style>
-</head>
-<body>
-
-<nav>
-    <div class="container" style="max-width: 1080px;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>프로젝트 소개 — Legalize KR</title>
+    <meta
+      name="description"
+      content="Legalize KR 프로젝트 소개. 대한민국 법령과 판례를 Git으로 버전 관리하는 오픈소스 프로젝트입니다."
+    />
+    <link rel="canonical" href="https://legalize.kr/about.html" />
+    <meta name="theme-color" content="#0F172A" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://legalize.kr/about.html" />
+    <meta property="og:title" content="소개 — Legalize KR" />
+    <meta
+      property="og:description"
+      content="대한민국 법령과 판례를 Git으로 버전 관리하는 오픈소스 프로젝트입니다."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="about">
+    <nav>
+      <div class="container" style="max-width: 1080px">
         <a href="index.html" class="nav-brand">&#x2696;&#xFE0F; Legalize KR</a>
-        <div style="display: flex; gap: 24px;">
-            <a href="index.html">홈</a>
-            <a href="https://github.com/9bow/legalize-kr">GitHub</a>
+        <div style="display: flex; gap: 24px">
+          <a href="index.html">홈</a>
+          <a href="https://github.com/9bow/legalize-kr">GitHub</a>
         </div>
-    </div>
-</nav>
+      </div>
+    </nav>
 
-<div class="content">
-    <div class="container">
-        <h1>Legalize <span class="accent">KR</span></h1>
-        <p class="lead">대한민국 법령을 Git 저장소로 관리하는 오픈소스 프로젝트입니다. 모든 법령은 Markdown 파일이고, 모든 개정은 실제 공포일자를 가진 Git 커밋입니다.</p>
+    <div class="content">
+      <div class="container">
+        <h1>Legalize <span class="accent">KR</span> &#x1F1F0;&#x1F1F7;</h1>
+        <p class="lead">
+          대한민국 법령을 Git 저장소로 관리하는 오픈소스 프로젝트입니다. 모든
+          법령은 Markdown 파일이고, 모든 개정은 실제 공포일자를 가진 Git
+          커밋입니다.
+        </p>
 
-        <h2>왜 법령을 Git으로?</h2>
-        <p>법령은 끊임없이 개정됩니다. 하지만 기존의 법령 열람 방식으로는 <strong>무엇이 언제 어떻게 바뀌었는지</strong> 파악하기가 쉽지 않습니다.</p>
-        <p>Git은 코드의 변경 이력을 관리하기 위해 만들어진 도구입니다. 법령도 텍스트입니다. Git의 버전 관리 능력을 법령에 적용하면:</p>
+        <h2>왜 <span class="accent">법령&#x2696;&#xFE0F;</span>을 Git으로?</h2>
+        <p>
+          법령은 끊임없이 개정됩니다. 하지만 기존의 열람 방식으로는
+          <strong>무엇이 언제 어떻게 바뀌었는지</strong> 파악하기가 쉽지
+          않습니다. 법령도 결국 텍스트이고, Git은 텍스트의 변경 이력을 관리하기
+          위해 만들어진 도구입니다. 모든 법령을 Markdown 파일로 변환하여
+          <a href="https://github.com/legalize-kr/legalize-kr"
+            >legalize-kr 저장소</a
+          >에 수록하고, 공포일자를 그대로 Git 커밋 날짜로 사용합니다.
+        </p>
+        <p>
+          각 법령 파일은 제목·소관부처·공포일자·시행일자 등의 메타데이터를 YAML
+          frontmatter로 포함하며, 법률·시행령·시행규칙이 하나의 디렉토리에서
+          함께 관리됩니다. 이렇게 정리된 데이터 위에서 익숙한 Git 명령이 그대로
+          법률 도구가 됩니다.
+        </p>
         <ul>
-            <li><code>git log</code>로 법령의 <strong>전체 개정 이력</strong>을 확인</li>
-            <li><code>git diff</code>로 <strong>정확히 무엇이 바뀌었는지</strong> 한눈에 비교</li>
-            <li><code>grep</code>으로 전체 법령 체계에서 <strong>특정 단어나 조항</strong>을 검색</li>
-            <li>누구나 <strong>포크(fork), 복제(clone), 분석</strong> 가능한 오픈 데이터</li>
+          <li>
+            <code>git log</code>로 법령의 <strong>전체 개정 이력</strong>을 확인
+          </li>
+          <li>
+            <code>git diff</code>로
+            <strong>정확히 무엇이 바뀌었는지</strong> 한눈에 비교
+          </li>
+          <li>
+            <code>grep</code>으로 전체 법령 체계에서
+            <strong>특정 단어나 조항</strong>을 검색
+          </li>
+          <li>
+            누구나 <strong>포크(fork), 복제(clone), 분석</strong> 가능한 오픈
+            데이터
+          </li>
+        </ul>
+
+        <h2><span class="accent">판례&#x1F4DC;</span>도 함께!</h2>
+        <p>
+          법령뿐만 아니라 <strong>대한민국 판례</strong>도 동일한 방식으로
+          관리됩니다. 대법원·고등법원 등의 판례를 Markdown 파일로 변환하여
+          <a href="https://github.com/legalize-kr/precedent-kr"
+            >precedent-kr 저장소</a
+          >에 수록하고, 선고일자를 그대로 Git 커밋 날짜로 사용합니다.
+        </p>
+        <p>
+          각 판례 파일은 사건번호·선고일자·법원명·사건종류 등의 메타데이터를
+          YAML frontmatter로 포함하며, 민사·형사·일반행정·세무·특허·가사 등
+          사건종류별로 분류되어 있습니다. 법령과 동일한 규약을 따르기 때문에,
+          같은 Git 명령으로 법령과 판례를 함께 다룰 수 있습니다.
+        </p>
+        <ul>
+          <li>
+            <code>git log</code>로 판례가 <strong>추가·갱신된 이력</strong>을
+            확인
+          </li>
+          <li>
+            <code>grep</code>으로 전체 판례에서
+            <strong>특정 법리나 키워드</strong>를 검색
+          </li>
+          <li>
+            법령과 판례를 함께 검색하여 <strong>법령 조문과 관련 판례</strong>를
+            연결
+          </li>
+          <li>
+            누구나 <strong>포크(fork), 복제(clone), 분석</strong> 가능한 오픈
+            데이터
+          </li>
         </ul>
 
         <h2>데이터 출처</h2>
-        <p>모든 법령 데이터는 <a href="https://open.law.go.kr">국가법령정보센터 OpenAPI</a>에서 가져옵니다. 법령 원문은 대한민국 정부의 공공저작물로 자유롭게 이용할 수 있습니다.</p>
-        <p>현재 법률, 대통령령, 부령, 대법원규칙, 헌법재판소규칙 등 <strong>총 <span id="stat-total">—</span>건</strong>의 현행 법령이 수록되어 있으며, <strong><span id="stat-amendments">—</span>건</strong>의 개정 이력이 Git 커밋으로 관리되고 있습니다.</p>
+        <p>
+          모든 법령과 판례 데이터는
+          <a href="https://open.law.go.kr">국가법령정보센터 OpenAPI</a>에서
+          가져옵니다. 원문은 대한민국 정부의 공공저작물로 자유롭게 이용할 수
+          있습니다.
+        </p>
+        <p>
+          현재 법률, 대통령령, 부령, 대법원규칙, 헌법재판소규칙 등
+          <strong>총 <span id="stat-total">—</span>건</strong>의 현행 법령이
+          수록되어 있으며,
+          <strong><span id="stat-amendments">—</span>건</strong>의 개정 이력이
+          Git 커밋으로 관리되고 있습니다.
+        </p>
+        <p>
+          또한, 판례는 민사·형사·일반행정 등 8개 사건종류에 걸쳐
+          <strong>총 <span id="prec-total">—</span>건</strong>이 수록되어
+          있습니다.
+        </p>
 
-        <h2>파일 구조</h2>
-        <p>각 법령은 YAML 프론트매터가 포함된 Markdown 파일입니다. 관련 법령(법률, 시행령, 시행규칙)이 하나의 디렉토리에 함께 관리됩니다.</p>
+        <h2>법령 파일 구조</h2>
+        <p>
+          각 법령은 YAML 프론트매터가 포함된 Markdown 파일입니다. 관련
+          법령(법률, 시행령, 시행규칙)이 하나의 디렉토리에 함께 관리됩니다.
+        </p>
 
-        <div class="meta-block">
-            <h3>예시: kr/민법/법률.md</h3>
-            <pre>---
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">kr/민법/법률.md</span>
+          </div>
+          <pre class="code-body">
+---
 제목: 민법
 법령MST: 284415
 법령구분: 법률
@@ -113,48 +163,255 @@
 ## 제1조 (법원)
 민사에 관하여 법률에 규정이 없으면 관습법에 의하고
 관습법이 없으면 조리에 의한다.
-...</pre>
+...</pre
+          >
         </div>
+        <!-- /code-block -->
 
-        <h2>디렉토리 구조</h2>
-        <p>법령명에서 띄어쓰기를 제거하여 디렉토리명으로 사용합니다. 이는 <a href="https://www.law.go.kr">법령 홈페이지</a>의 URL 규칙과 동일합니다.</p>
+        <h2>판례 파일 구조</h2>
+        <p>
+          각 판례도 YAML 프론트매터가 포함된 Markdown 파일입니다. 사건종류와
+          법원등급(대법원·하급심)으로 분류되어, 사건번호 단위의 파일로
+          관리됩니다.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">민사/대법원/2000다10048.md</span>
+          </div>
+          <pre class="code-body">
+---
+판례일련번호: '81927'
+사건번호: 2000다10048
+사건명: 소유권이전등기등
+법원명: 대법원
+법원등급: 대법원
+사건종류: 민사
+출처: https://www.law.go.kr/판례/81927
+선고일자: '2002-09-27'
+---
+
+# 소유권이전등기등
+
+## 판시사항
+
+[1] 재건축결의 당시에는 ...
+
+## 판결요지
+...</pre
+          >
+        </div>
+        <!-- /code-block -->
+
+        <h2>법령 디렉토리 구조</h2>
+        <p>
+          법령명에서 띄어쓰기를 제거하여 디렉토리명으로 사용합니다. 이는
+          <a href="https://www.law.go.kr">법령 홈페이지</a>의 URL 규칙과
+          동일합니다.
+        </p>
         <ul>
-            <li><code>kr/{법률명}/법률.md</code> — 국회에서 제정하는 법률</li>
-            <li><code>kr/{법률명}/시행령.md</code> — 법률의 시행령 (대통령령의 일종)</li>
-            <li><code>kr/{법률명}/시행규칙.md</code> — 법률의 시행규칙 (부령)</li>
-            <li><code>kr/{대통령령명}/대통령령.md</code> — 독립 대통령령 (규정, 직제 등)</li>
+          <li><code>kr/{법률명}/법률.md</code> — 국회에서 제정하는 법률</li>
+          <li>
+            <code>kr/{법률명}/시행령.md</code> — 법률의 시행령 (대통령령의 일종)
+          </li>
+          <li><code>kr/{법률명}/시행규칙.md</code> — 법률의 시행규칙 (부령)</li>
+          <li>
+            <code>kr/{대통령령명}/대통령령.md</code> — 독립 대통령령 (규정, 직제
+            등)
+          </li>
         </ul>
-        <p>예: <code>kr/민법/</code> 디렉토리에 <code>법률.md</code>, <code>시행령.md</code>가 함께 존재합니다.</p>
+        <p>
+          예: <code>kr/근로기준법/</code> 디렉토리에 <code>법률.md</code>,
+          <code>시행령.md</code>, <code>시행규칙.md</code>가 함께 존재합니다.
+        </p>
+
+        <h2>판례 디렉토리 구조</h2>
+        <p>
+          판례는 사건종류를 최상위로, 법원등급을 그 아래로, 사건번호를
+          파일명으로 사용합니다.
+        </p>
+        <ul>
+          <li><code>{사건종류}/대법원/{사건번호}.md</code> — 대법원 판례</li>
+          <li>
+            <code>{사건종류}/하급심/{사건번호}.md</code> — 고등법원·지방법원 등
+            하급심 판례
+          </li>
+        </ul>
+        <p>
+          사건종류는 민사, 형사, 일반행정, 세무, 특허, 가사, 선거·특별, 기타 8개로
+          분류됩니다. 예: <code>민사/대법원/2000다10048.md</code>.
+        </p>
 
         <h2>Git으로 법령 활용하기</h2>
 
-        <div class="meta-block">
-            <h3>터미널에서 바로 사용</h3>
-            <pre><span style="color:#94A3B8"># 민법 관련 법령 (법률, 시행령) 개정 이력</span>
-git log -- kr/민법/
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">터미널에서 법령 활용 예시</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line">
+              <span class="comment"
+                ># 근로기준법 관련 법령 (법률, 시행령, 시행규칙) 개정 이력</span
+              >
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">git log</span>
+              <span class="flag">--</span>
+              <span class="path">kr/근로기준법/</span>
+            </div>
+            <div class="code-line"></div>
 
-<span style="color:#94A3B8"># 최근 개정에서 무엇이 바뀌었는지 확인</span>
-git diff HEAD~1 -- kr/민법/법률.md
+            <div class="code-line">
+              <span class="comment"
+                ># 최근 개정에서 무엇이 바뀌었는지 확인</span
+              >
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">git diff</span>
+              <span class="hash">HEAD~1</span>
+              <span class="flag">--</span>
+              <span class="path">kr/민법/법률.md</span>
+            </div>
+            <div class="code-line"></div>
 
-<span style="color:#94A3B8"># 전체 법령에서 특정 단어 검색</span>
-grep -r "개인정보" kr/
+            <div class="code-line">
+              <span class="comment"># 전체 법령에서 특정 단어 검색</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">grep</span>
+              <span class="flag">-r</span>
+              <span class="string">"개인정보"</span>
+              <span class="path">kr/</span>
+            </div>
+            <div class="code-line"></div>
 
-<span style="color:#94A3B8"># 특정 날짜 시점의 법령 상태 확인</span>
-git log --before="2025-01-01" -1 -- kr/민법/법률.md
+            <div class="code-line">
+              <span class="comment"># 특정 날짜 시점의 법령 상태 확인</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">git log</span>
+              <span class="flag">--before=</span
+              ><span class="string">"2025-01-01"</span>
+              <span class="flag">-1</span>
+              <span class="flag">--</span>
+              <span class="path">kr/민법/법률.md</span>
+            </div>
+            <div class="code-line"></div>
 
-<span style="color:#94A3B8"># 법률 개정 커밋만 보기</span>
-git log --grep="^법률:"
+            <div class="code-line">
+              <span class="comment"># 법률 개정 커밋만 보기</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">git log</span>
+              <span class="flag">--grep=</span
+              ><span class="string">"^법률:"</span>
+            </div>
+            <div class="code-line"></div>
 
-<span style="color:#94A3B8"># 인프라 커밋만 보기</span>
-git log --grep="^chore:"</pre>
+            <div class="code-line">
+              <span class="comment"># 인프라 커밋만 보기</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">git log</span>
+              <span class="flag">--grep=</span
+              ><span class="string">"^chore:"</span>
+            </div>
+          </div>
         </div>
+        <!-- /code-block -->
 
-        <h2>커밋 메시지</h2>
-        <p>법령 커밋은 공포일자를 Git author/committer date로 사용하며, law.go.kr 참조 URL과 메타데이터를 포함합니다:</p>
+        <h2>Git으로 판례 활용하기</h2>
 
-        <div class="meta-block">
-            <h3>예시: 법률 개정 커밋</h3>
-            <pre>법률: 민법 (일부개정)
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">터미널에서 판례 활용 예시</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line">
+              <span class="comment"
+                ># 대법원 민사 판례에서 "손해배상" 검색</span
+              >
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">grep</span>
+              <span class="flag">-rl</span>
+              <span class="string">"손해배상"</span>
+              <span class="path">민사/대법원/</span>
+            </div>
+            <div class="code-line"></div>
+
+            <div class="code-line">
+              <span class="comment"># 특정 사건번호의 판례 이력 확인</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">git log</span>
+              <span class="flag">--</span>
+              <span class="path">민사/대법원/2000다10048.md</span>
+            </div>
+            <div class="code-line"></div>
+
+            <div class="code-line">
+              <span class="comment"># 특정 기간에 추가된 판례 커밋 보기</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">git log</span>
+              <span class="flag">--since=</span
+              ><span class="string">"2025-01-01"</span>
+              <span class="flag">--until=</span
+              ><span class="string">"2025-12-31"</span>
+            </div>
+            <div class="code-line"></div>
+
+            <div class="code-line">
+              <span class="comment"># 사건종류별 판례 수 확인</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">find</span>
+              <span class="path">민사</span>
+              <span class="flag">-name</span>
+              <span class="string">"*.md"</span>
+              <span class="cmd">|</span>
+              <span class="cmd">wc</span>
+              <span class="flag">-l</span>
+            </div>
+            <div class="code-line"></div>
+
+            <div class="code-line">
+              <span class="comment"># 판례 추가 커밋만 보기</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">git log</span>
+              <span class="flag">--grep=</span
+              ><span class="string">"^판례:"</span>
+            </div>
+          </div>
+        </div>
+        <!-- /code-block -->
+
+        <h2>법령 커밋 메시지</h2>
+        <p>
+          법령 커밋은 공포일자를 Git author/committer date로 사용하며, law.go.kr
+          참조 URL과 메타데이터를 포함합니다.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">예시: 법률 개정 커밋</span>
+          </div>
+          <pre class="code-body">
+법률: 민법 (일부개정)
 
 법령 전문: https://www.law.go.kr/법령/민법
 제개정문: https://www.law.go.kr/법령/제개정문/민법/(12345,20260317)
@@ -163,56 +420,139 @@ git log --grep="^chore:"</pre>
 공포일자: 2026-03-17 | 공포번호: 12345
 소관부처: 법무부
 법령분야: 민사
-법령MST: 284415</pre>
+법령MST: 284415</pre
+          >
         </div>
-        <p>인프라 커밋은 일반 날짜와 <a href="https://www.conventionalcommits.org/">Conventional Commits</a> 형식을 사용합니다.</p>
+        <!-- /code-block -->
+
+        <h2>판례 커밋 메시지</h2>
+        <p>
+          판례 커밋은 선고일자를 Git author/committer date로 사용하며, law.go.kr
+          참조 URL과 판례 메타데이터를 포함합니다.
+        </p>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">예시: 판례 추가 커밋</span>
+          </div>
+          <pre class="code-body">
+판례: 소유권이전등기등 (2000다10048)
+
+판례 전문: https://www.law.go.kr/판례/81927
+
+선고일자: 2002-09-27
+법원명: 대법원
+사건종류: 민사
+판례일련번호: 81927</pre
+          >
+        </div>
+        <!-- /code-block -->
+        <p>
+          인프라 커밋은 일반 날짜와
+          <a href="https://www.conventionalcommits.org/"
+            >Conventional Commits</a
+          >
+          형식을 사용합니다.
+        </p>
 
         <h2>알려진 제한 사항</h2>
-        <p>Git은 <strong>Unix Epoch(1970-01-01) 이전 날짜를 지원하지 않습니다.</strong> 이에 해당하는 5건의 법령(공포일자 1950~1969년)은 커밋 날짜가 1970-01-01로 고정되어 있습니다. 실제 공포일자는 각 파일의 YAML frontmatter <code>공포일자</code> 필드에 정확히 기록되어 있습니다.</p>
+        <p>
+          Git은
+          <strong>Unix Epoch(1970-01-01) 이전 날짜를 지원하지 않습니다.</strong>
+          이에 해당하는 5건의 법령(공포일자 1950~1969년)은 커밋 날짜가
+          1970-01-01로 고정되어 있습니다. 실제 공포일자는 각 파일의 YAML
+          frontmatter <code>공포일자</code> 필드에 정확히 기록되어 있습니다.
+        </p>
 
         <h2>기술 스택</h2>
         <ul>
-            <li><strong>데이터 수집</strong>: Python + law.go.kr OpenAPI</li>
-            <li><strong>저장 형식</strong>: Markdown + YAML frontmatter</li>
-            <li><strong>버전 관리</strong>: Git (공포일자를 커밋 날짜로 사용)</li>
-            <li><strong>자동화</strong>: GitHub Actions (매일 13:00 KST 자동 업데이트)</li>
-            <li><strong>웹사이트</strong>: 정적 HTML, GitHub Pages 배포</li>
+          <li><strong>데이터 수집</strong>: Python + law.go.kr OpenAPI</li>
+          <li><strong>커밋 컴파일러</strong>: Rust + OpenAPI Cache</li>
+          <li><strong>저장 형식</strong>: Markdown + YAML frontmatter</li>
+          <li><strong>버전 관리</strong>: Git (공포일자를 커밋 날짜로 사용)</li>
+          <li>
+            <strong>자동화</strong>: GitHub Actions (매일 13:00 KST 자동
+            업데이트)
+          </li>
+          <li><strong>웹사이트</strong>: 정적 HTML, GitHub Pages 배포</li>
         </ul>
 
         <h2>영감</h2>
-        <p>이 프로젝트는 <a href="https://github.com/legalize-dev/legalize">legalize</a>에서 영감을 받았습니다. legalize는 스페인 법령 8,600건 이상을 Git으로 관리하는 프로젝트입니다.</p>
+        <p>
+          legalize-kr 프로젝트는
+          <a href="https://github.com/legalize-dev/legalize">legalize-dev</a
+          >에서 영감을 받았습니다. legalize-dev는 스페인 법령 8,600건 이상을
+          Git으로 관리하는 프로젝트입니다.
+        </p>
 
         <h2>라이선스</h2>
-        <p><strong>법령 원문</strong>: 대한민국 정부 공공저작물 (자유 이용 가능)<br>
-        <strong>저장소 구조 및 도구</strong>: <a href="https://github.com/9bow/legalize-kr/blob/main/LICENSE">MIT License</a></p>
+        <p>
+          <strong>법령 원문</strong>: 대한민국 정부 공공저작물 (자유 이용
+          가능)<br />
+          <strong>저장소 구조 및 도구</strong>:
+          <a
+            href="https://github.com/legalize-kr/legalize-pipeline/blob/main/LICENSE-APACHE"
+            >Apache-2.0 License</a
+          >
+          또는
+          <a
+            href="https://github.com/legalize-kr/legalize-pipeline/blob/main/LICENSE-MIT"
+            >MIT License</a
+          >
+        </p>
 
         <h2>기여하기</h2>
-        <p>법령 텍스트에 오류를 발견했거나, 누락된 개정 사항이 있다면 <a href="https://github.com/9bow/legalize-kr/issues">GitHub Issues</a>에서 알려주세요. 법령명, 조항, 공식 출처를 함께 기재해 주시면 감사하겠습니다.</p>
+        <p>
+          법령 텍스트에 오류를 발견했거나, 누락된 개정 사항이 있다면
+          <a href="https://github.com/9bow/legalize-kr/issues">GitHub Issues</a
+          >에서 알려주세요. 법령명, 조항, 공식 출처를 함께 기재해 주시면
+          감사하겠습니다.
+        </p>
+      </div>
     </div>
-</div>
 
-<footer>
-    <div class="container" style="max-width: 1080px;">
-        <div class="footer-inner">
-            <span>&#x2696;&#xFE0F; Legalize KR · 데이터 출처: <a href="https://www.law.go.kr">국가법령정보센터</a></span>
-            <div style="display: flex; gap: 24px;">
-                <a href="index.html">홈</a>
-                <a href="https://github.com/9bow/legalize-kr">GitHub</a>
-                <a href="https://legalize.dev">legalize.dev</a>
-            </div>
+    <footer>
+      <div class="container" style="max-width: 1080px">
+        <div class="footer-content">
+          <div class="footer-left">
+            <span style="font-size: 20px"
+              >&#x2696;&#xFE0F; Legalize KR &#x1F1F0;&#x1F1F7;</span
+            >
+            <span class="footer-copy">
+              <a href="https://legalize.dev">legalize.dev</a> 프로젝트의 한국
+              버전 · 데이터 출처:
+              <a href="https://www.law.go.kr">국가법령정보센터</a>
+            </span>
+          </div>
+          <div class="footer-links">
+            <a href="https://github.com/9bow/legalize-kr">GitHub</a>
+            <a href="about.html">소개</a>
+            <a href="/images">법령 이미지 보기</a>
+          </div>
         </div>
-    </div>
-</footer>
+      </div>
+    </footer>
 
-<script>
-    fetch('stats.json')
-        .then(r => r.json())
-        .then(stats => {
-            const fmt = n => n.toLocaleString('ko-KR');
-            document.getElementById('stat-total').textContent = fmt(stats.total || 0);
-            document.getElementById('stat-amendments').textContent = fmt(stats.amendments || 0);
+    <script>
+      const fmt = (n) => Number(n || 0).toLocaleString("ko-KR");
+      fetch("stats.json")
+        .then((r) => r.json())
+        .then((stats) => {
+          document.getElementById("stat-total").textContent = fmt(stats.total);
+          document.getElementById("stat-amendments").textContent = fmt(
+            stats.amendments,
+          );
         })
         .catch(() => {});
-</script>
-</body>
+      fetch("precedent-stats.json")
+        .then((r) => r.json())
+        .then((stats) => {
+          document.getElementById("prec-total").textContent = fmt(stats.total);
+        })
+        .catch(() => {});
+    </script>
+  </body>
 </html>

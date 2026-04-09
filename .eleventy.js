@@ -1,6 +1,7 @@
 module.exports = function(eleventyConfig) {
   // 기존 HTML 파일을 passthrough로 처리 (템플릿으로 해석하지 않음)
   eleventyConfig.addPassthroughCopy("index.html");
+  eleventyConfig.addPassthroughCopy("precedent-stats.json");
   eleventyConfig.addPassthroughCopy("about.html");
   eleventyConfig.addPassthroughCopy("404.html");
   eleventyConfig.addPassthroughCopy("CNAME");
