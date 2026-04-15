@@ -1,6 +1,6 @@
 {
   "total": 6927,
-  "amendments": 83442,
+  "amendments": 83460,
   "types": {
     "법률": 1725,
     "대통령령": 1981,
@@ -79,5 +79,5 @@
     "search_miss_count": 0,
     "quarantined_stale_count": 0
   },
-  "generated_at": "2026-04-15T13:33:25.629102+00:00"
+  "generated_at": "2026-04-15T21:07:45.559080+00:00"
 }
