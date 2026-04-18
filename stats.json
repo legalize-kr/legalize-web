@@ -53,9 +53,13 @@
   },
   "classifications": {
     "child_only_count": 31,
+    "child_only_total": 31,
     "failed_count": 0,
     "search_miss_count": 0,
-    "quarantined_stale_count": 0
+    "quarantined_stale_count": 0,
+    "empty_history_accepted": 0,
+    "empty_body_accepted": 0,
+    "missing_parent_with_child": 31
   },
-  "generated_at": "2026-04-18T05:43:39.404303+00:00"
+  "generated_at": "2026-04-18T14:02:15.672019+00:00"
 }
