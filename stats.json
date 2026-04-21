@@ -1,9 +1,9 @@
 {
-  "total": 5658,
-  "amendments": 83492,
+  "total": 5661,
+  "amendments": 83516,
   "types": {
     "법률": 1734,
-    "대통령령": 1995,
+    "대통령령": 1997,
     "행정안전부령": 127,
     "국가보훈부령": 20,
     "대법원규칙": 208,
@@ -22,7 +22,7 @@
     "건설교통부령": 1,
     "법무부령": 82,
     "군정법령": 9,
-    "문화체육관광부령": 70,
+    "문화체육관광부령": 71,
     "헌법재판소규칙": 53,
     "중소벤처기업부령": 19,
     "산업통상부령": 56,
@@ -52,14 +52,14 @@
     "안전행정부령": 1
   },
   "classifications": {
-    "child_only_count": 31,
-    "child_only_total": 31,
+    "child_only_count": 32,
+    "child_only_total": 32,
     "failed_count": 0,
     "search_miss_count": 0,
     "quarantined_stale_count": 0,
     "empty_history_accepted": 0,
     "empty_body_accepted": 0,
-    "missing_parent_with_child": 31
+    "missing_parent_with_child": 32
   },
-  "generated_at": "2026-04-20T14:53:06.851646+00:00"
+  "generated_at": "2026-04-21T14:48:43.462354+00:00"
 }
