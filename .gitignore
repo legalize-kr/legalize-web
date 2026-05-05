@@ -1,4 +1,5 @@
 _site/
 node_modules/
 local-images/
+local-images
 _data/images.json

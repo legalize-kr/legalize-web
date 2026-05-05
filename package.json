@@ -2,11 +2,15 @@
   "private": true,
   "scripts": {
     "dev": "npx @11ty/eleventy --serve",
-    "build": "npx @11ty/eleventy && node scripts/build-search-index.mjs",
-    "prepare": "cd ../legalize-pipeline && python3 -m images export --output ../legalize-web/public/data/images/ --sharded && cd ../legalize-web && ln -sf /Users/reserve/Workspace/legalize-kr/.cache/images local-images 2>/dev/null || true"
+    "build": "npm run stats:generate && npm run build:site",
+    "build:site": "npx @11ty/eleventy && node scripts/build-search-index.mjs",
+    "stats:generate": "node scripts/generate-dataset-stats.mjs",
+    "images:export": "cd ../legalize-pipeline && python3 -m images export --output ../legalize-web/public/data/images/ --sharded",
+    "images:link": "ln -sfn ../.cache/images local-images",
+    "images:prepare": "npm run images:export && npm run images:link"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^2.0",
+    "@11ty/eleventy": "^3.1.5",
     "pagefind": "^1.4.0"
   }
 }

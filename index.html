@@ -3,14 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Legalize — 법령과 판례를 코드처럼</title>
+    <title>Legalize — 법령·판례·자치법규·행정규칙을 코드처럼</title>
     <meta
       name="description"
-      content="모든 법령과 판례는 Markdown 파일, 모든 개정과 판결은 Git 커밋. 대한민국 법률 데이터를 Git으로 버전 관리합니다."
+      content="법령, 판례, 자치법규, 행정규칙은 Markdown 파일, 개정·판결·공포·발령 이력은 Git 커밋. 대한민국 법률 데이터를 Git으로 버전 관리합니다."
     />
     <meta
       name="keywords"
-      content="법령, 법률, 판례, 대법원, 대한민국, git, 버전 관리, 리걸테크, 오픈데이터, 국가법령정보, legalize"
+      content="법령, 법률, 판례, 자치법규, 행정규칙, 조례, 고시, 훈령, 대한민국, git, 버전 관리, 리걸테크, 오픈데이터, 국가법령정보, legalize"
     />
     <meta name="author" content="Legalize KR" />
     <meta name="robots" content="index, follow" />
@@ -21,19 +21,39 @@
     <meta property="og:site_name" content="Legalize KR" />
     <meta property="og:locale" content="ko_KR" />
     <meta property="og:url" content="https://legalize.kr/" />
-    <meta property="og:title" content="Legalize — 법령과 판례를 코드처럼" />
+    <meta
+      property="og:title"
+      content="Legalize — 법령·판례·자치법규·행정규칙을 코드처럼"
+    />
     <meta
       property="og:description"
-      content="모든 법령과 판례는 Markdown 파일, 모든 개정과 판결은 Git 커밋. 대한민국 법률 데이터를 Git으로 버전 관리합니다."
+      content="법령, 판례, 자치법규, 행정규칙은 Markdown 파일, 개정·판결·공포·발령 이력은 Git 커밋. 대한민국 법률 데이터를 Git으로 버전 관리합니다."
     />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://legalize.kr/" />
-    <meta name="twitter:title" content="Legalize — 법령과 판례를 코드처럼" />
+    <meta
+      name="twitter:title"
+      content="Legalize — 법령·판례·자치법규·행정규칙을 코드처럼"
+    />
     <meta
       name="twitter:description"
-      content="모든 법령과 판례는 Markdown 파일, 모든 개정과 판결은 Git 커밋. 대한민국 법률 데이터를 Git으로 버전 관리합니다."
+      content="법령, 판례, 자치법규, 행정규칙은 Markdown 파일, 개정·판결·공포·발령 이력은 Git 커밋. 대한민국 법률 데이터를 Git으로 버전 관리합니다."
     />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S2FJBVDS6Y"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-S2FJBVDS6Y");
+    </script>
     <!-- Structured Data -->
     <script type="application/ld+json">
       {
@@ -41,7 +61,7 @@
         "@type": "SoftwareApplication",
         "name": "Legalize KR",
         "url": "https://legalize.kr",
-        "description": "법령과 판례를 코드처럼. 모든 법령과 판례는 Markdown 파일, 모든 개정과 판결은 Git 커밋.",
+        "description": "법령, 판례, 자치법규, 행정규칙을 코드처럼. 모든 문서는 Markdown 파일, 모든 변경 이력은 Git 커밋.",
         "applicationCategory": "DeveloperApplication",
         "inLanguage": "ko",
         "isPartOf": {
@@ -61,8 +81,21 @@
   </head>
 
   <body>
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <div class="container site-nav-inner">
+        <a href="/" class="site-nav-brand">&#x2696;&#xFE0F; Legalize KR</a>
+        <div class="site-nav-links">
+          <a href="about.html">소개</a>
+          <a href="laws.html">법령</a>
+          <a href="precedents.html">판례</a>
+          <a href="ordinances.html">자치법규</a>
+          <a href="admrules.html">행정규칙</a>
+        </div>
+      </div>
+    </nav>
+
     <!-- HER: LAW -->
-    <section class="hero">
+    <section class="hero" id="laws">
       <div class="hero-content container">
         <div class="hero-logo">&#x2696;&#xFE0F;</div>
 
@@ -110,13 +143,49 @@
             </svg>
             법령 저장소 보기
           </a>
-          <a href="about.html" class="btn btn-outline">프로젝트 소개</a>
+          <a href="laws.html" class="btn btn-data">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+            법령 데이터 소개
+          </a>
+        </div>
+        <div class="hero-secondary-actions">
+          <a href="about.html" class="btn btn-about">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+            프로젝트 소개
+          </a>
         </div>
       </div>
     </section>
 
     <!-- HERO: PRECEDENT -->
-    <section class="hero hero-alt">
+    <section class="hero hero-alt" id="precedents">
       <div class="hero-content container">
         <div class="hero-logo reveal">&#x1F4DC;</div>
 
@@ -173,7 +242,210 @@
             </svg>
             판례 저장소 보기
           </a>
-          <a href="about.html" class="btn btn-outline">프로젝트 소개</a>
+          <a href="precedents.html" class="btn btn-data">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+              <polyline points="14 2 14 8 20 8" />
+              <line x1="16" y1="13" x2="8" y2="13" />
+              <line x1="16" y1="17" x2="8" y2="17" />
+            </svg>
+            판례 데이터 소개
+          </a>
+        </div>
+        <div class="hero-secondary-actions reveal" style="transition-delay: 0.4s">
+          <a href="about.html" class="btn btn-about">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="10" />
+              <line x1="12" y1="16" x2="12" y2="12" />
+              <line x1="12" y1="8" x2="12.01" y2="8" />
+            </svg>
+            프로젝트 소개
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- DATASET EXPANSION -->
+    <section class="dataset-section" id="ordinances">
+      <div class="container">
+        <div class="dataset-head reveal">
+          <p class="section-label">// 더 넓어진 공공 법률문서</p>
+          <h2 class="section-title">자치법규와 행정규칙까지</h2>
+          <p class="section-desc">
+            중앙 법령과 판례에 더해 지방자치단체의 조례·규칙, 중앙행정기관의
+            고시·훈령·예규까지 같은 규약으로 정리합니다. 문서는 Markdown,
+            공포일자와 발령일자는 Git 커밋 날짜로 남습니다.
+          </p>
+        </div>
+
+        <div class="dataset-grid">
+          <article class="dataset-card reveal" style="transition-delay: 0.1s">
+            <div class="dataset-label ordinance-label">자치법규</div>
+            <h3>지역 규범을 광역·기초 단위로</h3>
+            <p>
+              전국 지방자치단체와 교육청의 조례, 규칙, 훈령, 예규, 고시,
+              의회규칙을 지역 계층과 자치법규 종류별로 배치합니다.
+            </p>
+            <div class="dataset-stats" aria-label="자치법규 통계">
+              <div>
+                <strong id="ord-total">—</strong>
+                <span>자치법규</span>
+              </div>
+              <div>
+                <strong id="ord-regions">—</strong>
+                <span>광역 단위</span>
+              </div>
+            </div>
+            <dl class="dataset-facts">
+              <div>
+                <dt>저장소</dt>
+                <dd>legalize-kr/ordinance-kr</dd>
+              </div>
+              <div>
+                <dt>기준 날짜</dt>
+                <dd>공포일자</dd>
+              </div>
+              <div>
+                <dt>경로</dt>
+                <dd>
+                  {광역}/{기초 또는 _본청}/{자치법규종류}/{자치법규명}/본문.md
+                </dd>
+              </div>
+            </dl>
+            <div class="path-sample">
+              서울특별시/_본청/조례/서울특별시 테스트 조례/본문.md
+            </div>
+            <div class="dataset-actions">
+              <a
+                href="https://github.com/legalize-kr/ordinance-kr"
+                class="btn btn-primary"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                자치법규 저장소 보기
+              </a>
+              <a href="ordinances.html" class="btn btn-data">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                자치법규 데이터 소개
+              </a>
+            </div>
+          </article>
+
+          <article
+            class="dataset-card reveal"
+            id="admrules"
+            style="transition-delay: 0.2s"
+          >
+            <div class="dataset-label admrule-label">행정규칙</div>
+            <h3>기관별 고시·훈령·예규를 한눈에</h3>
+            <p>
+              부처 본부, 외청, 위원회, 소속기관 등 실제 발령 주체의 기관
+              계층을 보존해 행정규칙을 검색하고 추적할 수 있게 합니다.
+            </p>
+            <div class="dataset-stats" aria-label="행정규칙 통계">
+              <div>
+                <strong id="adm-total">—</strong>
+                <span>행정규칙</span>
+              </div>
+              <div>
+                <strong id="adm-agencies">—</strong>
+                <span>상위 기관</span>
+              </div>
+            </div>
+            <dl class="dataset-facts">
+              <div>
+                <dt>저장소</dt>
+                <dd>legalize-kr/admrule-kr</dd>
+              </div>
+              <div>
+                <dt>기준 날짜</dt>
+                <dd>발령일자</dd>
+              </div>
+              <div>
+                <dt>경로</dt>
+                <dd>{기관경로...}/{행정규칙종류}/{행정규칙명}/본문.md</dd>
+              </div>
+            </dl>
+            <div class="path-sample">
+              행정안전부/_본부/고시/공공데이터 관리지침/본문.md
+            </div>
+            <div class="dataset-actions">
+              <a
+                href="https://github.com/legalize-kr/admrule-kr"
+                class="btn btn-primary"
+              >
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path
+                    d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                  />
+                </svg>
+                행정규칙 저장소 보기
+              </a>
+              <a href="admrules.html" class="btn btn-data">
+                <svg
+                  width="18"
+                  height="18"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                  <polyline points="14 2 14 8 20 8" />
+                  <line x1="16" y1="13" x2="8" y2="13" />
+                  <line x1="16" y1="17" x2="8" y2="17" />
+                </svg>
+                행정규칙 데이터 소개
+              </a>
+            </div>
+          </article>
         </div>
       </div>
     </section>
@@ -185,8 +457,8 @@
           <p class="section-label">// 무엇이 바뀌었나</p>
           <h2 class="section-title">모든 개정, 추적됩니다.</h2>
           <p class="section-desc">
-            실제 법령 개정 내용을 diff로 확인합니다. PDF를 비교하거나 요약본에
-            의존할 필요가 없습니다.
+            실제 법령 개정 내용을 <code>diff</code> 형식으로 확인합니다.
+            PDF를 비교하거나 요약본에 의존할 필요가 없습니다.
           </p>
         </div>
 
@@ -249,8 +521,8 @@
             </div>
             <h3>공식 데이터 출처</h3>
             <p>
-              국가법령정보센터 OpenAPI에서 법령과 판례를 가져옵니다. 항상 공식
-              원문을 기반으로 합니다.
+              국가법령정보센터 OpenAPI에서 법령, 판례, 자치법규, 행정규칙을
+              가져옵니다. 항상 공식 원문을 기반으로 합니다.
             </p>
           </div>
 
@@ -274,8 +546,8 @@
             </div>
             <h3>구조화 + 버전 관리</h3>
             <p>
-              각 법령과 판례는 YAML 메타데이터가 포함된 Markdown 파일이 됩니다.
-              각 개정과 판결은 실제 날짜를 가진 Git 커밋입니다.
+              각 문서는 YAML 메타데이터가 포함된 Markdown 파일이 됩니다. 개정,
+              판결, 공포, 발령 이력은 실제 날짜를 가진 Git 커밋입니다.
             </p>
           </div>
 
@@ -297,8 +569,9 @@
             </div>
             <h3>활용하세요</h3>
             <p>
-              grep으로 법령과 판례를 검색하고, git log로 이력을 확인하고, git
-              diff로 개정 내용을 비교하세요.
+              <code>grep</code> 명령어로 4종류의 데이터셋을 검색하고,
+              <code>git log</code> 명령어로 이력을 확인하고,
+              <code>git diff</code> 명령어로 변경 내용을 비교하세요.
             </p>
           </div>
         </div>
@@ -309,7 +582,7 @@
     <section class="code-section">
       <div class="container">
         <div class="reveal">
-          <p class="section-label">// 익숙한 도구, 법령 및 판례 탐색</p>
+          <p class="section-label">// 익숙한 도구, 공공 법률문서 탐색</p>
           <h2 class="section-title">그냥 Git입니다.</h2>
           <p class="section-desc">
             별도의 뷰어도, 구독도 필요 없습니다. 저장소를 복제(clone)하고 이미
@@ -417,138 +690,179 @@
               <span class="path">...</span>
             </div>
             <div class="code-line"></div>
+
+            <div class="code-line">
+              <span class="comment"
+                ># 서울특별시 조례에서 "공공시설" 검색</span
+              >
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">grep</span>
+              <span class="flag">-rl</span>
+              <span class="string">"공공시설"</span>
+              <span class="path">서울특별시/_본청/조례/</span>
+            </div>
+            <div class="code-line">
+              <span class="path"
+                >서울특별시/_본청/조례/서울특별시립체육시설의 설치 및 운영에 관한 조례/본문.md</span
+              >
+            </div>
+            <div class="code-line"></div>
+
+            <div class="code-line">
+              <span class="comment"
+                ># 행정안전부 고시에서 "개인정보" 검색</span
+              >
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">grep</span>
+              <span class="flag">-rl</span>
+              <span class="string">"개인정보"</span>
+              <span class="path">행정안전부/_본부/고시/</span>
+            </div>
+            <div class="code-line">
+              <span class="path"
+                >행정안전부/_본부/고시/공공데이터 관리지침/본문.md</span
+              >
+            </div>
+            <div class="code-line"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- LAW CATEGORIES -->
+    <!-- CLI USAGE -->
     <section>
       <div class="container">
-        <div class="reveal" style="text-align: center">
-          <p class="section-label">// 법령 파일 구조</p>
-          <h2 class="section-title">법령명으로 정리되어 있습니다.</h2>
-          <p class="section-desc" style="margin: 0 auto">
-            관련 법령(법률, 시행령, 시행규칙)이 하나의 디렉토리에 함께
-            관리됩니다.
+        <div class="reveal">
+          <p class="section-label">// GitHub API 기반 조회</p>
+          <h2 class="section-title">CLI로 바로 조회합니다.</h2>
+          <p class="section-desc">
+            저장소를 통째로 복제하지 않아도 법령, 판례, 자치법규, 행정규칙을
+            같은 명령 체계로 조회할 수 있습니다. 자동화에는
+            <code>--json</code> 출력을 사용합니다.
+            상세한 설치와 옵션은
+            <a href="https://github.com/legalize-kr/cli-tools"
+              >cli-tools 저장소</a
+            >를 참고하세요.
           </p>
         </div>
 
-        <div class="cat-grid reveal" style="transition-delay: 0.15s">
-          <div class="cat-card">
-            <div class="cat-name">법률</div>
-            <div class="cat-count">kr/{법률명}/법률.md</div>
-          </div>
-          <div class="cat-card">
-            <div class="cat-name">시행령</div>
-            <div class="cat-count">kr/{법률명}/시행령.md</div>
-          </div>
-          <div class="cat-card">
-            <div class="cat-name">시행규칙</div>
-            <div class="cat-count">kr/{법률명}/시행규칙.md</div>
-          </div>
-          <div class="cat-card">
-            <div class="cat-name">독립 대통령령</div>
-            <div class="cat-count">kr/{대통령령명}/대통령령.md</div>
-          </div>
-        </div>
-
-        <div
-          class="code-block tree-block reveal"
-          style="transition-delay: 0.25s"
-        >
+        <div class="code-block reveal" style="transition-delay: 0.15s">
           <div class="code-header">
             <div class="code-header-dot"></div>
             <div class="code-header-dot"></div>
             <div class="code-header-dot"></div>
-            <span class="code-header-title">법령 파일 구조</span>
+            <span class="code-header-title">legalize-cli</span>
           </div>
-          <pre
-            class="tree-body"
-          ><span class="prompt">$ </span><span class="cmd">tree</span> <span class="path">legalize-kr/kr/</span> <span class="flag">-L</span> <span class="flag">2</span>
-<span class="dir">legalize-kr/kr/</span>
-<span class="br">├──</span> <span class="dir">민법/</span>
-<span class="br">│   └──</span> <span class="file">법률.md</span>
-<span class="br">├──</span> <span class="dir">상법/</span>
-<span class="br">│   ├──</span> <span class="file">법률.md</span>
-<span class="br">│   └──</span> <span class="file">시행령.md</span>
-<span class="br">├──</span> <span class="dir">근로기준법/</span>
-<span class="br">│   ├──</span> <span class="file">법률.md</span>
-<span class="br">│   ├──</span> <span class="file">시행령.md</span>
-<span class="br">│   └──</span> <span class="file">시행규칙.md</span>
-<span class="br">├──</span> <span class="dir">개인정보보호법/</span>
-<span class="br">│   ├──</span> <span class="file">법률.md</span>
-<span class="br">│   └──</span> <span class="file">시행령.md</span>
-<span class="br">├──</span> <span class="dir">주택임대차보호법/</span>
-<span class="br">│   ├──</span> <span class="file">법률.md</span>
-<span class="br">│   └──</span> <span class="file">시행령.md</span>
-<span class="br">└──</span> <span class="comment">... (3,043개 더)</span>
-
-<span class="comment">3,048 directories</span></pre>
+          <div class="code-body">
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">pip</span>
+              <span class="cmd">install</span>
+              <span class="string">legalize-cli</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">legalize</span>
+              <span class="cmd">laws</span> <span class="cmd">get</span>
+              <span class="path">민법</span>
+              <span class="flag">--date</span>
+              <span class="string">2015-06-01</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">legalize</span>
+              <span class="cmd">precedents</span>
+              <span class="cmd">list</span> <span class="flag">--court</span>
+              <span class="string">대법원</span>
+              <span class="flag">--type</span>
+              <span class="string">민사</span>
+              <span class="flag">--json</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">legalize</span>
+              <span class="cmd">ordinances</span>
+              <span class="cmd">list</span>
+              <span class="flag">--jurisdiction</span>
+              <span class="string">서울특별시</span>
+              <span class="flag">--type</span>
+              <span class="string">조례</span>
+              <span class="flag">--json</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">legalize</span>
+              <span class="cmd">admrules</span>
+              <span class="cmd">list</span>
+              <span class="flag">--agency</span>
+              <span class="string">행정안전부</span>
+              <span class="flag">--type</span>
+              <span class="string">고시</span>
+              <span class="flag">--json</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">legalize</span>
+              <span class="cmd">search</span>
+              <span class="string">"개인정보"</span>
+              <span class="flag">--in</span>
+              <span class="string">all</span>
+              <span class="flag">--json</span>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
-    <!-- PRECEDENT CATEGORIES -->
+    <!-- MCP USAGE -->
     <section class="diff-section">
       <div class="container">
-        <div class="reveal" style="text-align: center">
-          <p class="section-label">// 판례 파일 구조</p>
-          <h2 class="section-title">사건 종류별로 정리되어 있습니다.</h2>
-          <p class="section-desc" style="margin: 0 auto">
-            판례는 사건종류와 법원등급(대법원, 하급심)으로 분류되어, 사건번호
-            단위의 Markdown 파일로 관리됩니다.
+        <div class="reveal">
+          <p class="section-label">// LLM 에이전트 통합</p>
+          <h2 class="section-title">MCP로 연결합니다.</h2>
+          <p class="section-desc">
+            Claude Desktop, Cursor, VS Code 등 MCP 클라이언트에서 Legalize KR을
+            도구로 등록하면 자연어 질의가 구조화된 법률 데이터 조회로
+            이어집니다. MCP 서버 설치와 클라이언트 설정은
+            <a href="https://github.com/legalize-kr/cli-tools"
+              >cli-tools 저장소</a
+            >를 참고하세요.
           </p>
         </div>
 
-        <div class="cat-grid reveal" style="transition-delay: 0.15s">
+        <div class="cat-grid reveal" style="transition-delay: 0.1s">
           <div class="cat-card">
-            <div class="cat-name">민사</div>
-            <div class="cat-count">민사/{법원등급}/{사건번호}.md</div>
+            <div class="cat-name">법령</div>
+            <div class="cat-count">laws_list · laws_get · laws_article</div>
           </div>
           <div class="cat-card">
-            <div class="cat-name">형사</div>
-            <div class="cat-count">형사/{법원등급}/{사건번호}.md</div>
+            <div class="cat-name">판례</div>
+            <div class="cat-count">precedents_list · precedents_get</div>
           </div>
           <div class="cat-card">
-            <div class="cat-name">일반행정</div>
-            <div class="cat-count">일반행정/{법원등급}/{사건번호}.md</div>
+            <div class="cat-name">자치법규</div>
+            <div class="cat-count">ordinances_list · ordinances_get</div>
           </div>
           <div class="cat-card">
-            <div class="cat-name">그 외</div>
-            <div class="cat-count">{사건}/{법원등급}/{사건번호}.md</div>
+            <div class="cat-name">행정규칙</div>
+            <div class="cat-count">admrules_list · admrules_get · search</div>
           </div>
         </div>
 
-        <div
-          class="code-block tree-block reveal"
-          style="transition-delay: 0.25s"
-        >
+        <div class="code-block reveal" style="transition-delay: 0.2s">
           <div class="code-header">
             <div class="code-header-dot"></div>
             <div class="code-header-dot"></div>
             <div class="code-header-dot"></div>
-            <span class="code-header-title">판례 파일 구조</span>
+            <span class="code-header-title">mcp.json</span>
           </div>
-          <pre
-            class="tree-body"
-          ><span class="prompt">$ </span><span class="cmd">tree</span> <span class="path">precedent-kr/</span> <span class="flag">-L</span> <span class="flag">3</span>
-<span class="dir">precedent-kr/</span>
-<span class="br">├──</span> <span class="dir">민사/</span>          <span class="comment"># <span data-tree-count="민사">—</span>개</span>
-<span class="br">│   ├──</span> <span class="dir">대법원/</span>     <span class="comment"># <span data-tree-count="민사/대법원">—</span>개</span>
-<span class="br">│   │   ├──</span> <span class="file">2000다10048.md</span>
-<span class="br">│   │   ├──</span> <span class="file">2000다10079.md</span>
-<span class="br">│   │   └──</span> <span class="comment">... (<span data-tree-rest="민사/대법원">—</span>개 더)</span>
-<span class="br">│   └──</span> <span class="dir">하급심/</span>     <span class="comment"># <span data-tree-count="민사/하급심">—</span>개</span>
-<span class="br">├──</span> <span class="dir">형사/</span>          <span class="comment"># <span data-tree-count="형사">—</span>개</span>
-<span class="br">├──</span> <span class="dir">일반행정/</span>       <span class="comment"># <span data-tree-count="일반행정">—</span>개</span>
-<span class="br">├──</span> <span class="dir">세무/</span>          <span class="comment"># <span data-tree-count="세무">—</span>개</span>
-<span class="br">├──</span> <span class="dir">특허/</span>          <span class="comment"># <span data-tree-count="특허">—</span>개</span>
-<span class="br">├──</span> <span class="dir">가사/</span>          <span class="comment"># <span data-tree-count="가사">—</span>개</span>
-<span class="br">├──</span> <span class="dir">선거·특별/</span>      <span class="comment"># <span data-tree-count="선거·특별">—</span>개</span>
-<span class="br">└──</span> <span class="dir">기타/</span>          <span class="comment"># <span data-tree-count="기타">—</span>개</span>
-
-<span class="comment">8 사건종류 · 총 <span id="tree-total">—</span>개 판례 파일</span></pre>
+          <pre class="code-body json-body"><span class="json-punct">{</span>
+  <span class="json-key">"mcpServers"</span><span class="json-punct">:</span> <span class="json-punct">{</span>
+    <span class="json-key">"legalize-kr"</span><span class="json-punct">:</span> <span class="json-punct">{</span>
+      <span class="json-key">"command"</span><span class="json-punct">:</span> <span class="json-string">"legalize-mcp"</span><span class="json-punct">,</span>
+      <span class="json-key">"args"</span><span class="json-punct">:</span> <span class="json-punct">[]</span><span class="json-punct">,</span>
+      <span class="json-key">"env"</span><span class="json-punct">:</span> <span class="json-punct">{</span>
+        <span class="json-key">"GITHUB_TOKEN"</span><span class="json-punct">:</span> <span class="json-string">"ghp_..."</span>
+      <span class="json-punct">}</span>
+    <span class="json-punct">}</span>
+  <span class="json-punct">}</span>
+<span class="json-punct">}</span></pre>
         </div>
       </div>
     </section>
@@ -589,7 +903,7 @@
         .querySelectorAll(".reveal")
         .forEach((el) => observer.observe(el));
 
-      fetch("stats.json")
+      fetch("stats-laws.json")
         .then((r) => r.json())
         .then((stats) => {
           const fmt = (n) => n.toLocaleString("ko-KR");
@@ -617,7 +931,7 @@
         })
         .catch(() => {});
 
-      fetch("precedent-stats.json")
+      fetch("stats-precedents.json")
         .then((r) => r.json())
         .then((stats) => {
           const fmt = (n) => Number(n || 0).toLocaleString("ko-KR");
@@ -633,26 +947,28 @@
           document.getElementById("prec-criminal").textContent = fmt(criminal);
           document.getElementById("prec-admin").textContent = fmt(admin);
           document.getElementById("prec-other").textContent = fmt(other);
+        })
+        .catch(() => {});
 
-          const cbt = stats.courts_by_type || {};
-          const resolveCount = (key) => {
-            if (key.includes("/")) {
-              const [t, c] = key.split("/");
-              return (cbt[t] && cbt[t][c]) || 0;
-            }
-            return ct[key] || 0;
-          };
-          document.querySelectorAll("[data-tree-count]").forEach((el) => {
-            el.textContent = fmt(
-              resolveCount(el.getAttribute("data-tree-count")),
-            );
-          });
-          document.querySelectorAll("[data-tree-rest]").forEach((el) => {
-            const total = resolveCount(el.getAttribute("data-tree-rest"));
-            el.textContent = fmt(Math.max(0, total - 2));
-          });
-          const treeTotal = document.getElementById("tree-total");
-          if (treeTotal) treeTotal.textContent = fmt(stats.total);
+      fetch("stats-ordinances.json")
+        .then((r) => r.json())
+        .then((stats) => {
+          const fmt = (n) => Number(n || 0).toLocaleString("ko-KR");
+          document.getElementById("ord-total").textContent = fmt(stats.total);
+          document.getElementById("ord-regions").textContent = fmt(
+            Object.keys(stats.regions || {}).length,
+          );
+        })
+        .catch(() => {});
+
+      fetch("stats-admrules.json")
+        .then((r) => r.json())
+        .then((stats) => {
+          const fmt = (n) => Number(n || 0).toLocaleString("ko-KR");
+          document.getElementById("adm-total").textContent = fmt(stats.total);
+          document.getElementById("adm-agencies").textContent = fmt(
+            Object.keys(stats.root_agencies || {}).length,
+          );
         })
         .catch(() => {});
     </script>

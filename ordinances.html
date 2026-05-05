@@ -1,0 +1,394 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>자치법규 데이터 — Legalize KR</title>
+    <meta
+      name="description"
+      content="Legalize KR 자치법규 데이터 안내. 조례·규칙 등 지방자치단체 법규의 개요, 데이터 구조, CLI/MCP 사용법, 활용 사례를 확인합니다."
+    />
+    <link rel="canonical" href="https://legalize.kr/ordinances.html" />
+    <meta name="theme-color" content="#0F172A" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://legalize.kr/ordinances.html" />
+    <meta property="og:title" content="자치법규 데이터 — Legalize KR" />
+    <meta
+      property="og:description"
+      content="지방자치단체와 교육청의 자치법규를 지역 계층과 종류별 Markdown 파일로 관리합니다."
+    />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S2FJBVDS6Y"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-S2FJBVDS6Y");
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="about doc-page">
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <div class="container site-nav-inner">
+        <a href="index.html" class="site-nav-brand"
+          >&#x2696;&#xFE0F; Legalize KR</a
+        >
+        <div class="site-nav-links">
+          <a href="about.html">소개</a>
+          <a href="laws.html">법령</a>
+          <a href="precedents.html">판례</a>
+          <a href="ordinances.html" aria-current="page">자치법규</a>
+          <a href="admrules.html">행정규칙</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="content">
+      <div class="container">
+        <div class="doc-hero">
+          <p class="doc-eyebrow">ordinances</p>
+          <h1>자치법규 데이터</h1>
+          <p class="lead">
+            지방자치단체와 교육청의 조례, 규칙, 훈령, 예규, 고시, 의회규칙을
+            지역 계층과 자치법규 종류별 Markdown 파일로 제공합니다.
+          </p>
+          <div class="doc-actions">
+            <a
+              href="https://github.com/legalize-kr/ordinance-kr"
+              class="btn btn-primary"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              자치법규 저장소 보기
+            </a>
+            <a href="#cli" class="btn btn-cli">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
+              CLI 사용법
+            </a>
+            <a href="#mcp" class="btn btn-mcp">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11 4.93" />
+                <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L13 19.07" />
+              </svg>
+              MCP 도구
+            </a>
+          </div>
+        </div>
+
+        <div class="doc-stat-grid" aria-label="자치법규 통계">
+          <div class="doc-stat-card">
+            <strong id="ord-total">—</strong>
+            <span>자치법규</span>
+          </div>
+          <div class="doc-stat-card">
+            <strong id="ord-regions">—</strong>
+            <span>광역 단위</span>
+          </div>
+          <div class="doc-stat-card">
+            <strong id="ord-locals">—</strong>
+            <span>지자체·교육청</span>
+          </div>
+          <div class="doc-stat-card">
+            <strong id="ord-types">—</strong>
+            <span>자치법규 종류</span>
+          </div>
+        </div>
+
+        <h2>개요</h2>
+        <p>
+          자치법규 데이터는 지방자치단체와 교육청이 운영하는 조례·규칙 등 지역
+          규범을 Git으로 관리하기 위한 데이터셋입니다. 중앙 법령만으로는 확인이
+          어려운 지역별 운영 기준과 위임 규정을 함께 추적할 수 있습니다.
+        </p>
+        <p>
+          공포일자를 기준 날짜로 삼고, 광역 단위 아래에 기초자치단체,
+          <code>_본청</code>, <code>_교육청</code>을 구분합니다. 같은 이름의
+          자치법규라도 지역과 종류가 다르면 별도 파일로 유지됩니다.
+        </p>
+
+        <h2 id="structure">데이터 구조</h2>
+        <p>
+          경로는 지역 계층을 먼저 드러내도록 설계했습니다. 지역이나 교육청 단위
+          검색, 특정 자치법규 종류별 검색이 모두 단순한 파일 경로 필터로
+          가능합니다.
+        </p>
+
+        <div class="doc-grid">
+          <div class="doc-panel">
+            <h3>1단계: 광역 단위</h3>
+            <p>
+              <code>서울특별시</code>, <code>강원특별자치도</code>처럼 시·도,
+              특별자치시·도, 광역연합 단위를 최상위 디렉토리로 둡니다.
+            </p>
+          </div>
+          <div class="doc-panel">
+            <h3>2단계: 발령 주체</h3>
+            <p>
+              광역 본청은 <code>_본청</code>, 교육청은 <code>_교육청</code>,
+              기초자치단체는 <code>강릉시</code>처럼 실제 지자체명으로
+              구분합니다.
+            </p>
+          </div>
+          <div class="doc-panel">
+            <h3>3단계: 자치법규 종류</h3>
+            <p>
+              <code>조례</code>, <code>규칙</code>, <code>의회규칙</code>,
+              <code>훈령</code>, <code>예규</code>, <code>고시</code>를 별도
+              디렉토리로 분리합니다.
+            </p>
+          </div>
+          <div class="doc-panel">
+            <h3>4단계: 문서 본문</h3>
+            <p>
+              자치법규명 디렉토리 안의 <code>본문.md</code>가 실제 Markdown
+              본문입니다. 경로 전체가 안정적인 식별자 역할을 합니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="cat-grid">
+          <div class="cat-card">
+            <div class="cat-name">광역 본청 조례</div>
+            <div class="cat-count">서울특별시/_본청/조례/{명}/본문.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">기초자치단체 규칙</div>
+            <div class="cat-count">경기도/수원시/규칙/{명}/본문.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">교육청 규칙</div>
+            <div class="cat-count">강원특별자치도/_교육청/규칙/{명}/본문.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">의회규칙</div>
+            <div class="cat-count">강원특별자치도/_본청/의회규칙/{명}/본문.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">교육청 훈령</div>
+            <div class="cat-count">강원특별자치도/_교육청/훈령/{명}/본문.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">기초자치단체 조례</div>
+            <div class="cat-count">강원특별자치도/강릉시/조례/{명}/본문.md</div>
+          </div>
+        </div>
+
+        <div class="code-block tree-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">자치법규 파일 구조</span>
+          </div>
+          <pre
+            class="tree-body"
+          ><span class="prompt">$ </span><span class="cmd">tree</span> <span class="path">ordinance-kr/강원특별자치도/</span> <span class="flag">-L</span> <span class="flag">5</span>
+<span class="dir">강원특별자치도/</span>
+<span class="br">├──</span> <span class="dir">_본청/</span>
+<span class="br">│   ├──</span> <span class="dir">조례/</span>
+<span class="br">│   │   └──</span> <span class="dir">강원특별자치도 도세 조례/</span>
+<span class="br">│   │       └──</span> <span class="file">본문.md</span>
+<span class="br">│   └──</span> <span class="dir">규칙/</span>
+<span class="br">│   └──</span> <span class="dir">의회규칙/</span>
+<span class="br">├──</span> <span class="dir">_교육청/</span>
+<span class="br">│   ├──</span> <span class="dir">규칙/</span>
+<span class="br">│   │   └──</span> <span class="dir">강원특별자치도 각급학교 인정도서 인정수수료 징수 규칙/</span>
+<span class="br">│   │       └──</span> <span class="file">본문.md</span>
+<span class="br">│   └──</span> <span class="dir">훈령/</span>
+<span class="br">└──</span> <span class="dir">강릉시/</span>
+<span class="br">    ├──</span> <span class="dir">조례/</span>
+<span class="br">    └──</span> <span class="dir">규칙/</span>
+<span class="br">        └──</span> <span class="dir">강릉단오제전수교육관 설치 및 운영 조례 시행규칙/</span>
+<span class="br">            └──</span> <span class="file">본문.md</span></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">자치법규 frontmatter</span>
+          </div>
+          <pre class="code-body">---
+제목: 서울특별시 테스트 조례
+자치법규구분: 조례
+지방자치단체: 서울특별시
+공포일자: 2026-01-01
+시행일자: 2026-01-01
+상태: 시행
+출처: https://www.law.go.kr/자치법규/...
+---
+
+# 서울특별시 테스트 조례</pre>
+        </div>
+
+        <h2>Git 활용 방법</h2>
+        <p>
+          자치법규 저장소는 지역 계층과 자치법규 종류가 경로에 들어가므로
+          <code>grep</code> 명령어와 <code>git log</code> 명령어로 지역별 규정과
+          공포 이력을 좁혀 볼 수 있습니다.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">자치법규 Git 활용</span>
+          </div>
+          <pre class="code-body">grep -rl "공공시설" 서울특별시/_본청/조례/
+git log -- 경기도/수원시/규칙/
+git log -- 강원특별자치도/_교육청/규칙/
+git log --grep="^자치법규:"</pre>
+        </div>
+
+        <h2>커밋 메시지</h2>
+        <p>
+          자치법규 커밋은 공포일자를 Git author/committer date로 사용하며,
+          자치법규명, 자치법규종류, 지방자치단체, 제개정구분, 원문 URL을
+          포함합니다.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">예시: 자치법규 커밋</span>
+          </div>
+          <pre class="code-body">자치법규: 서울특별시 테스트 조례 (일부개정)
+
+자치법규 전문: https://www.law.go.kr/자치법규/서울특별시테스트조례
+
+공포일자: 2026-01-01
+자치법규종류: 조례
+지방자치단체: 서울특별시</pre>
+        </div>
+
+        <h2 id="cli">CLI 사용법</h2>
+        <p>
+          광역, 기초, 종류 필터로 목록을 좁히고 이름이나 경로로 전문을 조회할
+          수 있습니다. 상세한 설치와 옵션은
+          <a href="https://github.com/legalize-kr/cli-tools"
+            >cli-tools 저장소</a
+          >를 참고하세요.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">자치법규 CLI</span>
+          </div>
+          <pre class="code-body">pip install legalize-cli
+legalize ordinances list --jurisdiction 서울특별시 --type 조례 --json
+legalize ordinances list --jurisdiction 강원특별자치도 --subdivision _교육청 --type 규칙 --json
+legalize ordinances get "서울특별시 테스트 조례" --type 조례 --jurisdiction 서울특별시 --json
+legalize search "공공시설" --in ordinances --json</pre>
+        </div>
+
+        <h2 id="mcp">MCP 사용법</h2>
+        <p>
+          MCP에서는 <code>ordinances_list</code>와
+          <code>ordinances_get</code> 도구를 제공합니다. 지역별 조례 검색,
+          교육청 규칙 조회, 특정 자치법규 전문 확인에 사용할 수 있습니다. MCP
+          서버 설치와 클라이언트 설정은
+          <a href="https://github.com/legalize-kr/cli-tools"
+            >cli-tools 저장소</a
+          >를 참고하세요.
+        </p>
+
+        <h2>활용 사례</h2>
+        <div class="doc-grid">
+          <div class="doc-panel">
+            <h3>지역별 규정 비교</h3>
+            <p>같은 주제의 조례가 지방자치단체마다 어떻게 다른지 비교합니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>위임 규정 추적</h3>
+            <p>중앙 법령의 위임 조항과 지역 자치법규를 함께 검색합니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>지자체 서비스 구축</h3>
+            <p>특정 지역의 현행 자치법규를 검색 색인이나 내부 지식베이스로 만듭니다.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <span style="font-size: 20px"
+              >&#x2696;&#xFE0F; Legalize KR &#x1F1F0;&#x1F1F7;</span
+            >
+            <span class="footer-copy">
+              <a href="https://legalize.dev">legalize.dev</a> 프로젝트의 한국
+              버전 · 데이터 출처:
+              <a href="https://www.law.go.kr">국가법령정보센터</a>
+            </span>
+          </div>
+          <div class="footer-links">
+            <a href="https://github.com/9bow/legalize-kr">GitHub</a>
+            <a href="about.html">소개</a>
+            <a href="/images">법령 이미지 보기</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const fmt = (n) => Number(n || 0).toLocaleString("ko-KR");
+      fetch("stats-ordinances.json")
+        .then((r) => r.json())
+        .then((stats) => {
+          document.getElementById("ord-total").textContent = fmt(stats.total);
+          document.getElementById("ord-regions").textContent = fmt(
+            Object.keys(stats.regions || {}).length,
+          );
+          document.getElementById("ord-locals").textContent = fmt(
+            Object.keys(stats.local_governments || {}).length,
+          );
+          document.getElementById("ord-types").textContent = fmt(
+            Object.keys(stats.types || {}).length,
+          );
+        })
+        .catch(() => {});
+    </script>
+  </body>
+</html>

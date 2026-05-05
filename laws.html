@@ -1,0 +1,379 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>법령 데이터 — Legalize KR</title>
+    <meta
+      name="description"
+      content="Legalize KR 법령 데이터 안내. 대한민국 법령의 개요, Markdown 데이터 구조, CLI/MCP 사용법, 활용 사례를 확인합니다."
+    />
+    <link rel="canonical" href="https://legalize.kr/laws.html" />
+    <meta name="theme-color" content="#0F172A" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://legalize.kr/laws.html" />
+    <meta property="og:title" content="법령 데이터 — Legalize KR" />
+    <meta
+      property="og:description"
+      content="대한민국 법령을 Markdown 파일과 Git 커밋 이력으로 관리합니다."
+    />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S2FJBVDS6Y"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-S2FJBVDS6Y");
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="about doc-page">
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <div class="container site-nav-inner">
+        <a href="index.html" class="site-nav-brand"
+          >&#x2696;&#xFE0F; Legalize KR</a
+        >
+        <div class="site-nav-links">
+          <a href="about.html">소개</a>
+          <a href="laws.html" aria-current="page">법령</a>
+          <a href="precedents.html">판례</a>
+          <a href="ordinances.html">자치법규</a>
+          <a href="admrules.html">행정규칙</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="content">
+      <div class="container">
+        <div class="doc-hero">
+          <p class="doc-eyebrow">laws</p>
+          <h1>법령 데이터</h1>
+          <p class="lead">
+            대한민국 법령을 법령명 기준의 Markdown 파일로 정리하고, 공포일자와
+            시행일자를 메타데이터로 보존합니다. 개정 이력은 Git 커밋으로
+            추적됩니다.
+          </p>
+          <div class="doc-actions">
+            <a
+              href="https://github.com/legalize-kr/legalize-kr"
+              class="btn btn-primary"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              법령 저장소 보기
+            </a>
+            <a href="#cli" class="btn btn-cli">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
+              CLI 사용법
+            </a>
+            <a href="#mcp" class="btn btn-mcp">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11 4.93" />
+                <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L13 19.07" />
+              </svg>
+              MCP 도구
+            </a>
+          </div>
+        </div>
+
+        <div class="doc-stat-grid" aria-label="법령 통계">
+          <div class="doc-stat-card">
+            <strong id="stat-total">—</strong>
+            <span>현행 법령</span>
+          </div>
+          <div class="doc-stat-card">
+            <strong id="stat-amendments">—</strong>
+            <span>개정 이력</span>
+          </div>
+          <div class="doc-stat-card">
+            <strong id="stat-law">—</strong>
+            <span>법률</span>
+          </div>
+          <div class="doc-stat-card">
+            <strong id="stat-decree">—</strong>
+            <span>대통령령</span>
+          </div>
+          <div class="doc-stat-card">
+            <strong id="stat-rule">—</strong>
+            <span>부령</span>
+          </div>
+        </div>
+
+        <h2>개요</h2>
+        <p>
+          법령 데이터는 국가법령정보센터 OpenAPI의 원문을 Markdown으로 변환한
+          결과입니다. 법률, 시행령, 시행규칙, 대통령령, 대법원규칙 등 법령
+          종류를 구분하고, 같은 법 체계에 속하는 문서를 하나의 디렉토리에서
+          함께 관리합니다.
+        </p>
+        <p>
+          파일 본문은 사람이 읽기 쉬운 Markdown이고, 제목·법령구분·소관부처·
+          공포일자·시행일자 같은 필드는 YAML frontmatter에 들어갑니다. 특정
+          날짜 기준의 법령을 조회하거나 개정 전후를 비교할 때 이 구조를 그대로
+          사용할 수 있습니다.
+        </p>
+
+        <h2 id="structure">데이터 구조</h2>
+        <p>
+          법령은 법령명 디렉토리 아래에 법령 종류별 파일로 배치됩니다. 관련
+          법률, 시행령, 시행규칙이 존재하면 같은 디렉토리에서 함께 찾을 수
+          있습니다.
+        </p>
+
+        <div class="cat-grid">
+          <div class="cat-card">
+            <div class="cat-name">법률</div>
+            <div class="cat-count">kr/{법률명}/법률.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">시행령</div>
+            <div class="cat-count">kr/{법률명}/시행령.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">시행규칙</div>
+            <div class="cat-count">kr/{법률명}/시행규칙.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">독립 대통령령</div>
+            <div class="cat-count">kr/{대통령령명}/대통령령.md</div>
+          </div>
+        </div>
+
+        <div class="code-block tree-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">법령 파일 구조</span>
+          </div>
+          <pre
+            class="tree-body"
+          ><span class="prompt">$ </span><span class="cmd">tree</span> <span class="path">legalize-kr/kr/</span> <span class="flag">-L</span> <span class="flag">2</span>
+<span class="dir">legalize-kr/kr/</span>
+<span class="br">├──</span> <span class="dir">민법/</span>
+<span class="br">│   └──</span> <span class="file">법률.md</span>
+<span class="br">├──</span> <span class="dir">상법/</span>
+<span class="br">│   ├──</span> <span class="file">법률.md</span>
+<span class="br">│   └──</span> <span class="file">시행령.md</span>
+<span class="br">├──</span> <span class="dir">근로기준법/</span>
+<span class="br">│   ├──</span> <span class="file">법률.md</span>
+<span class="br">│   ├──</span> <span class="file">시행령.md</span>
+<span class="br">│   └──</span> <span class="file">시행규칙.md</span>
+<span class="br">└──</span> <span class="comment">...</span></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">kr/민법/법률.md</span>
+          </div>
+          <pre class="code-body">---
+제목: 민법
+법령MST: 284415
+법령구분: 법률
+소관부처:
+  - 법무부
+공포일자: 2026-03-17
+시행일자: 2026-09-18
+상태: 시행
+출처: https://www.law.go.kr/법령/민법
+---
+
+# 민법
+
+## 제1편 총칙</pre>
+        </div>
+
+        <h2>Git 활용 방법</h2>
+        <p>
+          법령 저장소를 clone하면 일반 텍스트 저장소처럼
+          <code>git log</code>, <code>git diff</code>, <code>grep</code>
+          명령어를 사용할 수 있습니다.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">법령 Git 활용</span>
+          </div>
+          <pre class="code-body">git log -- kr/근로기준법/
+git diff HEAD~1 -- kr/민법/법률.md
+grep -r "개인정보" kr/
+git log --before="2025-01-01" -1 -- kr/민법/법률.md
+git log --grep="^법률:"</pre>
+        </div>
+
+        <h2>커밋 메시지</h2>
+        <p>
+          법령 커밋은 공포일자를 Git author/committer date로 사용하며, 원문 URL,
+          공포번호, 소관부처, 법령MST 같은 추적 정보를 포함합니다.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">예시: 법률 개정 커밋</span>
+          </div>
+          <pre class="code-body">법률: 민법 (일부개정)
+
+법령 전문: https://www.law.go.kr/법령/민법
+제개정문: https://www.law.go.kr/법령/제개정문/민법/(12345,20260317)
+신구법비교: https://www.law.go.kr/법령/신구법비교/민법
+
+공포일자: 2026-03-17 | 공포번호: 12345
+소관부처: 법무부
+법령MST: 284415</pre>
+        </div>
+
+        <h2 id="cli">CLI 사용법</h2>
+        <p>
+          <code>legalize-cli</code>는 GitHub REST API로 법령 파일과 이력을
+          조회합니다. 자동화나 LLM 연동에는 <code>--json</code> 옵션을
+          사용합니다. 상세한 설치와 옵션은
+          <a href="https://github.com/legalize-kr/cli-tools"
+            >cli-tools 저장소</a
+          >를 참고하세요.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">법령 CLI</span>
+          </div>
+          <pre class="code-body">pip install legalize-cli
+legalize laws list --category 법률 --json
+legalize laws get 민법 --date 2015-06-01
+legalize laws article 민법 제839조의2 --date 2015-06-01 --json
+legalize laws diff 민법 민법 --date-a 2015-01-01 --date-b 2024-01-01 --mode article</pre>
+        </div>
+
+        <h2 id="mcp">MCP 사용법</h2>
+        <p>
+          MCP 서버에서는 법령 목록, 전문, 조문, 통합 검색 도구를 제공합니다.
+          Claude Desktop이나 Cursor 설정에서 <code>legalize-mcp</code>를 stdio
+          서버로 등록합니다. MCP 서버 설치와 클라이언트 설정은
+          <a href="https://github.com/legalize-kr/cli-tools"
+            >cli-tools 저장소</a
+          >를 참고하세요.
+        </p>
+        <div class="doc-grid">
+          <div class="doc-panel">
+            <h3>목록</h3>
+            <p><code>laws_list</code>로 법령 종류와 페이지를 지정해 조회합니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>전문</h3>
+            <p><code>laws_get</code>으로 법령명과 기준일자를 지정합니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>조문</h3>
+            <p><code>laws_article</code>로 특정 조문만 추출합니다.</p>
+          </div>
+        </div>
+
+        <h2>활용 사례</h2>
+        <div class="doc-grid">
+          <div class="doc-panel">
+            <h3>개정 전후 비교</h3>
+            <p>동일 법령의 두 날짜를 지정해 조문 단위 변경 사항을 확인합니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>법령 체계 검색</h3>
+            <p>특정 표현이나 제도명을 전체 법령에서 검색해 관련 법령을 찾습니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>서비스 데이터셋</h3>
+            <p>YAML 메타데이터와 Markdown 본문을 분리해 검색 색인이나 RAG에 사용합니다.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <span style="font-size: 20px"
+              >&#x2696;&#xFE0F; Legalize KR &#x1F1F0;&#x1F1F7;</span
+            >
+            <span class="footer-copy">
+              <a href="https://legalize.dev">legalize.dev</a> 프로젝트의 한국
+              버전 · 데이터 출처:
+              <a href="https://www.law.go.kr">국가법령정보센터</a>
+            </span>
+          </div>
+          <div class="footer-links">
+            <a href="https://github.com/9bow/legalize-kr">GitHub</a>
+            <a href="about.html">소개</a>
+            <a href="/images">법령 이미지 보기</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const fmt = (n) => Number(n || 0).toLocaleString("ko-KR");
+      fetch("stats-laws.json")
+        .then((r) => r.json())
+        .then((stats) => {
+          const types = stats.types || {};
+          const ruleCount = Object.entries(types)
+            .filter(([k]) => k.endsWith("부령"))
+            .reduce((sum, [, v]) => sum + v, 0);
+          document.getElementById("stat-total").textContent = fmt(stats.total);
+          document.getElementById("stat-amendments").textContent = fmt(
+            stats.amendments,
+          );
+          document.getElementById("stat-law").textContent = fmt(
+            types["법률"] || 0,
+          );
+          document.getElementById("stat-decree").textContent = fmt(
+            types["대통령령"] || 0,
+          );
+          document.getElementById("stat-rule").textContent = fmt(ruleCount);
+        })
+        .catch(() => {});
+    </script>
+  </body>
+</html>

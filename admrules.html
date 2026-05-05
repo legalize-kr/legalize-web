@@ -1,0 +1,390 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>행정규칙 데이터 — Legalize KR</title>
+    <meta
+      name="description"
+      content="Legalize KR 행정규칙 데이터 안내. 고시·훈령·예규 등 행정규칙의 개요, 데이터 구조, CLI/MCP 사용법, 활용 사례를 확인합니다."
+    />
+    <link rel="canonical" href="https://legalize.kr/admrules.html" />
+    <meta name="theme-color" content="#0F172A" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://legalize.kr/admrules.html" />
+    <meta property="og:title" content="행정규칙 데이터 — Legalize KR" />
+    <meta
+      property="og:description"
+      content="중앙행정기관의 고시·훈령·예규를 기관 계층과 종류별 Markdown 파일로 관리합니다."
+    />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S2FJBVDS6Y"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-S2FJBVDS6Y");
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="about doc-page">
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <div class="container site-nav-inner">
+        <a href="index.html" class="site-nav-brand"
+          >&#x2696;&#xFE0F; Legalize KR</a
+        >
+        <div class="site-nav-links">
+          <a href="about.html">소개</a>
+          <a href="laws.html">법령</a>
+          <a href="precedents.html">판례</a>
+          <a href="ordinances.html">자치법규</a>
+          <a href="admrules.html" aria-current="page">행정규칙</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="content">
+      <div class="container">
+        <div class="doc-hero">
+          <p class="doc-eyebrow">administrative rules</p>
+          <h1>행정규칙 데이터</h1>
+          <p class="lead">
+            중앙행정기관과 소속기관이 발령하는 고시, 훈령, 예규, 공고, 지침을
+            기관 계층과 행정규칙 종류별 Markdown 파일로 제공합니다.
+          </p>
+          <div class="doc-actions">
+            <a
+              href="https://github.com/legalize-kr/admrule-kr"
+              class="btn btn-primary"
+            >
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0024 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              행정규칙 저장소 보기
+            </a>
+            <a href="#cli" class="btn btn-cli">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
+              CLI 사용법
+            </a>
+            <a href="#mcp" class="btn btn-mcp">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11 4.93" />
+                <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L13 19.07" />
+              </svg>
+              MCP 도구
+            </a>
+          </div>
+        </div>
+
+        <div class="doc-stat-grid" aria-label="행정규칙 통계">
+          <div class="doc-stat-card">
+            <strong id="adm-total">—</strong>
+            <span>행정규칙</span>
+          </div>
+          <div class="doc-stat-card">
+            <strong id="adm-agencies">—</strong>
+            <span>상위 기관</span>
+          </div>
+          <div class="doc-stat-card">
+            <strong id="adm-types">—</strong>
+            <span>행정규칙 종류</span>
+          </div>
+          <div class="doc-stat-card">
+            <strong id="adm-notices">—</strong>
+            <span>고시</span>
+          </div>
+        </div>
+
+        <h2>개요</h2>
+        <p>
+          행정규칙 데이터는 중앙행정기관의 집행 기준과 내부 기준을 Git으로
+          관리하기 위한 데이터셋입니다. 법령이 위임한 세부 기준, 기관별 업무
+          처리 기준, 고시·훈령·예규 형태의 운영 규정을 함께 살펴볼 수 있습니다.
+        </p>
+        <p>
+          발령일자를 기준 날짜로 사용하고, 실제 발령 주체의 기관 계층을 경로에
+          보존합니다. 기관명으로 좁히거나 행정규칙 종류로 좁히는 조회가 모두
+          가능합니다.
+        </p>
+
+        <h2 id="structure">데이터 구조</h2>
+        <p>
+          경로는 상위 기관, 본부 또는 소속기관, 행정규칙 종류, 행정규칙명
+          순서입니다. 기관 개편 전후의 명칭은 원문과 메타데이터를 기준으로
+          보존합니다.
+        </p>
+
+        <div class="doc-grid">
+          <div class="doc-panel">
+            <h3>1단계: 상위 기관</h3>
+            <p>
+              <code>고용노동부</code>, <code>국무총리</code>,
+              <code>과학기술정보통신부</code>처럼 상위 기관명을 최상위
+              디렉토리로 둡니다.
+            </p>
+          </div>
+          <div class="doc-panel">
+            <h3>2단계: 발령 주체</h3>
+            <p>
+              본부 발령 문서는 <code>_본부</code>에 두고, 소속기관 발령 문서는
+              <code>고용노동부고객상담센터</code>, <code>국무조정실</code>처럼
+              실제 발령 기관명으로 구분합니다.
+            </p>
+          </div>
+          <div class="doc-panel">
+            <h3>3단계: 행정규칙 종류</h3>
+            <p>
+              <code>고시</code>, <code>훈령</code>, <code>예규</code>,
+              <code>공고</code>, <code>지침</code>, <code>국무총리훈령</code>,
+              <code>대통령훈령</code> 등을 별도 디렉토리로 분리합니다.
+            </p>
+          </div>
+          <div class="doc-panel">
+            <h3>4단계: 문서 본문</h3>
+            <p>
+              행정규칙명 디렉토리 안의 <code>본문.md</code>가 실제 Markdown
+              본문입니다. 기관명과 종류가 같아도 문서명별로 분리됩니다.
+            </p>
+          </div>
+        </div>
+
+        <div class="cat-grid">
+          <div class="cat-card">
+            <div class="cat-name">고시</div>
+            <div class="cat-count">행정안전부/_본부/고시/{명}/본문.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">훈령</div>
+            <div class="cat-count">국무총리/_본부/훈령/{명}/본문.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">예규</div>
+            <div class="cat-count">고용노동부/_본부/예규/{명}/본문.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">공고·지침</div>
+            <div class="cat-count">{기관}/_본부/{종류}/{명}/본문.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">소속기관 훈령</div>
+            <div class="cat-count">고용노동부/고용노동부고객상담센터/훈령/{명}/본문.md</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">대통령훈령</div>
+            <div class="cat-count">국무총리/국무조정실/대통령훈령/{명}/본문.md</div>
+          </div>
+        </div>
+
+        <div class="code-block tree-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">행정규칙 파일 구조</span>
+          </div>
+          <pre
+            class="tree-body"
+          ><span class="prompt">$ </span><span class="cmd">tree</span> <span class="path">admrule-kr/고용노동부/</span> <span class="flag">-L</span> <span class="flag">5</span>
+<span class="dir">고용노동부/</span>
+<span class="br">├──</span> <span class="dir">_본부/</span>
+<span class="br">│   ├──</span> <span class="dir">고시/</span>
+<span class="br">│   │   └──</span> <span class="dir">2026년 적용 최저임금 고시/</span>
+<span class="br">│   │       └──</span> <span class="file">본문.md</span>
+<span class="br">│   ├──</span> <span class="dir">훈령/</span>
+<span class="br">│   └──</span> <span class="dir">예규/</span>
+<span class="br">│       └──</span> <span class="dir">고용보험지급사무규정/</span>
+<span class="br">│           └──</span> <span class="file">본문.md</span>
+<span class="br">└──</span> <span class="dir">고용노동부고객상담센터/</span>
+<span class="br">    └──</span> <span class="dir">훈령/</span>
+<span class="br">        └──</span> <span class="dir">고용노동부고객상담센터 기본운영규정/</span>
+<span class="br">            └──</span> <span class="file">본문.md</span></pre>
+        </div>
+
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">행정규칙 frontmatter</span>
+          </div>
+          <pre class="code-body">---
+제목: 공공데이터 관리지침
+행정규칙종류: 고시
+발령기관: 행정안전부
+발령일자: 2026-01-01
+시행일자: 2026-01-01
+상태: 시행
+출처: https://www.law.go.kr/행정규칙/...
+---
+
+# 공공데이터 관리지침</pre>
+        </div>
+
+        <h2>Git 활용 방법</h2>
+        <p>
+          행정규칙 저장소는 기관 계층과 행정규칙 종류가 경로에 들어가므로
+          <code>grep</code> 명령어와 <code>git log</code> 명령어로 기관별 기준과
+          발령 이력을 좁혀 볼 수 있습니다.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">행정규칙 Git 활용</span>
+          </div>
+          <pre class="code-body">grep -rl "개인정보" 행정안전부/_본부/고시/
+git log -- 고용노동부/_본부/고시/
+git log -- 고용노동부/고용노동부고객상담센터/훈령/
+git log --grep="^행정규칙:"</pre>
+        </div>
+
+        <h2>커밋 메시지</h2>
+        <p>
+          행정규칙 커밋은 발령일자를 Git author/committer date로 사용하며,
+          행정규칙명, 행정규칙종류, 발령기관, 제개정구분, 원문 URL을 포함합니다.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">예시: 행정규칙 커밋</span>
+          </div>
+          <pre class="code-body">행정규칙: 공공데이터 관리지침 (일부개정)
+
+행정규칙 전문: https://www.law.go.kr/행정규칙/공공데이터관리지침
+
+발령일자: 2026-01-01
+행정규칙종류: 고시
+발령기관: 행정안전부</pre>
+        </div>
+
+        <h2 id="cli">CLI 사용법</h2>
+        <p>
+          기관명과 행정규칙 종류를 지정해 목록을 좁히고, 이름이나 경로로 전문을
+          조회합니다. 상세한 설치와 옵션은
+          <a href="https://github.com/legalize-kr/cli-tools"
+            >cli-tools 저장소</a
+          >를 참고하세요.
+        </p>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">행정규칙 CLI</span>
+          </div>
+          <pre class="code-body">pip install legalize-cli
+legalize admrules list --agency 행정안전부 --type 고시 --json
+legalize admrules get "공공데이터 관리지침" --type 고시 --agency 행정안전부 --json
+legalize search "개인정보" --in admrules --json</pre>
+        </div>
+
+        <h2 id="mcp">MCP 사용법</h2>
+        <p>
+          MCP에서는 <code>admrules_list</code>와
+          <code>admrules_get</code> 도구를 제공합니다. 특정 부처의 고시나
+          훈령을 찾거나, 법령·자치법규와 함께 통합 검색할 때 사용합니다. MCP
+          서버 설치와 클라이언트 설정은
+          <a href="https://github.com/legalize-kr/cli-tools"
+            >cli-tools 저장소</a
+          >를 참고하세요.
+        </p>
+
+        <h2>활용 사례</h2>
+        <div class="doc-grid">
+          <div class="doc-panel">
+            <h3>부처별 기준 확인</h3>
+            <p>특정 기관의 고시·훈령·예규를 모아 집행 기준을 확인합니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>위임 행정규칙 탐색</h3>
+            <p>법령 조문에서 위임한 세부 기준이 어떤 행정규칙에 있는지 찾습니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>내부 준수 점검</h3>
+            <p>기관별 최신 운영 기준을 주기적으로 검색하고 변경 이력을 추적합니다.</p>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <span style="font-size: 20px"
+              >&#x2696;&#xFE0F; Legalize KR &#x1F1F0;&#x1F1F7;</span
+            >
+            <span class="footer-copy">
+              <a href="https://legalize.dev">legalize.dev</a> 프로젝트의 한국
+              버전 · 데이터 출처:
+              <a href="https://www.law.go.kr">국가법령정보센터</a>
+            </span>
+          </div>
+          <div class="footer-links">
+            <a href="https://github.com/9bow/legalize-kr">GitHub</a>
+            <a href="about.html">소개</a>
+            <a href="/images">법령 이미지 보기</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      const fmt = (n) => Number(n || 0).toLocaleString("ko-KR");
+      fetch("stats-admrules.json")
+        .then((r) => r.json())
+        .then((stats) => {
+          const types = stats.types || {};
+          document.getElementById("adm-total").textContent = fmt(stats.total);
+          document.getElementById("adm-agencies").textContent = fmt(
+            Object.keys(stats.root_agencies || {}).length,
+          );
+          document.getElementById("adm-types").textContent = fmt(
+            Object.keys(types).length,
+          );
+          document.getElementById("adm-notices").textContent = fmt(
+            types["고시"] || 0,
+          );
+        })
+        .catch(() => {});
+    </script>
+  </body>
+</html>

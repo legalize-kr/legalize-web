@@ -3,6 +3,9 @@ name: Build & Deploy
 on:
   push:
     branches: [main]
+  schedule:
+    # 02:00 KST. The web build scans result repositories and publishes fresh stats.
+    - cron: '0 17 * * *'
   workflow_dispatch:
     inputs:
       skip_upload:
@@ -11,7 +14,7 @@ on:
         default: true
 
 permissions:
-  contents: read
+  contents: write
   pages: write
   id-token: write
 
@@ -31,6 +34,44 @@ jobs:
         with:
           repository: legalize-kr/legalize-pipeline
           path: pipeline
+
+      - name: Checkout legalize-kr data
+        if: ${{ github.event_name != 'push' }}
+        uses: actions/checkout@v4
+        with:
+          repository: legalize-kr/legalize-kr
+          path: datasets/legalize-kr
+          filter: blob:none
+          sparse-checkout: |
+            README.md
+            kr
+
+      - name: Checkout precedent-kr data
+        if: ${{ github.event_name != 'push' }}
+        uses: actions/checkout@v4
+        with:
+          repository: legalize-kr/precedent-kr
+          path: datasets/precedent-kr
+          filter: blob:none
+          sparse-checkout: README.md
+
+      - name: Checkout ordinance-kr data
+        if: ${{ github.event_name != 'push' }}
+        uses: actions/checkout@v4
+        with:
+          repository: legalize-kr/ordinance-kr
+          path: datasets/ordinance-kr
+          filter: blob:none
+          sparse-checkout: README.md
+
+      - name: Checkout admrule-kr data
+        if: ${{ github.event_name != 'push' }}
+        uses: actions/checkout@v4
+        with:
+          repository: legalize-kr/admrule-kr
+          path: datasets/admrule-kr
+          filter: blob:none
+          sparse-checkout: README.md
 
       # Optional: upload new images to R2 (workflow_dispatch only)
       - name: Upload images to R2
@@ -68,8 +109,32 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
+      - name: Generate dataset stats
+        if: ${{ github.event_name != 'push' }}
+        env:
+          LEGALIZE_LAWS_DIR: datasets/legalize-kr
+          LEGALIZE_PRECEDENTS_DIR: datasets/precedent-kr
+          LEGALIZE_ORDINANCES_DIR: datasets/ordinance-kr
+          LEGALIZE_ADMRULES_DIR: datasets/admrule-kr
+        run: npm run stats:generate -- --strict
+
+      - name: Commit dataset stats
+        if: ${{ github.event_name != 'push' }}
+        env:
+          TARGET_BRANCH: ${{ github.ref_name }}
+        run: |
+          git config user.name "legalize-kr-bot"
+          git config user.email "bot@legalize.kr"
+          git add stats-*.json
+          if git diff --cached --quiet; then
+            echo "No dataset stats changes"
+          else
+            git commit -m "chore: update dataset stats"
+            git push origin HEAD:${TARGET_BRANCH}
+          fi
+
       - name: Build site
-        run: npm run build
+        run: npm run build:site
 
       - name: Verify site size
         run: |

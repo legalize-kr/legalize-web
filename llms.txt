@@ -1,7 +1,7 @@
-# Legalize KR — 대한민국 법령·판례 Git 저장소
+# Legalize KR — 대한민국 법령·판례·행정규칙·자치법규 Git 저장소
 
-> 대한민국의 현행 법령과 판례를 Git으로 버전 관리하는 오픈소스 프로젝트입니다.
-> 모든 법령·판례는 Markdown 파일이고, 법령 개정은 공포일자, 판례는 선고일자를 가진 Git 커밋으로 기록됩니다.
+> 대한민국의 현행 법령, 판례, 행정규칙, 자치법규를 Git으로 버전 관리하는 오픈소스 프로젝트입니다.
+> 모든 문서는 Markdown 파일이고, 법령·자치법규 개정은 공포일자, 행정규칙 개정은 발령일자, 판례는 선고일자를 가진 Git 커밋으로 기록됩니다.
 
 ## 저장소 구성
 
@@ -9,7 +9,9 @@
 |--------|------|
 | [legalize-kr/legalize-kr](https://github.com/legalize-kr/legalize-kr) | 법령 데이터 |
 | [legalize-kr/precedent-kr](https://github.com/legalize-kr/precedent-kr) | 판례 데이터 |
-| [legalize-kr/legalize-pipeline](https://github.com/legalize-kr/legalize-pipeline) | 법령·판례 수집/변환/검증 파이프라인 |
+| [legalize-kr/admrule-kr](https://github.com/legalize-kr/admrule-kr) | 행정규칙 데이터 |
+| [legalize-kr/ordinance-kr](https://github.com/legalize-kr/ordinance-kr) | 자치법규 데이터 |
+| [legalize-kr/legalize-pipeline](https://github.com/legalize-kr/legalize-pipeline) | 법령·판례·행정규칙·자치법규 수집/변환/검증 파이프라인 |
 | [legalize-kr/legalize-web](https://github.com/legalize-kr/legalize-web) | 웹사이트 ([legalize.kr](https://legalize.kr)) |
 | [legalize-kr/compiler](https://github.com/legalize-kr/compiler) | `.cache` → bare Git repo 컴파일러 (Rust) |
 | [legalize-kr/cli-tools](https://github.com/legalize-kr/cli-tools) | CLI 도구 및 MCP 서버 (`legalize-cli`) |
@@ -113,9 +115,83 @@ kr/{법령명}/
 판례일련번호: 145683
 ```
 
+## 행정규칙 저장소 구조
+
+```
+{기관경로...}/{행정규칙종류}/{행정규칙명}/본문.md
+```
+
+예:
+
+```
+행정안전부/_본부/고시/공공데이터 관리지침/본문.md
+국토교통부/제주지방항공청/훈령/제주지방항공청 사무분장 및 위임전결 사항 등에 관한 규정/본문.md
+```
+
+### 행정규칙 파일 형식
+
+```yaml
+---
+행정규칙ID: '86456'
+행정규칙일련번호: '2100000228268'
+행정규칙명: '국립현대미술관 공무직 근로자 등의 신분증 발급·관리 등에 관한 규정'
+행정규칙종류: '예규'
+상위기관명: '문화체육관광부'
+소관부처명: '국립현대미술관'
+기관경로:
+- '문화체육관광부'
+- '국립현대미술관'
+발령번호: '264'
+발령일자: 2023-08-16
+시행일자: 2023-08-16
+제개정구분: '제정'
+본문출처: 'api-text'
+출처: 'https://www.law.go.kr/행정규칙/국립현대미술관공무직근로자등의신분증발급·관리등에관한규정'
+첨부파일: []
+---
+```
+
+## 자치법규 저장소 구조
+
+```
+{광역}/{기초 또는 _본청 또는 _교육청}/{자치법규종류}/{자치법규명}/본문.md
+```
+
+예:
+
+```
+강원특별자치도/_교육청/규칙/강원특별자치도 각급학교 인정도서 인정수수료 징수 규칙/본문.md
+경기도/수원시/규칙/수원시 사무전결 처리 규칙/본문.md
+부산광역시/_교육청/조례/부산광역시교육청 교육복지 조례/본문.md
+```
+
+### 자치법규 파일 형식
+
+```yaml
+---
+자치법규ID: '2011032'
+자치법규일련번호: '1802247'
+자치법규명: '강원특별자치도 각급학교 인정도서 인정수수료 징수 규칙'
+자치법규종류: '규칙'
+지자체기관명: '강원특별자치도교육청'
+지자체구분:
+  광역: '강원특별자치도'
+  기초: '_교육청'
+공포일자: 2023-06-02
+공포번호: '00888'
+시행일자: '2023-06-11'
+제개정구분: ''
+자치법규분야: ''
+담당부서: '중등교육과'
+본문출처: 'api-text'
+출처: 'https://www.law.go.kr/자치법규/강원특별자치도각급학교인정도서인정수수료징수규칙'
+첨부파일: []
+---
+```
+
 ## Git을 활용한 조회
 
-법령·판례의 변경 이력과 내용을 Git 명령어로 조회할 수 있습니다:
+법령·판례·행정규칙·자치법규의 변경 이력과 내용을 Git 명령어로 조회할 수 있습니다:
 
 ```bash
 # 특정 법령의 개정 이력
@@ -139,11 +215,15 @@ git log --since="2024-01-01" --until="2024-12-31" --oneline
 
 # 판례일련번호로 커밋 검색
 git log --all --grep="판례일련번호: 145683"
+
+# 특정 행정규칙/자치법규 조회
+cat "행정안전부/_본부/고시/공공데이터 관리지침/본문.md"
+cat "강원특별자치도/_교육청/규칙/강원특별자치도 각급학교 인정도서 인정수수료 징수 규칙/본문.md"
 ```
 
 ## CLI 도구 (legalize-cli)
 
-Git clone 없이 GitHub REST API로 법령·판례를 직접 조회하는 CLI입니다. 사람이 쓰기에도, LLM/에이전트가 `--json`으로 소비하기에도 적합하며, MCP 서버까지 한 패키지로 제공합니다. (Python 3.10+, PyPI: [`legalize-cli`](https://pypi.org/project/legalize-cli/))
+Git clone 없이 GitHub REST API로 법령·판례·행정규칙·자치법규를 직접 조회하는 CLI입니다. 사람이 쓰기에도, LLM/에이전트가 `--json`으로 소비하기에도 적합하며, MCP 서버까지 한 패키지로 제공합니다. (Python 3.10+, PyPI: [`legalize-cli`](https://pypi.org/project/legalize-cli/))
 
 ### 설치
 
@@ -167,8 +247,18 @@ legalize laws diff 민법 민법 --date-a 2015-01-01 --date-b 2024-01-01 --mode 
 legalize precedents list --court 대법원 --type 민사
 legalize precedents get "2022다12345"
 
-# 키워드 검색 (법령·판례 전체)
+# 행정규칙
+legalize admrules list --agency 행정안전부 --type 고시 --json
+legalize admrules get "공공데이터 관리지침" --type 고시 --agency 행정안전부 --json
+
+# 자치법규
+legalize ordinances list --jurisdiction 강원특별자치도 --subdivision _교육청 --type 규칙 --json
+legalize ordinances get "강원특별자치도 각급학교 인정도서 인정수수료 징수 규칙" --type 규칙 --jurisdiction 강원특별자치도 --subdivision _교육청 --json
+
+# 키워드 검색 (전체 또는 개별 저장소)
 legalize search "부동산 점유취득시효" --in all --json
+legalize search "공공데이터" --in admrules --json
+legalize search "공공시설" --in ordinances --json
 
 # 인증 상태·Rate limit 확인
 legalize auth status --json
@@ -196,7 +286,11 @@ legalize <cmd> --token ghp_xxxx             # 1회성 전달 (최우선)
 | `laws_article` | 특정 조문 (예: 제839조) |
 | `precedents_list` | 판례 목록 (법원·사건종류 필터) |
 | `precedents_get` | 판례 전문 (사건번호·판례일련번호) |
-| `search` | 법령·판례 키워드 검색 |
+| `admrules_list` | 행정규칙 목록 (종류·기관 필터) |
+| `admrules_get` | 행정규칙 전문 |
+| `ordinances_list` | 자치법규 목록 (종류·지자체 필터) |
+| `ordinances_get` | 자치법규 전문 |
+| `search` | 법령·판례·행정규칙·자치법규 키워드 검색 |
 
 Claude Desktop 설정 예시 (`~/Library/Application Support/Claude/claude_desktop_config.json`):
 
@@ -218,7 +312,7 @@ Claude Desktop 설정 예시 (`~/Library/Application Support/Claude/claude_deskt
 ## 데이터 출처
 
 - 국가법령정보센터 OpenAPI: https://open.law.go.kr
-- 법령 원문 및 판례는 대한민국 정부 공공저작물로 자유롭게 이용할 수 있습니다.
+- 법령·판례·행정규칙·자치법규 원문은 대한민국 정부 공공저작물로 자유롭게 이용할 수 있습니다.
 
 ## 링크
 
@@ -229,10 +323,10 @@ Claude Desktop 설정 예시 (`~/Library/Application Support/Claude/claude_deskt
 
 ## 알려진 제한 사항
 
-- Git은 Unix Epoch(1970-01-01) 이전 날짜를 지원하지 않아, 공포일자/선고일자가 1970년 이전인 법령·판례는 커밋 날짜가 1970-01-01로 고정되어 있습니다.
-  실제 날짜는 각 파일의 YAML frontmatter `공포일자` / `선고일자` 필드에 정확히 기록되어 있습니다.
+- Git은 Unix Epoch(1970-01-01) 이전 날짜를 지원하지 않아, 공포일자/발령일자/선고일자가 1970년 이전인 문서는 커밋 날짜가 1970-01-01로 고정되어 있습니다.
+  실제 날짜는 각 파일의 YAML frontmatter `공포일자` / `발령일자` / `선고일자` 필드에 정확히 기록되어 있습니다.
 - 일부 오래된 판례의 선고일자가 국가법령정보센터 OpenAPI에서 단기(檀紀) 연도로 반환되며, 본 저장소는 파싱 시점에 서기(`CE = 단기 − 2333`)로 정규화합니다. 사건번호에 포함된 단기 연도(예: `4289행5`)는 식별자이므로 그대로 보존합니다.
 - 일부 법령(시행령, 시행규칙 등)에 포함된 수식·별표·서식 이미지(`<img>` 태그)는 원본 그대로 포함되어 있으며, 렌더링되지 않을 수 있습니다.
 - 본문의 `<개정 2024.9.20>`, `<신설 1984.4.10>` 등 꺾쇠 괄호 주석은 Markdown 렌더러에 따라 HTML 태그로 해석되어 표시되지 않을 수 있습니다.
 - 법조문의 Markdown 목록화를 막기 위해, 숫자는 `1\. 목적`, `2\. 명칭` 등과 같이 표기합니다.
-- 수집/변환 파이프라인이 개선될 경우 `legalize-kr`과 `precedent-kr`은 전체 히스토리 재구성을 위해 force-push될 수 있습니다. 이 경우 `git fetch --all && git reset --hard origin/main`으로 동기화해 주세요.
+- 수집/변환 파이프라인이 개선될 경우 `legalize-kr`, `precedent-kr`, `admrule-kr`, `ordinance-kr`은 전체 히스토리 재구성을 위해 force-push될 수 있습니다. 이 경우 `git fetch --all && git reset --hard origin/main`으로 동기화해 주세요.
