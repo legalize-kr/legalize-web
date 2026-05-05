@@ -867,6 +867,107 @@
       </div>
     </section>
 
+    <!-- AGENT SKILLS -->
+    <section class="agent-section">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">// AI Agent에서 바로 사용</p>
+          <h2 class="section-title">스킬과 플러그인도 제공합니다.</h2>
+          <p class="section-desc">
+            <a href="https://github.com/legalize-kr/agent-skills"
+              >agent-skills 저장소</a
+            >는 Claude Code, Claude Cowork, Cursor, Codex, Gemini CLI, Cline,
+            Warp 등에서 Legalize KR 데이터를 더 쉽게 쓰기 위한 스킬과
+            플러그인 설정을 제공합니다. 스킬 이름은
+            <code>legalize-kr</code>입니다.
+          </p>
+        </div>
+
+        <div class="agent-grid reveal" style="transition-delay: 0.1s">
+          <article class="agent-card">
+            <div class="agent-kicker">비개발자 추천</div>
+            <h3>Claude Cowork</h3>
+            <p>
+              Release 페이지의 <code>legalize-kr-plugin.zip</code>을 업로드해
+              스킬을 선택합니다. 터미널을 직접 다루기 어려운 사용자에게 가장
+              단순한 경로입니다.
+            </p>
+          </article>
+          <article class="agent-card">
+            <div class="agent-kicker">Claude Code</div>
+            <h3>Plugin Marketplace</h3>
+            <p>
+              <code>claude plugin marketplace add legalize-kr/agent-skills</code>
+              후 <code>legalize-kr</code> 플러그인을 설치합니다.
+            </p>
+          </article>
+          <article class="agent-card">
+            <div class="agent-kicker">범용 설치</div>
+            <h3>skills.sh 호환 Agent</h3>
+            <p>
+              Cursor, Codex, Gemini CLI, Cline, Warp 등에서는
+              <code>npx skills add legalize-kr/agent-skills --skill legalize-kr</code>
+              명령으로 스킬을 설치합니다.
+            </p>
+          </article>
+        </div>
+
+        <div class="code-block reveal agent-command" style="transition-delay: 0.2s">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">agent-skills</span>
+          </div>
+          <div class="code-body">
+            <div class="code-line">
+              <span class="comment"># Claude Code 플러그인 설치</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">claude</span>
+              <span class="cmd">plugin</span>
+              <span class="cmd">marketplace</span>
+              <span class="cmd">add</span>
+              <span class="path">legalize-kr/agent-skills</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">claude</span>
+              <span class="cmd">plugin</span>
+              <span class="cmd">install</span>
+              <span class="path">legalize-kr@legalize-kr-marketplace</span>
+            </div>
+            <div class="code-line"></div>
+            <div class="code-line">
+              <span class="comment"># skills.sh 호환 Agent에 스킬 설치</span>
+            </div>
+            <div class="code-line">
+              <span class="prompt">$ </span><span class="cmd">npx</span>
+              <span class="cmd">skills</span>
+              <span class="cmd">add</span>
+              <span class="path">legalize-kr/agent-skills</span>
+              <span class="flag">--skill</span>
+              <span class="string">legalize-kr</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="agent-actions reveal" style="transition-delay: 0.25s">
+          <a
+            href="https://github.com/legalize-kr/agent-skills"
+            class="btn btn-primary"
+          >
+            agent-skills 저장소 보기
+          </a>
+          <a
+            href="https://github.com/legalize-kr/cli-tools"
+            class="btn btn-mcp"
+          >
+            CLI/MCP 도구 보기
+          </a>
+        </div>
+      </div>
+    </section>
+
     <!-- FOOTER -->
     <footer>
       <div class="container">

@@ -64,6 +64,8 @@ npm run images:prepare  # 이미지 인덱스 재생성 + local-images 링크
 | [legalize-kr/ordinance-kr](https://github.com/legalize-kr/ordinance-kr) | 자치법규 데이터 |
 | [legalize-kr/admrule-kr](https://github.com/legalize-kr/admrule-kr) | 행정규칙 데이터 |
 | [legalize-kr/compiler](https://github.com/legalize-kr/compiler) | `.cache` → bare Git repo 컴파일러 (Rust) |
+| [legalize-kr/cli-tools](https://github.com/legalize-kr/cli-tools) | CLI 도구 및 로컬 MCP 서버 |
+| [legalize-kr/agent-skills](https://github.com/legalize-kr/agent-skills) | AI Agent용 스킬·플러그인 패키지 |
 
 ## 라이선스
 

@@ -911,6 +911,78 @@
             color: #A78BFA;
         }
 
+        /* Agent skills */
+        .agent-section {
+            background: var(--midnight);
+            border-top: 1px solid var(--border);
+        }
+
+        .agent-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 16px;
+            margin-top: 40px;
+        }
+
+        .agent-card {
+            min-width: 0;
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--midnight-up);
+        }
+
+        .agent-kicker {
+            display: inline-flex;
+            margin-bottom: 12px;
+            padding: 4px 8px;
+            border: 1px solid rgba(45, 212, 191, 0.24);
+            border-radius: 6px;
+            background: rgba(20, 184, 166, 0.1);
+            color: #5EEAD4;
+            font-family: var(--font-code);
+            font-size: 11px;
+            font-weight: 700;
+            line-height: 1.4;
+        }
+
+        .agent-card h3 {
+            font-size: 17px;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .agent-card p {
+            color: var(--steel);
+            font-size: 14px;
+            line-height: 1.75;
+        }
+
+        .agent-card code {
+            font-family: var(--font-code);
+            font-size: 0.88em;
+            color: #FDE68A;
+            overflow-wrap: anywhere;
+        }
+
+        .agent-command {
+            margin-top: 24px;
+        }
+
+        .agent-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 12px;
+            margin-top: 24px;
+        }
+
+        @media (max-width: 860px) {
+            .agent-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
         /* Tree view */
         .tree-block { margin-top: 36px; }
         .tree-body {

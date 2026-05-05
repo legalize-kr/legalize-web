@@ -15,6 +15,7 @@
 | [legalize-kr/legalize-web](https://github.com/legalize-kr/legalize-web) | 웹사이트 ([legalize.kr](https://legalize.kr)) |
 | [legalize-kr/compiler](https://github.com/legalize-kr/compiler) | `.cache` → bare Git repo 컴파일러 (Rust) |
 | [legalize-kr/cli-tools](https://github.com/legalize-kr/cli-tools) | CLI 도구 및 MCP 서버 (`legalize-cli`) |
+| [legalize-kr/agent-skills](https://github.com/legalize-kr/agent-skills) | AI Agent용 스킬·플러그인 패키지 (`legalize-kr`) |
 
 ## 법령 저장소 구조
 
@@ -277,7 +278,7 @@ legalize <cmd> --token ghp_xxxx             # 1회성 전달 (최우선)
 
 ### MCP 서버 (Claude Desktop, Cursor 등)
 
-`legalize-cli[mcp]`를 설치하면 `legalize mcp serve` 또는 `legalize-mcp` 단축 엔트리포인트로 stdio MCP 서버를 실행할 수 있습니다. 제공 tool:
+`legalize-cli[mcp]`를 사용하면 `uvx --from legalize-cli[mcp] legalize-mcp`로 설치 없이 실행하거나, `pipx install 'legalize-cli[mcp]'` 후 `legalize-mcp` 단축 엔트리포인트로 로컬 stdio MCP 서버를 실행할 수 있습니다. 제공 tool:
 
 | Tool | 설명 |
 |------|------|
@@ -298,7 +299,8 @@ Claude Desktop 설정 예시 (`~/Library/Application Support/Claude/claude_deskt
 {
   "mcpServers": {
     "legalize-kr": {
-      "command": "legalize-mcp",
+      "command": "uvx",
+      "args": ["--from", "legalize-cli[mcp]", "legalize-mcp"],
       "env": {
         "GITHUB_TOKEN": "ghp_xxxxxxxxxxxxxxxxxxxx"
       }
@@ -309,6 +311,17 @@ Claude Desktop 설정 예시 (`~/Library/Application Support/Claude/claude_deskt
 
 `legalize-mcp` 대신 `legalize mcp serve`를 쓰려면 `"command": "legalize", "args": ["mcp", "serve"]` 형태로 지정하면 됩니다. Cursor·VS Code 등 다른 MCP 클라이언트도 동일한 stdio 규약으로 등록할 수 있습니다.
 
+## AI Agent 스킬/플러그인
+
+[`legalize-kr/agent-skills`](https://github.com/legalize-kr/agent-skills)는 Legalize-KR 데이터를 Claude Code, Claude Cowork, Cursor, Codex, Gemini CLI, Cline, Warp 등에서 사용할 수 있도록 만든 스킬/플러그인 저장소입니다. 스킬 이름은 `legalize-kr`입니다.
+
+- Claude Code: `claude plugin marketplace add legalize-kr/agent-skills` 후 `claude plugin install legalize-kr@legalize-kr-marketplace`
+- Claude Cowork: GitHub Releases의 `legalize-kr-plugin.zip` 업로드
+- skills.sh 호환 Agent: `npx skills add legalize-kr/agent-skills --skill legalize-kr`
+- 로컬 MCP 도구 호출: `uvx --from legalize-cli[mcp] legalize-mcp` 또는 `pipx install 'legalize-cli[mcp]'` 후 `legalize-mcp`
+
+`agent-skills`는 Agent가 데이터셋, 출처 표기, CLI/MCP/Git 접근 방식을 이해하도록 돕는 계층이고, 실제 조회 실행 도구는 `cli-tools`의 `legalize` CLI와 `legalize-mcp`가 담당합니다.
+
 ## 데이터 출처
 
 - 국가법령정보센터 OpenAPI: https://open.law.go.kr
@@ -318,6 +331,7 @@ Claude Desktop 설정 예시 (`~/Library/Application Support/Claude/claude_deskt
 
 - 웹사이트: https://legalize.kr
 - GitHub Organization: https://github.com/legalize-kr
+- AI Agent 스킬/플러그인: https://github.com/legalize-kr/agent-skills
 - 영감: https://github.com/legalize-dev/legalize (스페인 법령 Git 프로젝트)
 - 최초 원본 저장소: https://github.com/9bow/legalize-kr
 
