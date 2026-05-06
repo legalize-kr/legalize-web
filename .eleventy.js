@@ -15,6 +15,7 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("usage.html");
   eleventyConfig.addPassthroughCopy("404.html");
   eleventyConfig.addPassthroughCopy({
+    "assets/og-image.png": "assets/og-image.png",
     "assets/usage/legalq.png": "assets/usage/legalq.png",
     "assets/usage/ct-llm.png": "assets/usage/ct-llm.png",
     "assets/usage/graphify-youtube.png": "assets/usage/graphify-youtube.png",
