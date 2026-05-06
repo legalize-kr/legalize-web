@@ -90,6 +90,7 @@
           <a href="precedents.html">판례</a>
           <a href="ordinances.html">자치법규</a>
           <a href="admrules.html">행정규칙</a>
+          <a href="usage.html">활용법</a>
         </div>
       </div>
     </nav>
@@ -732,7 +733,7 @@
     </section>
 
     <!-- CLI USAGE -->
-    <section>
+    <section id="usage">
       <div class="container">
         <div class="reveal">
           <p class="section-label">// GitHub API 기반 조회</p>
@@ -956,14 +957,297 @@
             href="https://github.com/legalize-kr/agent-skills"
             class="btn btn-primary"
           >
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+              />
+            </svg>
             agent-skills 저장소 보기
           </a>
           <a
             href="https://github.com/legalize-kr/cli-tools"
             class="btn btn-mcp"
           >
-            CLI/MCP 도구 보기
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+              <path
+                d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+              />
+            </svg>
+            CLI/MCP 저장소 보기
           </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- USE CASES -->
+    <section class="showcase-section" id="use-cases">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">// Legalize KR 활용 생태계</p>
+          <h2 class="section-title">데이터가 실제 도구로 이어집니다.</h2>
+          <p class="section-desc">
+            Legalize KR의 Markdown/Git 데이터를 활용한 서비스와, 같은 문제를
+            다른 방식으로 풀고 있는 공개 프로젝트를 함께 정리합니다.
+          </p>
+        </div>
+
+        <h3 class="showcase-group-title reveal">legalize-kr 활용 생태계</h3>
+        <div class="agent-grid showcase-grid reveal" style="transition-delay: 0.1s">
+          <article class="agent-card showcase-card">
+            <div class="agent-kicker">RAG & AI 법령 검색</div>
+            <h3>
+              <a href="https://legalq.dnotitia.ai/" target="_blank" rel="noopener"
+                >리걸큐(legalQ)</a
+              >
+            </h3>
+            <a
+              href="https://legalq.dnotitia.ai/"
+              class="usage-shot"
+              target="_blank"
+              rel="noopener"
+              aria-label="리걸큐 서비스 보기"
+            >
+              <img
+                src="assets/usage/legalq.png"
+                alt="리걸큐 서비스 화면"
+                width="1200"
+                height="720"
+                loading="lazy"
+              />
+            </a>
+            <p>
+              VectorDB 전문 기업 <a href="https://dnotitia.com/" class="showcase-inline-link" target="_blank" rel="noopener">Dnotitia</a>의 자연어 기반 AI 법령검색 서비스입니다. 리걸큐(legalQ)는 legalize-kr 데이터셋을 활용하여 법령 변경 이력까지 포괄하는 법령 데이터를 검색할 수 있습니다.
+            </p>
+            <a
+              href="https://legalq.dnotitia.ai/"
+              class="showcase-link showcase-link-service"
+              target="_blank"
+              rel="noopener"
+              >
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m3 10 9-7 9 7" />
+                <path d="M5 10v10h14V10" />
+                <path d="M9 20v-6h6v6" />
+              </svg>
+              리걸큐(legalQ) 서비스 보기</a
+            >
+          </article>
+
+          <article class="agent-card showcase-card">
+            <div class="agent-kicker">Local LLM + RAG</div>
+            <h3>
+              <a
+                href="https://law-ai.contentstech.com/"
+                target="_blank"
+                rel="noopener"
+                >Contents Technologies LLM</a
+              >
+            </h3>
+            <a
+              href="https://law-ai.contentstech.com/"
+              class="usage-shot"
+              target="_blank"
+              rel="noopener"
+              aria-label="Contents Technologies LLM 서비스 보기"
+            >
+              <img
+                src="assets/usage/ct-llm.png"
+                alt="Contents Technologies LLM 서비스 화면"
+                width="1200"
+                height="720"
+                loading="lazy"
+              />
+            </a>
+            <p>
+              <a href="https://contentstech.com/" class="showcase-inline-link" target="_blank" rel="noopener">Contents Technologies</a>의 한국 법령 RAG Assistant입니다. legalize-kr의 법령·시행령 전체 및 판례 데이터를 내려받아 로컬 LLM(Gemma 4)에 연결하여 서비스를 구성하였습니다.
+            </p>
+            <a
+              href="https://law-ai.contentstech.com/"
+              class="showcase-link showcase-link-service"
+              target="_blank"
+              rel="noopener"
+              >
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m3 10 9-7 9 7" />
+                <path d="M5 10v10h14V10" />
+                <path d="M9 20v-6h6v6" />
+              </svg>
+              CT LLM 서비스 보기</a
+            >
+          </article>
+
+          <article class="agent-card showcase-card">
+            <div class="agent-kicker">LLM + 그래프 지식화</div>
+            <h3>
+              <a
+                href="https://www.youtube.com/watch?v=Ma8e25AOtao"
+                target="_blank"
+                rel="noopener"
+                >Graphify 분석 사례</a
+              >
+            </h3>
+            <a
+              href="https://www.youtube.com/watch?v=Ma8e25AOtao"
+              class="usage-shot"
+              target="_blank"
+              rel="noopener"
+              aria-label="오늘코드 Graphify 영상 보기"
+            >
+              <img
+                src="assets/usage/graphify-youtube.png"
+                alt="오늘코드 Graphify 영상 화면"
+                width="1200"
+                height="720"
+                loading="lazy"
+              />
+            </a>
+            <p>
+              <a href="https://www.youtube.com/@todaycode" class="showcase-inline-link" target="_blank" rel="noopener">오늘코드</a>의 Graphify 소개 영상입니다. legalize-kr 저장소의 대한민국 법령 문서를 가져와 그래프 기반 지식화와 토큰 절감 방식을 검증하는 방법을 소개합니다.
+            </p>
+            <a
+              href="https://www.youtube.com/watch?v=Ma8e25AOtao"
+              class="showcase-link showcase-link-youtube"
+              target="_blank"
+              rel="noopener"
+              >
+              <svg
+                aria-hidden="true"
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"
+                />
+              </svg>
+              오늘코드 영상 보기</a
+            >
+          </article>
+        </div>
+
+        <h3 class="showcase-group-title reveal">유사 프로젝트 및 도구</h3>
+        <div class="agent-grid showcase-grid reveal" style="transition-delay: 0.15s">
+          <article class="agent-card showcase-card">
+            <div class="agent-kicker">행정규칙 Git 저장소</div>
+            <h3>
+              <a
+                href="https://github.com/wellsa-ai/regulate-kr"
+                target="_blank"
+                rel="noopener"
+                >regulate-kr</a
+              >
+            </h3>
+            <p>
+              대한민국 행정규칙, 특히 고시를 Markdown과 YAML frontmatter로 정리하고 실제 시행일자를 Git 커밋으로 추적하는 공개 저장소입니다.
+            </p>
+            <a
+              href="https://github.com/wellsa-ai/regulate-kr"
+              class="showcase-link showcase-link-github"
+              target="_blank"
+              rel="noopener"
+              >
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              regulate-kr 저장소 보기</a
+            >
+          </article>
+
+          <article class="agent-card showcase-card">
+            <div class="agent-kicker">원격 API/MCP</div>
+            <h3>
+              <a href="https://api.beopmang.org/" target="_blank" rel="noopener">법망 API</a>
+            </h3>
+            <p>
+              AI 에이전트를 위한 법령정보서비스입니다. 법령·판례·국회 의안 등을 API v4와 원격 MCP로 제공하며, 가입이나 인증키 없이 사용할 수 있습니다.
+            </p>
+            <a
+              href="https://api.beopmang.org/"
+              class="showcase-link showcase-link-service"
+              target="_blank"
+              rel="noopener"
+              >
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m3 10 9-7 9 7" />
+                <path d="M5 10v10h14V10" />
+                <path d="M9 20v-6h6v6" />
+              </svg>
+              법망 API 서비스 보기</a
+            >
+          </article>
+
+          <article class="agent-card showcase-card">
+            <div class="agent-kicker">법제처 API MCP</div>
+            <h3>
+              <a
+                href="https://github.com/chrisryugj/korean-law-mcp"
+                target="_blank"
+                rel="noopener"
+                >Korean Law MCP</a
+              >
+            </h3>
+            <p>
+              법제처 41개 API를 MCP 도구로 연결하는 프로젝트입니다. 법령, 판례, 행정규칙, 자치법규, 조약, 해석례 조회와 인용 검증 기능을 제공합니다.
+            </p>
+            <a
+              href="https://github.com/chrisryugj/korean-law-mcp"
+              class="showcase-link showcase-link-github"
+              target="_blank"
+              rel="noopener"
+              >
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"
+                />
+              </svg>
+              Korean Law MCP 저장소 보기</a
+            >
+          </article>
         </div>
       </div>
     </section>

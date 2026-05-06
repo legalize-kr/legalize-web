@@ -24,7 +24,7 @@ npm run images:prepare  # 이미지 인덱스 재생성 + local-images 링크
 
 | 경로 | 설명 |
 |---|---|
-| `index.html`, `about.html`, `laws.html`, `precedents.html`, `ordinances.html`, `admrules.html`, `404.html` | 정적 페이지 (Eleventy passthrough) |
+| `index.html`, `about.html`, `laws.html`, `precedents.html`, `ordinances.html`, `admrules.html`, `usage.html`, `404.html` | 정적 페이지 (Eleventy passthrough) |
 | `_data/`, `_includes/` | Eleventy 데이터·템플릿 |
 | `css/`, `public/data/` | 스타일, 샤딩된 데이터 파일 |
 | `scripts/build-search-index.mjs` | [Pagefind](https://pagefind.app/) 검색 인덱스 생성 |

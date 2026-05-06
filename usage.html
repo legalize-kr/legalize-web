@@ -1,0 +1,463 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>활용법 — Legalize KR</title>
+    <meta
+      name="description"
+      content="Legalize KR 활용법. CLI, MCP, SKILL 사용법과 legalize-kr 데이터를 활용한 서비스를 소개합니다."
+    />
+    <link rel="canonical" href="https://legalize.kr/usage.html" />
+    <meta name="theme-color" content="#0F172A" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://legalize.kr/usage.html" />
+    <meta property="og:title" content="활용법 — Legalize KR" />
+    <meta
+      property="og:description"
+      content="Legalize KR 데이터를 CLI, MCP, SKILL로 조회하고 AI 서비스와 자동화에 활용하는 방법을 정리합니다."
+    />
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-S2FJBVDS6Y"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-S2FJBVDS6Y");
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Noto+Sans+KR:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+  </head>
+  <body class="about doc-page usage-page">
+    <nav class="site-nav" aria-label="주요 메뉴">
+      <div class="container site-nav-inner">
+        <a href="index.html" class="site-nav-brand"
+          >&#x2696;&#xFE0F; Legalize KR</a
+        >
+        <div class="site-nav-links">
+          <a href="about.html">소개</a>
+          <a href="laws.html">법령</a>
+          <a href="precedents.html">판례</a>
+          <a href="ordinances.html">자치법규</a>
+          <a href="admrules.html">행정규칙</a>
+          <a href="usage.html" aria-current="page">활용법</a>
+        </div>
+      </div>
+    </nav>
+
+    <main class="content">
+      <div class="container">
+        <div class="doc-hero">
+          <p class="doc-eyebrow">usage</p>
+          <h1>활용법</h1>
+          <p class="lead">
+            Legalize KR 데이터는 Git 저장소로 직접 다룰 수도 있고,
+            <code>legalize-cli</code>, MCP 서버, Agent용 SKILL을 통해 자동화와
+            AI 워크플로에 연결할 수도 있습니다.
+          </p>
+          <div class="doc-actions">
+            <a href="#cli" class="btn btn-cli">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="4 17 10 11 4 5" />
+                <line x1="12" y1="19" x2="20" y2="19" />
+              </svg>
+              CLI
+            </a>
+            <a href="#mcp" class="btn btn-mcp">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M10 13a5 5 0 0 0 7.07 0l2.83-2.83a5 5 0 0 0-7.07-7.07L11 4.93" />
+                <path d="M14 11a5 5 0 0 0-7.07 0L4.1 13.83a5 5 0 0 0 7.07 7.07L13 19.07" />
+              </svg>
+              MCP
+            </a>
+            <a href="#skill" class="btn btn-data">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 2v4" />
+                <path d="M12 18v4" />
+                <path d="m4.93 4.93 2.83 2.83" />
+                <path d="m16.24 16.24 2.83 2.83" />
+                <path d="M2 12h4" />
+                <path d="M18 12h4" />
+                <path d="m4.93 19.07 2.83-2.83" />
+                <path d="m16.24 7.76 2.83-2.83" />
+              </svg>
+              SKILL
+            </a>
+            <a href="#ecosystem" class="btn btn-about">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="3" />
+                <circle cx="19" cy="5" r="2" />
+                <circle cx="5" cy="19" r="2" />
+                <path d="m14.5 9.5 3-3" />
+                <path d="m6.5 17.5 3-3" />
+              </svg>
+              생태계
+            </a>
+          </div>
+        </div>
+
+        <h2 id="cli">CLI</h2>
+        <p>
+          <code>legalize-cli</code>는 Git clone 없이 GitHub REST API로 법령,
+          판례, 자치법규, 행정규칙을 조회하는 명령행 도구입니다. 사람이 직접
+          조회할 때는 표준 출력으로 읽고, Agent나 스크립트에서는
+          <code>--json</code> 출력을 사용합니다.
+        </p>
+        <div class="doc-grid">
+          <div class="doc-panel">
+            <h3>법령</h3>
+            <p><code>laws list</code>, <code>laws get</code>, <code>laws article</code>로 목록, 전문, 조문을 조회합니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>판례</h3>
+            <p><code>precedents list</code>, <code>precedents get</code>으로 법원, 사건종류, 사건번호 기준 조회를 합니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>통합 검색</h3>
+            <p><code>search</code> 명령으로 네 데이터셋 전체를 좁은 질의부터 검색합니다.</p>
+          </div>
+        </div>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">legalize-cli</span>
+          </div>
+          <pre class="code-body">pipx install legalize-cli
+legalize laws get 민법 --date 2015-06-01 --json
+legalize laws article 민법 제839조의2 --date 2015-06-01 --json
+legalize precedents list --court 대법원 --type 민사 --json
+legalize ordinances list --jurisdiction 서울특별시 --type 조례 --json
+legalize admrules list --agency 행정안전부 --type 고시 --json
+legalize search "부동산 점유취득시효" --in all --json</pre>
+        </div>
+
+        <h2 id="mcp">MCP</h2>
+        <p>
+          MCP는 Claude Desktop, Cursor, VS Code 등 MCP 클라이언트에서 Legalize
+          KR 데이터를 도구로 호출할 때 사용합니다. 자연어 질문은 Agent가
+          해석하고, 실제 법령·판례 조회는 로컬 stdio MCP 서버가 수행합니다.
+        </p>
+        <div class="cat-grid">
+          <div class="cat-card">
+            <div class="cat-name">법령</div>
+            <div class="cat-count">laws_list · laws_get · laws_article</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">판례</div>
+            <div class="cat-count">precedents_list · precedents_get</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">자치법규</div>
+            <div class="cat-count">ordinances_list · ordinances_get</div>
+          </div>
+          <div class="cat-card">
+            <div class="cat-name">행정규칙</div>
+            <div class="cat-count">admrules_list · admrules_get · search</div>
+          </div>
+        </div>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">mcp.json</span>
+          </div>
+          <pre class="code-body">{
+  "mcpServers": {
+    "legalize-kr": {
+      "command": "uvx",
+      "args": ["--from", "legalize-cli[mcp]", "legalize-mcp"]
+    }
+  }
+}</pre>
+        </div>
+
+        <h2 id="skill">SKILL</h2>
+        <p>
+          <a href="https://github.com/legalize-kr/agent-skills">agent-skills 저장소</a>는
+          Agent가 Legalize KR 데이터셋, 출처 표기, CLI/MCP/Git 접근 방식을
+          이해하도록 돕는 지침 계층입니다. 실제 조회 실행은
+          <code>legalize-cli</code>와 <code>legalize-mcp</code>가 담당합니다.
+        </p>
+        <div class="doc-grid">
+          <div class="doc-panel">
+            <h3>Claude Code</h3>
+            <p>플러그인 마켓플레이스에 <code>legalize-kr/agent-skills</code>를 추가한 뒤 설치합니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>skills.sh 호환 Agent</h3>
+            <p>Cursor, Codex, Gemini CLI, Cline, Warp 등에서는 <code>npx skills</code>로 스킬을 설치합니다.</p>
+          </div>
+          <div class="doc-panel">
+            <h3>Claude Cowork</h3>
+            <p>Release 페이지의 <code>legalize-kr-plugin.zip</code>을 업로드해 스킬을 선택합니다.</p>
+          </div>
+        </div>
+        <div class="code-block">
+          <div class="code-header">
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <div class="code-header-dot"></div>
+            <span class="code-header-title">agent-skills</span>
+          </div>
+          <pre class="code-body">claude plugin marketplace add legalize-kr/agent-skills
+claude plugin install legalize-kr@legalize-kr-marketplace
+
+npx skills add legalize-kr/agent-skills --skill legalize-kr</pre>
+        </div>
+
+        <h2 id="ecosystem">legalize-kr 활용 생태계 소개</h2>
+        <p>
+          공개적으로 확인된 활용 사례입니다. 각 서비스는 Legalize KR 데이터를
+          검색, RAG, 그래프 지식화 등 서로 다른 방식으로 사용합니다.
+        </p>
+        <div class="agent-grid showcase-grid usage-showcase-grid">
+          <article class="agent-card showcase-card">
+            <div class="agent-kicker">RAG & AI 법령 검색</div>
+            <h3>
+              <a href="https://legalq.dnotitia.ai/" target="_blank" rel="noopener"
+                >리걸큐(legalQ)</a
+              >
+            </h3>
+            <a
+              href="https://legalq.dnotitia.ai/"
+              class="usage-shot"
+              target="_blank"
+              rel="noopener"
+              aria-label="리걸큐 서비스 보기"
+            >
+              <img
+                src="assets/usage/legalq.png"
+                alt="리걸큐 서비스 화면"
+                width="1200"
+                height="720"
+                loading="lazy"
+              />
+            </a>
+            <p>
+              VectorDB 전문 기업
+              <a
+                href="https://dnotitia.com/"
+                class="showcase-inline-link"
+                target="_blank"
+                rel="noopener"
+                >Dnotitia</a
+              >의 자연어 기반 AI 법령검색 서비스입니다. legalize-kr 데이터셋을 활용하여
+              법령 변경 이력까지 포괄하는 법령 데이터를 검색할 수 있습니다.
+            </p>
+            <a
+              href="https://legalq.dnotitia.ai/"
+              class="showcase-link showcase-link-service"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m3 10 9-7 9 7" />
+                <path d="M5 10v10h14V10" />
+                <path d="M9 20v-6h6v6" />
+              </svg>
+              리걸큐(legalQ) 서비스 보기</a
+            >
+          </article>
+
+          <article class="agent-card showcase-card">
+            <div class="agent-kicker">Local LLM + RAG</div>
+            <h3>
+              <a
+                href="https://law-ai.contentstech.com/"
+                target="_blank"
+                rel="noopener"
+                >Contents Technologies LLM</a
+              >
+            </h3>
+            <a
+              href="https://law-ai.contentstech.com/"
+              class="usage-shot"
+              target="_blank"
+              rel="noopener"
+              aria-label="Contents Technologies LLM 서비스 보기"
+            >
+              <img
+                src="assets/usage/ct-llm.png"
+                alt="Contents Technologies LLM 서비스 화면"
+                width="1200"
+                height="720"
+                loading="lazy"
+              />
+            </a>
+            <p>
+              <a
+                href="https://contentstech.com/"
+                class="showcase-inline-link"
+                target="_blank"
+                rel="noopener"
+                >Contents Technologies</a
+              >의 한국 법령 RAG Assistant입니다. legalize-kr의 법령·시행령
+              전체 및 판례 데이터를 내려받아 로컬 LLM에 연결해 구성했습니다.
+            </p>
+            <a
+              href="https://law-ai.contentstech.com/"
+              class="showcase-link showcase-link-service"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                aria-hidden="true"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="m3 10 9-7 9 7" />
+                <path d="M5 10v10h14V10" />
+                <path d="M9 20v-6h6v6" />
+              </svg>
+              CT LLM 서비스 보기</a
+            >
+          </article>
+
+          <article class="agent-card showcase-card">
+            <div class="agent-kicker">LLM + 그래프 지식화</div>
+            <h3>
+              <a
+                href="https://www.youtube.com/watch?v=Ma8e25AOtao"
+                target="_blank"
+                rel="noopener"
+                >Graphify 분석 사례</a
+              >
+            </h3>
+            <a
+              href="https://www.youtube.com/watch?v=Ma8e25AOtao"
+              class="usage-shot"
+              target="_blank"
+              rel="noopener"
+              aria-label="오늘코드 Graphify 영상 보기"
+            >
+              <img
+                src="assets/usage/graphify-youtube.png"
+                alt="오늘코드 Graphify 영상 화면"
+                width="1200"
+                height="720"
+                loading="lazy"
+              />
+            </a>
+            <p>
+              <a
+                href="https://www.youtube.com/@todaycode"
+                class="showcase-inline-link"
+                target="_blank"
+                rel="noopener"
+                >오늘코드</a
+              >의 Graphify 소개 영상입니다. legalize-kr 저장소의 대한민국 법령
+              문서를 가져와 그래프 기반 지식화와 토큰 절감 방식을 검증합니다.
+            </p>
+            <a
+              href="https://www.youtube.com/watch?v=Ma8e25AOtao"
+              class="showcase-link showcase-link-youtube"
+              target="_blank"
+              rel="noopener"
+            >
+              <svg
+                aria-hidden="true"
+                width="17"
+                height="17"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+              >
+                <path
+                  d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.6 3.6 12 3.6 12 3.6s-7.6 0-9.4.5A3 3 0 0 0 .5 6.2 31.3 31.3 0 0 0 0 12a31.3 31.3 0 0 0 .5 5.8 3 3 0 0 0 2.1 2.1c1.8.5 9.4.5 9.4.5s7.6 0 9.4-.5a3 3 0 0 0 2.1-2.1A31.3 31.3 0 0 0 24 12a31.3 31.3 0 0 0-.5-5.8ZM9.6 15.6V8.4L15.8 12l-6.2 3.6Z"
+                />
+              </svg>
+              오늘코드 영상 보기</a
+            >
+          </article>
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="footer-content">
+          <div class="footer-left">
+            <span style="font-size: 20px"
+              >&#x2696;&#xFE0F; Legalize KR &#x1F1F0;&#x1F1F7;</span
+            >
+            <span class="footer-copy">
+              <a href="https://legalize.dev">legalize.dev</a> 프로젝트의 한국
+              버전 · 데이터 출처:
+              <a href="https://www.law.go.kr">국가법령정보센터</a>
+            </span>
+          </div>
+          <div class="footer-links">
+            <a href="https://github.com/9bow/legalize-kr">GitHub</a>
+            <a href="about.html">소개</a>
+            <a href="/images">법령 이미지 보기</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

@@ -977,6 +977,134 @@
             margin-top: 24px;
         }
 
+        /* Use cases */
+        .showcase-section {
+            background: var(--midnight-up);
+            border-top: 1px solid var(--border);
+        }
+
+        .showcase-group-title {
+            margin-top: 44px;
+            margin-bottom: 16px;
+            color: var(--snow);
+            font-size: 18px;
+            font-weight: 700;
+        }
+
+        .showcase-grid {
+            margin-top: 0;
+        }
+
+        .showcase-card {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .showcase-card p {
+            margin-bottom: 18px;
+        }
+
+        .usage-shot {
+            display: block;
+            margin: 4px 0 18px;
+            border: 1px solid var(--border);
+            border-radius: 8px;
+            background: var(--midnight);
+            overflow: hidden;
+            transition: border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .usage-shot:hover {
+            border-color: rgba(59, 130, 246, 0.46);
+            transform: translateY(-1px);
+        }
+
+        .usage-shot img {
+            display: block;
+            width: 100%;
+            aspect-ratio: 5 / 3;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .showcase-card h3 a {
+            color: var(--snow);
+            text-decoration: none;
+        }
+
+        .showcase-card h3 a:hover {
+            color: var(--accent-light);
+        }
+
+        .showcase-inline-link {
+            color: var(--snow);
+            font-weight: 700;
+            text-decoration: underline;
+            text-decoration-color: rgba(248, 250, 252, 0.48);
+            text-underline-offset: 3px;
+        }
+
+        .showcase-inline-link:hover {
+            color: var(--accent-light);
+            text-decoration-color: var(--accent-light);
+        }
+
+        .showcase-link {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            align-self: center;
+            margin-top: auto;
+            width: min(100%, 260px);
+            min-height: 46px;
+            padding: 12px 20px;
+            border: 1px solid rgba(59, 130, 246, 0.28);
+            border-radius: 8px;
+            background: rgba(59, 130, 246, 0.1);
+            color: #BFDBFE;
+            font-size: 13px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+        }
+
+        .showcase-link svg {
+            flex: 0 0 auto;
+        }
+
+        .showcase-link:hover {
+            background: rgba(59, 130, 246, 0.16);
+            border-color: rgba(59, 130, 246, 0.46);
+            transform: translateY(-1px);
+        }
+
+        .showcase-link-youtube {
+            background: rgba(239, 68, 68, 0.12);
+            border-color: rgba(239, 68, 68, 0.32);
+            color: #FECACA;
+        }
+
+        .showcase-link-youtube:hover {
+            background: rgba(239, 68, 68, 0.18);
+            border-color: rgba(239, 68, 68, 0.52);
+        }
+
+        .showcase-link-github {
+            background: rgba(148, 163, 184, 0.1);
+            border-color: rgba(148, 163, 184, 0.26);
+            color: #E2E8F0;
+        }
+
+        .showcase-link-github:hover {
+            background: rgba(148, 163, 184, 0.16);
+            border-color: rgba(148, 163, 184, 0.44);
+        }
+
+        .usage-showcase-grid {
+            margin-top: 20px;
+        }
+
         @media (max-width: 860px) {
             .agent-grid {
                 grid-template-columns: 1fr;
@@ -1118,9 +1246,8 @@
         .about .content li { font-size: 15px; color: var(--steel); margin-bottom: 8px; line-height: 1.7; }
         .about .content strong { color: var(--snow); }
         .about .content code { font-family: var(--font-code); font-size: 13px; background: var(--midnight-up); padding: 2px 6px; border-radius: 4px; color: var(--accent-light); overflow-wrap: anywhere; }
-        .about .content a { color: var(--accent-light); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
-        .about .content a:hover { border-bottom-color: var(--accent-light); }
-        .about .content a.btn { border-bottom: 0; }
+        .about .content a:not(.btn):not(.showcase-link) { color: var(--accent-light); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+        .about .content a:not(.btn):not(.showcase-link):hover { border-bottom-color: var(--accent-light); }
         .about .content a.btn-primary,
         .about .content a.btn-primary:hover { color: var(--white); }
         .about .content a.btn-data,
@@ -1129,6 +1256,12 @@
         .about .content a.btn-cli:hover { color: #BBF7D0; }
         .about .content a.btn-mcp,
         .about .content a.btn-mcp:hover { color: #DDD6FE; }
+        .about .content a.showcase-link,
+        .about .content a.showcase-link:hover { color: #BFDBFE; }
+        .about .content a.showcase-link-youtube,
+        .about .content a.showcase-link-youtube:hover { color: #FECACA; }
+        .about .content a.showcase-link-github,
+        .about .content a.showcase-link-github:hover { color: #E2E8F0; }
         .about .content a.btn-about,
         .about .content a.btn-about:hover,
         .about .content a.btn-outline { color: var(--snow); }
