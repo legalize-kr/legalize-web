@@ -154,6 +154,10 @@
             <strong id="stat-rule">—</strong>
             <span>부령</span>
           </div>
+          <div class="doc-stat-card">
+            <strong id="stat-other">—</strong>
+            <span>그 외</span>
+          </div>
         </div>
 
         <h2>개요</h2>
@@ -382,6 +386,11 @@ legalize laws diff 민법 민법 --date-a 2015-01-01 --date-b 2024-01-01 --mode 
           const ruleCount = Object.entries(types)
             .filter(([k]) => k.endsWith("부령"))
             .reduce((sum, [, v]) => sum + v, 0);
+          const otherCount = Object.entries(types)
+            .filter(
+              ([k]) => k !== "법률" && k !== "대통령령" && !k.endsWith("부령"),
+            )
+            .reduce((sum, [, v]) => sum + v, 0);
           document.getElementById("stat-total").textContent = fmt(stats.total);
           document.getElementById("stat-amendments").textContent = fmt(
             stats.amendments,
@@ -393,6 +402,7 @@ legalize laws diff 민법 민법 --date-a 2015-01-01 --date-b 2024-01-01 --mode 
             types["대통령령"] || 0,
           );
           document.getElementById("stat-rule").textContent = fmt(ruleCount);
+          document.getElementById("stat-other").textContent = fmt(otherCount);
         })
         .catch(() => {});
     </script>

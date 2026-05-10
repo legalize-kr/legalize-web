@@ -41,6 +41,7 @@ jobs:
         with:
           repository: legalize-kr/legalize-kr
           path: datasets/legalize-kr
+          fetch-depth: 0
           filter: blob:none
           sparse-checkout: |
             README.md
