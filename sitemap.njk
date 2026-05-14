@@ -52,13 +52,4 @@ eleventyExcludeFromCollections: true
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
   </url>
-  {%- for entry in legacyPaths %}
-  {%- if entry.new_path %}
-  <url>
-    <loc>https://legalize.kr/precedent/{{ entry.new_path | replace(".md", "") }}/</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  {%- endif %}
-  {%- endfor %}
 </urlset>
