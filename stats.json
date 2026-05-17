@@ -1,6 +1,6 @@
 {
   "total": 5670,
-  "amendments": 83676,
+  "amendments": 83686,
   "types": {
     "법률": 1736,
     "대통령령": 1999,
@@ -61,5 +61,5 @@
     "empty_body_accepted": 0,
     "missing_parent_with_child": 31
   },
-  "generated_at": "2026-05-16T10:54:56.014714+00:00"
+  "generated_at": "2026-05-17T11:00:20.770197+00:00"
 }
