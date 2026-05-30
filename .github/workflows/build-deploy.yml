@@ -27,19 +27,22 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout legalize-web
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Checkout legalize-pipeline
-        uses: actions/checkout@v4
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.skip_upload }}
+        uses: actions/checkout@v6
         with:
           repository: legalize-kr/legalize-pipeline
+          ref: main
           path: pipeline
 
       - name: Checkout legalize-kr data
         if: ${{ github.event_name != 'push' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: legalize-kr/legalize-kr
+          ref: main
           path: datasets/legalize-kr
           fetch-depth: 0
           filter: blob:none
@@ -49,27 +52,30 @@ jobs:
 
       - name: Checkout precedent-kr data
         if: ${{ github.event_name != 'push' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: legalize-kr/precedent-kr
+          ref: main
           path: datasets/precedent-kr
           filter: blob:none
           sparse-checkout: README.md
 
       - name: Checkout ordinance-kr data
         if: ${{ github.event_name != 'push' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: legalize-kr/ordinance-kr
+          ref: main
           path: datasets/ordinance-kr
           filter: blob:none
           sparse-checkout: README.md
 
       - name: Checkout admrule-kr data
         if: ${{ github.event_name != 'push' }}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
         with:
           repository: legalize-kr/admrule-kr
+          ref: main
           path: datasets/admrule-kr
           filter: blob:none
           sparse-checkout: README.md
@@ -90,6 +96,7 @@ jobs:
 
       # Re-export sharded image data if manifest exists in workspace
       - name: Export image data (sharded)
+        if: ${{ github.event_name == 'workflow_dispatch' && !inputs.skip_upload }}
         working-directory: pipeline
         env:
           WORKSPACE_ROOT: ${{ github.workspace }}
@@ -102,7 +109,7 @@ jobs:
           fi
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
           node-version: 20
           cache: npm
@@ -123,16 +130,29 @@ jobs:
         if: ${{ github.event_name != 'push' }}
         env:
           TARGET_BRANCH: ${{ github.ref_name }}
+          LEGALIZE_LAWS_DIR: datasets/legalize-kr
+          LEGALIZE_PRECEDENTS_DIR: datasets/precedent-kr
+          LEGALIZE_ORDINANCES_DIR: datasets/ordinance-kr
+          LEGALIZE_ADMRULES_DIR: datasets/admrule-kr
         run: |
           git config user.name "legalize-kr-bot"
           git config user.email "bot@legalize.kr"
-          git add stats-*.json
-          if git diff --cached --quiet; then
-            echo "No dataset stats changes"
-          else
+          for attempt in 1 2 3; do
+            git fetch origin "${TARGET_BRANCH}"
+            git reset --hard "origin/${TARGET_BRANCH}"
+            npm run stats:generate -- --strict
+            git add stats-*.json
+            if git diff --cached --quiet; then
+              echo "No dataset stats changes"
+              exit 0
+            fi
             git commit -m "chore: update dataset stats"
-            git push origin HEAD:${TARGET_BRANCH}
-          fi
+            git push origin "HEAD:${TARGET_BRANCH}" && exit 0
+            if [ "$attempt" = 3 ]; then
+              exit 1
+            fi
+            sleep $((attempt * 10))
+          done
 
       - name: Build site
         run: npm run build:site
@@ -147,7 +167,7 @@ jobs:
           fi
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v5
         with:
           path: _site/
 
@@ -160,4 +180,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v5
