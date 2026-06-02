@@ -1,6 +1,6 @@
 {
   "total": 5673,
-  "amendments": 83762,
+  "amendments": 83844,
   "types": {
     "대통령령": 2001,
     "법률": 1736,
@@ -51,6 +51,6 @@
     "행정자치부령": 1,
     "헌법": 1
   },
-  "generated_at": "2026-06-01T20:59:11.294Z",
+  "generated_at": "2026-06-02T20:09:39.024Z",
   "source_repo": "legalize-kr/legalize-kr"
 }
