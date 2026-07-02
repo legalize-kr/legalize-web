@@ -13,6 +13,8 @@ module.exports = function(eleventyConfig) {
   eleventyConfig.addPassthroughCopy("ordinances.html");
   eleventyConfig.addPassthroughCopy("admrules.html");
   eleventyConfig.addPassthroughCopy("usage.html");
+  eleventyConfig.addPassthroughCopy("viewer.html");
+  eleventyConfig.addPassthroughCopy("privacy.html");
   eleventyConfig.addPassthroughCopy("404.html");
   eleventyConfig.addPassthroughCopy({
     "assets/og-image.png": "assets/og-image.png",
@@ -43,6 +45,7 @@ module.exports = function(eleventyConfig) {
 
   // 샤딩된 데이터 파일 (public/data/ → _site/data/)
   eleventyConfig.addPassthroughCopy({ "public/data": "data" });
+  eleventyConfig.addPassthroughCopy("okf");
 
   // 빌드 후 legacy-paths.json 기반 meta-refresh redirect HTML 생성
   // GitHub Pages는 _redirects 미지원 → 정적 HTML로 redirect 구현

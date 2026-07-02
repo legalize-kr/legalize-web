@@ -1105,6 +1105,14 @@
             margin-top: 20px;
         }
 
+        .faq-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .faq-section .agent-card h3 {
+            line-height: 1.45;
+        }
+
         @media (max-width: 860px) {
             .agent-grid {
                 grid-template-columns: 1fr;

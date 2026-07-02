@@ -3,14 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Legalize — 법령·판례·자치법규·행정규칙을 코드처럼</title>
+    <title>Legalize KR — 법령·판례·행정규칙·자치법규 Git 데이터</title>
     <meta
       name="description"
-      content="법령, 판례, 자치법규, 행정규칙은 Markdown 파일, 개정·판결·공포·발령 이력은 Git 커밋. 대한민국 법률 데이터를 Git으로 버전 관리합니다."
-    />
-    <meta
-      name="keywords"
-      content="법령, 법률, 판례, 자치법규, 행정규칙, 조례, 고시, 훈령, 대한민국, git, 버전 관리, 리걸테크, 오픈데이터, 국가법령정보, legalize"
+      content="대한민국 법령, 판례, 행정규칙, 자치법규를 Markdown 파일과 Git 이력으로 제공합니다. AI 법률 검색, 리걸테크, RAG, MCP, 법률 데이터 분석에 활용할 수 있습니다."
     />
     <meta name="author" content="Legalize KR" />
     <meta name="robots" content="index, follow" />
@@ -23,11 +19,11 @@
     <meta property="og:url" content="https://legalize.kr/" />
     <meta
       property="og:title"
-      content="Legalize — 법령·판례·자치법규·행정규칙을 코드처럼"
+      content="Legalize KR — 법령·판례·행정규칙·자치법규 Git 데이터"
     />
     <meta
       property="og:description"
-      content="법령, 판례, 자치법규, 행정규칙은 Markdown 파일, 개정·판결·공포·발령 이력은 Git 커밋. 대한민국 법률 데이터를 Git으로 버전 관리합니다."
+      content="대한민국 법령, 판례, 행정규칙, 자치법규를 Markdown 파일과 Git 이력으로 제공합니다."
     />
     <meta property="og:image" content="https://legalize.kr/assets/og-image.png" />
     <meta
@@ -43,11 +39,23 @@
     <meta name="twitter:url" content="https://legalize.kr/" />
     <meta
       name="twitter:title"
-      content="Legalize — 법령·판례·자치법규·행정규칙을 코드처럼"
+      content="Legalize KR — 법령·판례·행정규칙·자치법규 Git 데이터"
     />
     <meta
       name="twitter:description"
-      content="법령, 판례, 자치법규, 행정규칙은 Markdown 파일, 개정·판결·공포·발령 이력은 Git 커밋. 대한민국 법률 데이터를 Git으로 버전 관리합니다."
+      content="대한민국 법령, 판례, 행정규칙, 자치법규를 Markdown 파일과 Git 이력으로 제공합니다."
+    />
+    <link
+      rel="alternate"
+      type="text/plain"
+      href="/llms.txt"
+      title="Legalize KR llms.txt"
+    />
+    <link
+      rel="alternate"
+      type="text/markdown"
+      href="/okf/index.md"
+      title="Legalize KR Open Knowledge Format"
     />
     <meta name="twitter:image" content="https://legalize.kr/assets/og-image.png" />
     <meta name="twitter:image:alt" content="Legalize KR 메인 화면" />
@@ -69,17 +77,135 @@
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
-        "@type": "SoftwareApplication",
-        "name": "Legalize KR",
-        "url": "https://legalize.kr",
-        "description": "법령, 판례, 자치법규, 행정규칙을 코드처럼. 모든 문서는 Markdown 파일, 모든 변경 이력은 Git 커밋.",
-        "applicationCategory": "DeveloperApplication",
-        "inLanguage": "ko",
-        "isPartOf": {
-          "@type": "WebApplication",
-          "name": "Legalize",
-          "url": "https://legalize.dev"
-        }
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://legalize.kr/#organization",
+            "name": "Legalize KR",
+            "url": "https://legalize.kr",
+            "sameAs": [
+              "https://github.com/legalize-kr",
+              "https://github.com/9bow/legalize-kr"
+            ]
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://legalize.kr/#website",
+            "name": "Legalize KR",
+            "url": "https://legalize.kr",
+            "inLanguage": "ko-KR",
+            "publisher": {
+              "@id": "https://legalize.kr/#organization"
+            },
+            "keywords": [
+              "AI 법률",
+              "리걸테크",
+              "AI 법령검색",
+              "판례 검색",
+              "법률 데이터",
+              "RAG",
+              "MCP"
+            ]
+          },
+          {
+            "@type": "Dataset",
+            "@id": "https://legalize.kr/#dataset",
+            "name": "Legalize KR 법률 데이터셋",
+            "description": "대한민국 법령, 판례, 행정규칙, 자치법규를 Markdown 파일과 Git 커밋 이력으로 제공하는 오픈 법률 데이터셋입니다.",
+            "url": "https://legalize.kr",
+            "inLanguage": "ko-KR",
+            "isAccessibleForFree": true,
+            "creator": {
+              "@id": "https://legalize.kr/#organization"
+            },
+            "isBasedOn": "https://open.law.go.kr",
+            "keywords": [
+              "법령",
+              "판례",
+              "행정규칙",
+              "자치법규",
+              "법률 데이터",
+              "AI 법률",
+              "리걸테크",
+              "RAG"
+            ],
+            "distribution": [
+              {
+                "@type": "DataDownload",
+                "name": "법령 Markdown Git 저장소",
+                "encodingFormat": "text/markdown",
+                "contentUrl": "https://github.com/legalize-kr/legalize-kr"
+              },
+              {
+                "@type": "DataDownload",
+                "name": "판례 Markdown Git 저장소",
+                "encodingFormat": "text/markdown",
+                "contentUrl": "https://github.com/legalize-kr/precedent-kr"
+              },
+              {
+                "@type": "DataDownload",
+                "name": "행정규칙 Markdown Git 저장소",
+                "encodingFormat": "text/markdown",
+                "contentUrl": "https://github.com/legalize-kr/admrule-kr"
+              },
+              {
+                "@type": "DataDownload",
+                "name": "자치법규 Markdown Git 저장소",
+                "encodingFormat": "text/markdown",
+                "contentUrl": "https://github.com/legalize-kr/ordinance-kr"
+              }
+            ]
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://legalize.kr/#software",
+            "name": "legalize-cli",
+            "url": "https://github.com/legalize-kr/cli-tools",
+            "description": "Legalize KR 법령·판례·행정규칙·자치법규 데이터를 CLI와 MCP로 조회하는 도구입니다.",
+            "applicationCategory": "DeveloperApplication",
+            "operatingSystem": "Cross-platform",
+            "inLanguage": "ko-KR",
+            "isAccessibleForFree": true
+          },
+          {
+            "@type": "FAQPage",
+            "@id": "https://legalize.kr/#faq",
+            "mainEntity": [
+              {
+                "@type": "Question",
+                "name": "Legalize KR은 무엇인가요?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "Legalize KR은 대한민국 법령, 판례, 행정규칙, 자치법규를 Markdown 파일과 Git 커밋 이력으로 관리하는 오픈소스 법률 데이터셋입니다."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "AI 법률 검색에 활용할 수 있나요?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "네. Legalize KR은 법률 원문과 날짜 기반 변경 이력을 함께 제공하므로 AI 법률 검색, 리걸테크 서비스, RAG 색인, MCP 도구, 법률 데이터 분석에 활용할 수 있습니다."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "판례 검색과 법령 검색을 모두 지원하나요?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "법령, 판례, 행정규칙, 자치법규를 각각 별도 Git 저장소로 제공하며 CLI와 MCP를 통해 같은 명령 체계로 조회할 수 있습니다."
+                }
+              },
+              {
+                "@type": "Question",
+                "name": "Legalize KR이 법률 조언을 제공하나요?",
+                "acceptedAnswer": {
+                  "@type": "Answer",
+                  "text": "아니요. Legalize KR은 공공 법률문서를 구조화해 제공하는 데이터 프로젝트이며, 개별 사건에 대한 법률 조언이나 변호사 상담을 제공하지 않습니다."
+                }
+              }
+            ]
+          }
+        ]
       }
     </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -102,6 +228,7 @@
           <a href="ordinances.html">자치법규</a>
           <a href="admrules.html">행정규칙</a>
           <a href="usage.html">활용법</a>
+          <a href="viewer.html">문서 보기</a>
         </div>
       </div>
     </nav>
@@ -114,7 +241,7 @@
         <h1>법령을 <span class="accent">코드처럼.</span></h1>
         <p class="hero-sub">
           모든 법령은 Markdown 파일, 모든 개정은 Git 커밋.<br />대한민국 법령을
-          검색하고, 비교하고, 활용하세요.
+          검색하고, 비교하고, AI 법률 검색과 데이터 분석에 활용하세요.
         </p>
 
         <div class="hero-stats" id="hero-stats">
@@ -533,7 +660,7 @@
             </div>
             <h3>공식 데이터 출처</h3>
             <p>
-              국가법령정보센터 OpenAPI에서 법령, 판례, 자치법규, 행정규칙을
+              국가법령정보센터 OpenAPI에서 법령, 판례, 행정규칙, 자치법규를
               가져옵니다. 항상 공식 원문을 기반으로 합니다.
             </p>
           </div>
@@ -750,7 +877,7 @@
           <p class="section-label">// GitHub API 기반 조회</p>
           <h2 class="section-title">CLI로 바로 조회합니다.</h2>
           <p class="section-desc">
-            저장소를 통째로 복제하지 않아도 법령, 판례, 자치법규, 행정규칙을
+            저장소를 통째로 복제하지 않아도 법령, 판례, 행정규칙, 자치법규를
             같은 명령 체계로 조회할 수 있습니다. 자동화에는
             <code>--json</code> 출력을 사용합니다.
             상세한 설치와 옵션은
@@ -875,6 +1002,51 @@
     <span class="json-punct">}</span>
   <span class="json-punct">}</span>
 <span class="json-punct">}</span></pre>
+        </div>
+      </div>
+    </section>
+
+    <!-- AI LEGAL DATA -->
+    <section class="agent-section" id="ai-legal-data">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">// AI 법률 검색과 데이터 분석</p>
+          <h2 class="section-title">법률 데이터를 날짜와 출처까지 보존합니다.</h2>
+          <p class="section-desc">
+            Legalize KR은 법령·판례·행정규칙·자치법규를 사람이 읽는 Markdown과
+            Git 이력으로 제공합니다. 리걸테크 서비스, AI 법률 검색, RAG 색인,
+            MCP 도구가 같은 원문과 날짜 기준을 공유할 수 있습니다.
+          </p>
+        </div>
+
+        <div class="agent-grid reveal" style="transition-delay: 0.1s">
+          <article class="agent-card">
+            <div class="agent-kicker">원문 출처</div>
+            <h3>공식 출처 기반 원문</h3>
+            <p>
+              국가법령정보센터 OpenAPI에서 수집한 공공 법률문서를 원문 링크와
+              함께 보존합니다. 법령명, 사건번호, 공포일자, 선고일자 같은 근거
+              필드를 원문과 함께 확인할 수 있습니다.
+            </p>
+          </article>
+          <article class="agent-card">
+            <div class="agent-kicker">구조화 형식</div>
+            <h3>Markdown + YAML frontmatter</h3>
+            <p>
+              각 문서는 제목, 소관부처, 법원명, 사건종류, 시행일자 등 핵심
+              메타데이터를 YAML frontmatter로 포함합니다. 검색 인덱스, 벡터DB,
+              지식 그래프를 만들 때 필요한 전처리를 줄일 수 있습니다.
+            </p>
+          </article>
+          <article class="agent-card">
+            <div class="agent-kicker">날짜 기준</div>
+            <h3>날짜 기반 변경 이력</h3>
+            <p>
+              법령 개정, 판례 선고, 행정규칙 발령, 자치법규 공포 날짜를 Git
+              커밋 이력으로 남깁니다. “특정 날짜의 법령 상태” 같은 질의를
+              처리할 때 기준점으로 쓸 수 있습니다.
+            </p>
+          </article>
         </div>
       </div>
     </section>
@@ -1307,6 +1479,53 @@
               </svg>
               Korean Law MCP 저장소 보기</a
             >
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="diff-section faq-section" id="faq">
+      <div class="container">
+        <div class="reveal">
+          <p class="section-label">// 자주 묻는 질문</p>
+          <h2 class="section-title">Legalize KR FAQ</h2>
+          <p class="section-desc">
+            처음 방문한 사용자가 Legalize KR의 범위와 활용 방식을 빠르게 확인할
+            수 있도록 질문 단위로 정리합니다.
+          </p>
+        </div>
+
+        <div class="agent-grid faq-grid reveal" style="transition-delay: 0.1s">
+          <article class="agent-card">
+            <h3>Legalize KR은 무엇인가요?</h3>
+            <p>
+              Legalize KR은 대한민국 법령, 판례, 행정규칙, 자치법규를 Markdown
+              파일과 Git 커밋 이력으로 관리하는 오픈소스 법률 데이터셋입니다.
+            </p>
+          </article>
+          <article class="agent-card">
+            <h3>AI 법률 검색에 활용할 수 있나요?</h3>
+            <p>
+              네. 법률 원문과 날짜 기반 변경 이력을 함께 제공하므로 AI 법률
+              검색, 리걸테크 서비스, RAG 색인, MCP 도구, 법률 데이터 분석에
+              활용할 수 있습니다.
+            </p>
+          </article>
+          <article class="agent-card">
+            <h3>판례 검색과 법령 검색을 모두 지원하나요?</h3>
+            <p>
+              법령, 판례, 행정규칙, 자치법규를 각각 별도 Git 저장소로 제공하며
+              CLI와 MCP를 통해 같은 명령 체계로 조회할 수 있습니다.
+            </p>
+          </article>
+          <article class="agent-card">
+            <h3>Legalize KR이 법률 조언을 제공하나요?</h3>
+            <p>
+              아니요. Legalize KR은 공공 법률문서를 구조화해 제공하는 데이터
+              프로젝트이며, 개별 사건에 대한 법률 조언이나 변호사 상담을
+              제공하지 않습니다.
+            </p>
           </article>
         </div>
       </div>

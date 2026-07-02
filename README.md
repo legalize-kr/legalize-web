@@ -36,7 +36,7 @@ npm run images:prepare  # 이미지 인덱스 재생성 + local-images 링크
 | `stats-admrules.json` | 행정규칙 통계 |
 | `local-images` | `../.cache/images/` 심볼릭 링크 (로컬 개발 보조용, 저장소와 빌드 산출물에는 포함되지 않음) |
 | `CNAME` | `legalize.kr` |
-| `llms.txt`, `robots.txt`, `sitemap.xml` | 크롤러/LLM용 메타 |
+| `llms.txt`, `robots.txt`, `sitemap.xml`, `okf/` | 크롤러/LLM/에이전트용 메타 |
 
 ## 데이터 통계
 
