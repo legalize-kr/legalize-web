@@ -4,7 +4,7 @@ title: Legalize KR Open Knowledge Format
 description: Legalize KR의 법령·판례·행정규칙·자치법규 데이터와 AI 활용 경로를 정리한 에이전트용 개요입니다.
 resource: https://legalize.kr/
 tags: [legalize-kr, korean-law, legaltech, ai-law, "AI 법률", "리걸테크", rag, mcp]
-timestamp: 2026-07-02T00:00:00+09:00
+timestamp: 2026-07-03T00:00:00+09:00
 ---
 
 # Legalize KR Open Knowledge Format
@@ -22,4 +22,5 @@ Legalize KR은 대한민국 공공 법률문서를 Git으로 관리하는 오픈
 - Website: https://legalize.kr/
 - LLM context: https://legalize.kr/llms.txt
 - Usage guide: https://legalize.kr/usage.html
+- Viewer: https://legalize.kr/viewer.html
 - GitHub organization: https://github.com/legalize-kr

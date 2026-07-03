@@ -4,7 +4,7 @@ title: Legalize KR
 description: 대한민국 법령, 판례, 행정규칙, 자치법규를 Markdown 파일과 Git 이력으로 제공하는 공공 법률 데이터 프로젝트입니다.
 resource: https://legalize.kr/
 tags: [legalize-kr, korean-law, legal-data, git, markdown, "법령", "판례", "법률 데이터"]
-timestamp: 2026-07-02T00:00:00+09:00
+timestamp: 2026-07-03T00:00:00+09:00
 ---
 
 # Legalize KR
@@ -27,3 +27,4 @@ Legalize KR은 법률 조언 서비스가 아닙니다. 사건별 법률 의견,
 
 - [데이터셋](datasets.md)
 - [AI 법률 활용 사례](ai-legal-use-cases.md)
+- 문서 보기 Chrome Extension: https://legalize.kr/viewer.html

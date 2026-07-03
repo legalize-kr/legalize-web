@@ -3,14 +3,14 @@
 > 대한민국의 현행 법령, 판례, 행정규칙, 자치법규를 Git으로 버전 관리하는 오픈소스 프로젝트입니다.
 > 모든 문서는 Markdown 파일이고, 법령·자치법규 개정은 공포일자, 행정규칙 개정은 발령일자, 판례는 선고일자를 가진 Git 커밋으로 기록됩니다.
 
-Last updated: 2026-07-02
+Last updated: 2026-07-03
 
 ## 요약
 
 - Legalize KR은 AI 법률 검색, 리걸테크 서비스, RAG 색인, MCP 도구, 법률 데이터 분석에 사용할 수 있는 공공 법률문서 데이터셋입니다.
 - 데이터 범위는 대한민국 법령, 판례, 행정규칙, 자치법규입니다. 법률 조언, 변호사 상담, 사건별 판단을 제공하는 서비스가 아닙니다.
 - 원문 출처는 국가법령정보센터 OpenAPI이며, 각 Markdown 문서는 출처 URL과 날짜 메타데이터를 보존합니다.
-- AI 도구가 먼저 읽기 좋은 경로는 이 파일(`/llms.txt`), 사이트맵(`/sitemap.xml`), OKF 번들(`/okf/index.md`), CLI/MCP 안내(`/usage.html`)입니다.
+- AI 도구가 먼저 읽기 좋은 경로는 이 파일(`/llms.txt`), 사이트맵(`/sitemap.xml`), OKF 번들(`/okf/index.md`), CLI/MCP 안내(`/usage.html`), 문서 보기 확장 소개(`/viewer.html`)입니다.
 - 관련 활용 분야는 AI 법률 검색, 리걸테크, 법령·판례 검색, RAG, MCP, 법률 데이터 분석입니다.
 
 ## 저장소 구성
@@ -23,6 +23,7 @@ Last updated: 2026-07-02
 | [legalize-kr/ordinance-kr](https://github.com/legalize-kr/ordinance-kr) | 자치법규 데이터 |
 | [legalize-kr/legalize-pipeline](https://github.com/legalize-kr/legalize-pipeline) | 법령·판례·행정규칙·자치법규 수집/변환/검증 파이프라인 |
 | [legalize-kr/legalize-web](https://github.com/legalize-kr/legalize-web) | 웹사이트 ([legalize.kr](https://legalize.kr)) |
+| [legalize-kr/viewer](https://github.com/legalize-kr/viewer) | Chrome Extension 기반 문서 보기 도구 |
 | [legalize-kr/compiler](https://github.com/legalize-kr/compiler) | `.cache` → bare Git repo 컴파일러 (Rust) |
 | [legalize-kr/cli-tools](https://github.com/legalize-kr/cli-tools) | CLI 도구 및 MCP 서버 (`legalize-cli`) |
 | [legalize-kr/agent-skills](https://github.com/legalize-kr/agent-skills) | AI Agent용 스킬·플러그인 패키지 (`legalize-kr`) |
@@ -340,6 +341,7 @@ Claude Desktop 설정 예시 (`~/Library/Application Support/Claude/claude_deskt
 ## 링크
 
 - 웹사이트: https://legalize.kr
+- 문서 보기: https://legalize.kr/viewer.html
 - GitHub Organization: https://github.com/legalize-kr
 - OKF 번들: https://legalize.kr/okf/index.md
 - AI Agent 스킬/플러그인: https://github.com/legalize-kr/agent-skills
