@@ -301,6 +301,17 @@
             transform: translateY(-1px);
         }
 
+        .viewer-install-cta:disabled {
+            cursor: not-allowed;
+            opacity: 1;
+        }
+
+        .viewer-install-cta:disabled:hover {
+            background: rgba(59, 130, 246, 0.1);
+            border-color: rgba(59, 130, 246, 0.24);
+            transform: none;
+        }
+
         .btn-about {
             background: rgba(148, 163, 184, 0.1);
             color: #CBD5E1;
@@ -1364,6 +1375,31 @@
         }
         .about .content .doc-note p {
             margin-bottom: 0;
+        }
+
+        .viewer-feature-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin-bottom: 48px;
+        }
+
+        .viewer-shot {
+            pointer-events: none;
+        }
+
+        .viewer-shot:hover {
+            border-color: var(--border);
+            transform: none;
+        }
+
+        .viewer-shot img {
+            aspect-ratio: 16 / 10;
+            object-position: top left;
+        }
+
+        @media (max-width: 860px) {
+            .viewer-feature-grid {
+                grid-template-columns: 1fr;
+            }
         }
 
         .about footer { border-top: 1px solid var(--border); padding: 32px 0; }

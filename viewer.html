@@ -19,12 +19,15 @@
       property="og:description"
       content="법령, 판례, 자치법규, 행정규칙 Markdown Git 이력을 브라우저에서 읽고 비교합니다."
     />
-    <meta property="og:image" content="https://legalize.kr/assets/og-image.png" />
-    <meta property="og:image:secure_url" content="https://legalize.kr/assets/og-image.png" />
+    <meta property="og:image" content="https://legalize.kr/assets/viewer/legalize-kr-viewer-document.png" />
+    <meta
+      property="og:image:secure_url"
+      content="https://legalize.kr/assets/viewer/legalize-kr-viewer-document.png"
+    />
     <meta property="og:image:type" content="image/png" />
-    <meta property="og:image:width" content="1200" />
-    <meta property="og:image:height" content="630" />
-    <meta property="og:image:alt" content="Legalize KR 메인 화면" />
+    <meta property="og:image:width" content="1280" />
+    <meta property="og:image:height" content="800" />
+    <meta property="og:image:alt" content="Legalize-KR Viewer 문서 확인 화면" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://legalize.kr/viewer.html" />
     <meta name="twitter:title" content="Legalize-KR Viewer — Legalize KR" />
@@ -32,8 +35,69 @@
       name="twitter:description"
       content="법령, 판례, 자치법규, 행정규칙 Markdown Git 이력을 브라우저에서 읽고 비교합니다."
     />
-    <meta name="twitter:image" content="https://legalize.kr/assets/og-image.png" />
-    <meta name="twitter:image:alt" content="Legalize KR 메인 화면" />
+    <meta name="twitter:image" content="https://legalize.kr/assets/viewer/legalize-kr-viewer-document.png" />
+    <meta name="twitter:image:alt" content="Legalize-KR Viewer 문서 확인 화면" />
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebPage",
+            "@id": "https://legalize.kr/viewer.html#webpage",
+            "url": "https://legalize.kr/viewer.html",
+            "name": "Legalize-KR Viewer",
+            "description": "법령, 판례, 행정규칙, 자치법규 Markdown Git 이력을 브라우저에서 읽고 비교하는 Chrome Extension 소개 페이지입니다.",
+            "inLanguage": "ko-KR",
+            "isPartOf": {
+              "@id": "https://legalize.kr/#website"
+            },
+            "primaryImageOfPage": {
+              "@id": "https://legalize.kr/viewer.html#screenshot-document"
+            }
+          },
+          {
+            "@type": "SoftwareApplication",
+            "@id": "https://legalize.kr/viewer.html#software",
+            "name": "Legalize-KR Viewer",
+            "applicationCategory": "BrowserApplication",
+            "operatingSystem": "Chrome",
+            "url": "https://legalize.kr/viewer.html",
+            "description": "Legalize-KR Viewer는 법령, 판례, 행정규칙, 자치법규 Markdown Git 저장소를 읽기 전용으로 탐색하고 변경 이력, 문서 비교, 첨부 미리보기를 제공하는 Chrome Extension입니다.",
+            "isAccessibleForFree": true,
+            "inLanguage": "ko-KR",
+            "screenshot": [
+              "https://legalize.kr/assets/viewer/legalize-kr-viewer-start.png",
+              "https://legalize.kr/assets/viewer/legalize-kr-viewer-document.png",
+              "https://legalize.kr/assets/viewer/legalize-kr-viewer-history.png",
+              "https://legalize.kr/assets/viewer/legalize-kr-viewer-history-compare.png",
+              "https://legalize.kr/assets/viewer/legalize-kr-viewer-attachment-hwp.png",
+              "https://legalize.kr/assets/viewer/legalize-kr-viewer-settings-license.png"
+            ],
+            "featureList": [
+              "법령, 판례, 행정규칙, 자치법규 저장소 탐색",
+              "Markdown 문서 확인",
+              "Git 개정 이력 타임라인",
+              "문서 버전 비교",
+              "HWP, HWPX, PDF 첨부 미리보기",
+              "GitHub 및 로컬 원문 소스 설정"
+            ],
+            "offers": {
+              "@type": "Offer",
+              "price": "0",
+              "priceCurrency": "KRW"
+            }
+          },
+          {
+            "@type": "ImageObject",
+            "@id": "https://legalize.kr/viewer.html#screenshot-document",
+            "url": "https://legalize.kr/assets/viewer/legalize-kr-viewer-document.png",
+            "width": 1280,
+            "height": 800,
+            "caption": "Legalize-KR Viewer 문서 확인 화면"
+          }
+        ]
+      }
+    </script>
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-S2FJBVDS6Y"></script>
     <script>
@@ -80,29 +144,105 @@
             Extension입니다.
           </p>
           <div class="doc-actions">
+            <button class="btn btn-data viewer-install-cta" type="button" disabled>
+              Chrome Extension 설치 (TBD)
+            </button>
             <a href="privacy.html" class="btn btn-about">개인정보처리방침</a>
             <a href="usage.html" class="btn btn-data">Legalize KR 활용법</a>
           </div>
         </div>
 
         <h2>주요 기능</h2>
-        <div class="doc-grid">
-          <div class="doc-panel">
-            <h3>문서 탐색</h3>
-            <p>법령, 판례, 자치법규, 행정규칙 저장소의 Markdown 문서를 제목과 경로 기준으로 탐색합니다.</p>
-          </div>
-          <div class="doc-panel">
-            <h3>변경 내역</h3>
-            <p>Git 커밋 이력을 불러와 개정·선고·공포·발령 흐름을 확인하고 문서 차이를 비교합니다.</p>
-          </div>
-          <div class="doc-panel">
-            <h3>첨부 보기</h3>
-            <p>국가법령정보센터에서 제공하는 PDF, HWP, HWPX 첨부를 브라우저 안에서 열람합니다.</p>
-          </div>
-          <div class="doc-panel">
-            <h3>로컬 소스</h3>
-            <p>필요하면 로컬 폴더 또는 로컬 브리지 서버를 통해 복제한 저장소를 읽을 수 있습니다.</p>
-          </div>
+        <div class="agent-grid showcase-grid usage-showcase-grid viewer-feature-grid">
+          <article class="agent-card showcase-card viewer-feature-card">
+            <div class="agent-kicker">repository</div>
+            <h3>저장소 선택</h3>
+            <figure class="usage-shot viewer-shot">
+              <img
+                src="assets/viewer/legalize-kr-viewer-start.png"
+                alt="Legalize-KR Viewer 저장소 선택 화면"
+                width="1280"
+                height="800"
+                loading="lazy"
+              />
+            </figure>
+            <p>법령, 판례, 행정규칙, 자치법규 저장소를 전환하며 문서를 탐색합니다.</p>
+          </article>
+
+          <article class="agent-card showcase-card viewer-feature-card">
+            <div class="agent-kicker">document</div>
+            <h3>문서 확인</h3>
+            <figure class="usage-shot viewer-shot">
+              <img
+                src="assets/viewer/legalize-kr-viewer-document.png"
+                alt="Legalize-KR Viewer 민법 문서 확인 화면"
+                width="1280"
+                height="800"
+                loading="lazy"
+              />
+            </figure>
+            <p>Markdown 본문, frontmatter, 조문 목차를 한 화면에서 읽습니다.</p>
+          </article>
+
+          <article class="agent-card showcase-card viewer-feature-card">
+            <div class="agent-kicker">history</div>
+            <h3>개정 이력 타임라인</h3>
+            <figure class="usage-shot viewer-shot">
+              <img
+                src="assets/viewer/legalize-kr-viewer-history.png"
+                alt="Legalize-KR Viewer 개정 이력 타임라인 화면"
+                width="1280"
+                height="800"
+                loading="lazy"
+              />
+            </figure>
+            <p>Git 이력을 개정 흐름으로 확인하고 비교할 두 버전을 선택합니다.</p>
+          </article>
+
+          <article class="agent-card showcase-card viewer-feature-card">
+            <div class="agent-kicker">diff</div>
+            <h3>변경 비교</h3>
+            <figure class="usage-shot viewer-shot">
+              <img
+                src="assets/viewer/legalize-kr-viewer-history-compare.png"
+                alt="Legalize-KR Viewer 개정 이력 비교 화면"
+                width="1280"
+                height="800"
+                loading="lazy"
+              />
+            </figure>
+            <p>선택한 두 버전 사이에서 바뀐 조문을 나란히 비교합니다.</p>
+          </article>
+
+          <article class="agent-card showcase-card viewer-feature-card">
+            <div class="agent-kicker">attachment</div>
+            <h3>첨부 미리보기</h3>
+            <figure class="usage-shot viewer-shot">
+              <img
+                src="assets/viewer/legalize-kr-viewer-attachment-hwp.png"
+                alt="Legalize-KR Viewer HWP 첨부 미리보기 화면"
+                width="1280"
+                height="800"
+                loading="lazy"
+              />
+            </figure>
+            <p>국가법령정보센터의 HWP, HWPX, PDF 첨부를 브라우저 안에서 엽니다.</p>
+          </article>
+
+          <article class="agent-card showcase-card viewer-feature-card">
+            <div class="agent-kicker">settings</div>
+            <h3>설정과 라이선스</h3>
+            <figure class="usage-shot viewer-shot">
+              <img
+                src="assets/viewer/legalize-kr-viewer-settings-license.png"
+                alt="Legalize-KR Viewer 설정 라이선스 화면"
+                width="1280"
+                height="800"
+                loading="lazy"
+              />
+            </figure>
+            <p>보기 설정, 데이터 출처, 오픈소스 라이선스 정보를 확인합니다.</p>
+          </article>
         </div>
 
         <h2>데이터 처리 원칙</h2>
