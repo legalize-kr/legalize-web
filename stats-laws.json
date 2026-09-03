@@ -1,6 +1,6 @@
 {
   "total": 5751,
-  "amendments": 104674,
+  "amendments": 104675,
   "types": {
     "대통령령": 2026,
     "법률": 1754,
@@ -59,6 +59,6 @@
     "헌법": 1,
     "환경부령": 1
   },
-  "generated_at": "2026-09-02T19:40:30.300Z",
+  "generated_at": "2026-09-03T19:42:18.322Z",
   "source_repo": "legalize-kr/legalize-kr"
 }
