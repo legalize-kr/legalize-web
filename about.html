@@ -58,6 +58,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="/assets/i18n-data.js"></script>
+    <script src="/assets/i18n.js"></script>
   </head>
   <body class="about">
     <nav class="site-nav" aria-label="주요 메뉴">
@@ -194,19 +196,19 @@
           가져옵니다. 원문은 대한민국 정부의 공공저작물로 자유롭게 이용할 수
           있습니다.
         </p>
-        <p>
+        <p data-i18n-stat="laws">
           현재 법률, 대통령령, 부령, 대법원규칙, 헌법재판소규칙 등
           <strong>총 <span id="stat-total">—</span>건</strong>의 현행 법령이
           수록되어 있으며,
           <strong><span id="stat-amendments">—</span>건</strong>의 개정 이력이
           Git 커밋으로 관리되고 있습니다.
         </p>
-        <p>
+        <p data-i18n-stat="precedents">
           또한, 판례는 민사·형사·일반행정 등 8개 사건종류에 걸쳐
           <strong>총 <span id="prec-total">—</span>건</strong>이 수록되어
           있습니다.
         </p>
-        <p>
+        <p data-i18n-stat="rules">
           자치법규와 행정규칙은 각각 별도 저장소로 분리해 관리하며, 공포일자와
           발령일자를 기준으로 Git 히스토리를 구성합니다. 현재
           <strong><span id="ord-total">—</span>건</strong>의 자치법규와
@@ -314,8 +316,10 @@
               >&#x2696;&#xFE0F; Legalize KR &#x1F1F0;&#x1F1F7;</span
             >
             <span class="footer-copy">
-              <a href="https://legalize.dev">legalize.dev</a> 프로젝트의 한국
-              버전 · 데이터 출처:
+              <span data-i18n-footer-inspiration
+                ><a href="https://legalize.dev">legalize.dev</a>에서 영감을 받아 만든 프로젝트입니다.</span
+              >
+              데이터 출처:
               <a href="https://www.law.go.kr">국가법령정보센터</a>
             </span>
           </div>

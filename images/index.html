@@ -67,13 +67,15 @@
     />
     <link rel="stylesheet" href="/css/style.css" />
     <link rel="stylesheet" href="/pagefind/pagefind-ui.css" />
+    <script src="/assets/i18n-data.js"></script>
+    <script src="/assets/i18n.js"></script>
   </head>
 
   <body class="about">
     <nav>
       <div class="container">
         <a href="/" class="nav-brand">&#x2696;&#xFE0F; Legalize KR</a>
-        <div style="display: flex; gap: 24px">
+        <div class="site-nav-links" style="display: flex; gap: 24px">
           <a href="/">홈</a>
           <a href="/viewer.html">문서 보기</a>
           <a href="https://github.com/9bow/legalize-kr">GitHub</a>
@@ -91,8 +93,10 @@
               >&#x2696;&#xFE0F; Legalize KR &#x1F1F0;&#x1F1F7;</span
             >
             <span class="footer-copy">
-              <a href="https://legalize.dev">legalize.dev</a> 프로젝트의 한국
-              버전 · 데이터 출처:
+              <span data-i18n-footer-inspiration
+                ><a href="https://legalize.dev">legalize.dev</a>에서 영감을 받아 만든 프로젝트입니다.</span
+              >
+              데이터 출처:
               <a href="https://www.law.go.kr">국가법령정보센터</a>
             </span>
           </div>
@@ -129,6 +133,11 @@
         var filterLaw = "";
         var filterStatus = "";
         var currentListHash = ""; // last list hash, used for back-link
+        var isEnglish = document.documentElement.lang === "en";
+
+        function tr(korean, english) {
+          return isEnglish ? english : korean;
+        }
 
         // --- Routing ---
         function parseHash() {
@@ -187,7 +196,10 @@
 
         // --- Detail View ---
         function showDetail(imageId) {
-          document.title = "이미지 #" + imageId + " — Legalize";
+          document.title =
+            (document.documentElement.lang === "en" ? "Image #" : "이미지 #") +
+            imageId +
+            " — Legalize";
           app.innerHTML =
             '<div class="detail-container"><div class="loading">불러오는 중…</div></div>';
 
@@ -254,25 +266,30 @@
               "</pre>"
             : '<pre class="ocr-text ocr-empty">변환 대기 중</pre>';
 
+          var isEnglish = document.documentElement.lang === "en";
           var issueTitle = encodeURIComponent(
-            "[이미지 #" + image.image_id + "] 검증 필요",
+            isEnglish
+              ? "[Image #" + image.image_id + "] Verification needed"
+              : "[이미지 #" + image.image_id + "] 검증 필요",
           );
           var issueBody = encodeURIComponent(
-            "## 이미지 정보\n\n" +
-              "- 이미지 ID: " +
+            (isEnglish ? "## Image information\n\n" : "## 이미지 정보\n\n") +
+              (isEnglish ? "- Image ID: " : "- 이미지 ID: ") +
               image.image_id +
               "\n" +
-              "- 상태: " +
+              (isEnglish ? "- Status: " : "- 상태: ") +
               image.status +
               "\n" +
-              "- 법령: " +
+              (isEnglish ? "- Laws: " : "- 법령: ") +
               image.refs
                 .map(function (r) {
                   return r.law_name;
                 })
                 .join(", ") +
               "\n" +
-              "- 뷰어: https://legalize.kr/images/#" +
+              (isEnglish
+                ? "- Viewer: https://legalize.kr/images/#"
+                : "- 뷰어: https://legalize.kr/images/#") +
               image.image_id +
               "\n" +
               "- CDN: " +
@@ -281,7 +298,9 @@
               "." +
               image.ext +
               "\n\n" +
-              "## 문제 설명\n\n(여기에 문제를 설명해 주세요)\n",
+              (isEnglish
+                ? "## Describe the issue\n\n(Please describe the issue here.)\n"
+                : "## 문제 설명\n\n(여기에 문제를 설명해 주세요)\n"),
           );
           var issueUrl =
             "https://github.com/legalize-kr/legalize-kr/issues/new?title=" +
@@ -295,7 +314,7 @@
             (currentListHash ? "#" + currentListHash : "") +
             '" class="back-link">← 목록으로</a>' +
             '<div class="detail-header">' +
-            "<h1>이미지 #" +
+            "<h1>" + tr("이미지 #", "Image #") +
             escHtml(image.image_id) +
             "</h1>" +
             '<div class="detail-meta">' +
@@ -306,7 +325,7 @@
             "</span>" +
             "<span>" +
             image.refs.length +
-            "개 법령에서 참조</span>" +
+            tr("개 법령에서 참조", " law(s) reference this") +
             '<a href="https://www.law.go.kr/LSW/flDownload.do?flSeq=' +
             escAttr(image.image_id) +
             '" target="_blank" rel="noopener">원본 다운로드 (law.go.kr)</a>' +
@@ -321,7 +340,7 @@
             escAttr(image.image_id) +
             "." +
             escAttr(image.ext) +
-            '" alt="법령 이미지 ' +
+            '" alt="' + tr("법령 이미지 ", "Law image ") +
             escAttr(image.image_id) +
             '" onerror="this.parentElement.innerHTML=\'<div class=img-fallback>이미지 준비 중</div>\'"></div>' +
             "</div></div>" +
@@ -345,9 +364,9 @@
             "</span>" +
             "</div></div>" +
             "<div>" +
-            '<div class="panel-header" style="margin-bottom:12px;padding:0;border:none;color:var(--steel)">관련 법령 (' +
+            '<div class="panel-header" style="margin-bottom:12px;padding:0;border:none;color:var(--steel)">' + tr("관련 법령 (", "Related laws (") +
             image.refs.length +
-            "건)</div>" +
+            tr("건)", ")") +
             '<div class="panel"><table class="laws-table"><thead><tr><th>법령명</th><th>파일</th><th>위치</th><th>법령정보</th><th>GitHub</th></tr></thead><tbody>' +
             refsHtml +
             "</tbody></table></div></div></div>";
@@ -364,7 +383,7 @@
 
         function showList(page) {
           if (!page || page < 1) page = 1;
-          document.title = "법령 이미지 뷰어 — Legalize";
+          document.title = tr("법령 이미지 뷰어 — Legalize", "Law Image Viewer — Legalize");
 
           app.innerHTML =
             '<div class="container">' +
@@ -399,9 +418,12 @@
           loadManifest()
             .then(function (m) {
               document.getElementById("list-summary").textContent =
-                "총 " +
+                tr("총 ", "Total ") +
                 m.total.toLocaleString() +
-                "개 이미지 · 원본 이미지와 OCR 텍스트 변환 결과를 검증하세요";
+                tr(
+                  "개 이미지 · 원본 이미지와 OCR 텍스트 변환 결과를 검증하세요",
+                  " images · verify source images and OCR text conversions",
+                );
 
               var totalVisualPages = Math.ceil(m.total / VISUAL_PAGE_SIZE);
               var pageInput = document.getElementById("page-input");

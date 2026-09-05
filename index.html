@@ -216,6 +216,8 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="/css/style.css" />
+    <script src="/assets/i18n-data.js"></script>
+    <script src="/assets/i18n.js"></script>
   </head>
 
   <body>
@@ -1541,8 +1543,10 @@
               >&#x2696;&#xFE0F; Legalize KR &#x1F1F0;&#x1F1F7;</span
             >
             <span class="footer-copy">
-              <a href="https://legalize.dev">legalize.dev</a> 프로젝트의 한국
-              버전 · 데이터 출처:
+              <span data-i18n-footer-inspiration
+                ><a href="https://legalize.dev">legalize.dev</a>에서 영감을 받아 만든 프로젝트입니다.</span
+              >
+              데이터 출처:
               <a href="https://www.law.go.kr">국가법령정보센터</a>
             </span>
           </div>
@@ -1571,7 +1575,9 @@
       fetch("stats-laws.json")
         .then((r) => r.json())
         .then((stats) => {
-          const fmt = (n) => n.toLocaleString("ko-KR");
+          const fmt = (n) => n.toLocaleString(
+            document.documentElement.lang === "en" ? "en-US" : "ko-KR",
+          );
           const types = stats.types || {};
           const ruleCount = Object.entries(types)
             .filter(([k]) => k.endsWith("부령"))
@@ -1599,7 +1605,10 @@
       fetch("stats-precedents.json")
         .then((r) => r.json())
         .then((stats) => {
-          const fmt = (n) => Number(n || 0).toLocaleString("ko-KR");
+          const fmt = (n) =>
+            Number(n || 0).toLocaleString(
+              document.documentElement.lang === "en" ? "en-US" : "ko-KR",
+            );
           const ct = stats.case_types || {};
           const civil = ct["민사"] || 0;
           const criminal = ct["형사"] || 0;
@@ -1618,7 +1627,10 @@
       fetch("stats-ordinances.json")
         .then((r) => r.json())
         .then((stats) => {
-          const fmt = (n) => Number(n || 0).toLocaleString("ko-KR");
+          const fmt = (n) =>
+            Number(n || 0).toLocaleString(
+              document.documentElement.lang === "en" ? "en-US" : "ko-KR",
+            );
           document.getElementById("ord-total").textContent = fmt(stats.total);
           document.getElementById("ord-regions").textContent = fmt(
             Object.keys(stats.regions || {}).length,
@@ -1629,7 +1641,10 @@
       fetch("stats-admrules.json")
         .then((r) => r.json())
         .then((stats) => {
-          const fmt = (n) => Number(n || 0).toLocaleString("ko-KR");
+          const fmt = (n) =>
+            Number(n || 0).toLocaleString(
+              document.documentElement.lang === "en" ? "en-US" : "ko-KR",
+            );
           document.getElementById("adm-total").textContent = fmt(stats.total);
           document.getElementById("adm-agencies").textContent = fmt(
             Object.keys(stats.root_agencies || {}).length,

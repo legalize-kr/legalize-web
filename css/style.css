@@ -132,6 +132,28 @@
             background: var(--accent-ghost);
         }
 
+        .language-switch {
+            appearance: none;
+            border: 1px solid var(--border);
+            border-radius: 6px;
+            background: transparent;
+            color: var(--steel);
+            cursor: pointer;
+            font-family: var(--font-ui);
+            font-size: 13px;
+            font-weight: 600;
+            line-height: 1;
+            padding: 8px 10px;
+            white-space: nowrap;
+        }
+
+        .language-switch:hover,
+        .language-switch:focus-visible {
+            border-color: var(--accent-light);
+            color: var(--snow);
+            outline: none;
+        }
+
         section {
             padding: 120px 0;
         }
