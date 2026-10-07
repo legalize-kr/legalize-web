@@ -8,6 +8,7 @@
 <title>{{ metaTitle }}</title>
 <meta name="description" content="{{ metaDescription }}">
 <link rel="canonical" href="https://legalize.kr{{ page.url }}">
+<link rel="icon" type="image/png" href="/assets/legalize-icon.png">
 <meta name="theme-color" content="#0F172A">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Legalize KR">
@@ -47,7 +48,7 @@
 </head>
 <body>
 <nav class="nav">
-  <a href="/" class="nav-logo">⚖ legalize.kr</a>
+  <a href="/" class="nav-logo"><img src="/assets/legalize-icon.png" alt="" width="28" height="28" style="vertical-align:middle;margin-right:6px">legalize.kr</a>
   <a href="/" class="nav-link">홈</a>
   <a href="/usage.html" class="nav-link{% if '/usage.html' in page.url %} active{% endif %}">활용법</a>
   <a href="/viewer.html" class="nav-link{% if '/viewer.html' in page.url %} active{% endif %}">문서 보기</a>
