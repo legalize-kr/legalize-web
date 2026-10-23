@@ -70,4 +70,5 @@ npm run images:prepare  # 이미지 인덱스 재생성 + local-images 링크
 ## 라이선스
 
 - 법령·판례·자치법규·행정규칙 원문: 공공저작물 (대한민국 정부 저작물)
-- 사이트 소스: MIT
+- 사이트 소스: [Apache License 2.0](LICENSE-APACHE) 또는 [MIT License](LICENSE-MIT) 중 하나를 선택하여 사용할 수 있습니다.
+- 제3자 자료에는 해당 자료의 원래 이용 조건이 적용됩니다.
